@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Vue Extension",
-  "short_name": "Vue Extension",
-  "description": "The base for Vue and Chrome Extension.",
+  "name": "React Extension",
+  "short_name": "ReactExtension",
+  "description": "Building chrome extension using Webpack and ReactJS.",
   "default_locale": "en",
   "version": "18.07.06",
   "minimum_chrome_version": "55",
