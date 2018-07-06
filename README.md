@@ -6,15 +6,15 @@ Branches
 ---
 **Master:**
 <span>The master branch contains the base code for VanillaJS.</span><br/>
-`yarn checkout master`
+`git checkout master`
 
 **React:**
 <span>The react branch contains the base code for ReactJS.</span><br/>
-`yarn checkout react`
+`git checkout react`
 
 **Vue:**
 <span>The vue branch contains the base code for VueJS.</span><br/>
-`yarn checkout vue`
+`git checkout vue`
 
 Installation
 ---
