@@ -1,4 +1,5 @@
 let path = require('path');
+let webpack = require('webpack');
 // html helper/copier
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // files copier
@@ -19,6 +20,10 @@ module.exports = (env, argv) => ({
         filename: 'js/[name].js'
     },
     plugins: [
+        // define global variables
+        new webpack.DefinePlugin({
+            'DEVMODE': JSON.stringify(argv.mode)
+        }),
         new HtmlWebpackPlugin({
             filename: 'background.html',
             template: 'src/background.html',
@@ -48,6 +53,13 @@ module.exports = (env, argv) => ({
     module: {
         rules: [
             {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     'style-loader',
@@ -68,12 +80,12 @@ module.exports = (env, argv) => ({
                 ]
             },
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env']
+                        presets: ['react']
                     }
                 }
             },
@@ -86,6 +98,14 @@ module.exports = (env, argv) => ({
                 }
             }
         ]
+    },
+    resolve: {
+        extensions: ['*', '.js', '.jsx']
+    },
+    devServer: {
+        historyApiFallback: true,
+        noInfo: true,
+        overlay: true
     },
     performance: {
         hints: false
