@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Popup from '../components/Popup';
 import '../styles/popup.scss';
-
-document.getElementById('popup-app').innerHTML = '<h1>Hello, Popup!</h1>';
+// render the app
+ReactDOM.render(<Popup/>, document.getElementById('popup-app'));
