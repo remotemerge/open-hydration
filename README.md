@@ -4,14 +4,17 @@ Chrome Extension
 
 Branches
 ---
-**master:**
-<span>The master branch contains the base code for VanillaJS.</span>
+**Master:**
+<span>The master branch contains the base code for VanillaJS.</span><br/>
+`yarn checkout master`
 
-**react:**
-<span>The react branch contains the base code for ReactJS.</span>
+**React:**
+<span>The react branch contains the base code for ReactJS.</span><br/>
+`yarn checkout react`
 
-**vue:**
-<span>The vue branch contains the base code for VueJS.</span>
+**Vue:**
+<span>The vue branch contains the base code for VueJS.</span><br/>
+`yarn checkout vue`
 
 Installation
 ---
