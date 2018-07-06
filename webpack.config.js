@@ -112,7 +112,7 @@ module.exports = (env, argv) => ({
     },
     optimization: {
         runtimeChunk: false,
-        minimize: (argv.mode === 'production'),
+        minimize: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')),
         minimizer: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')) ? [
             new UglifyJsPlugin({
                 cache: false,
