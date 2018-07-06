@@ -1,0 +1,23 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "globals": {
+    "chrome": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true
+  },
+  "rules": {
+    "indent": "off"
+  }
+}
