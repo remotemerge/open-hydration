@@ -1,6 +1,8 @@
 ## ignore build directories
 dist/
 build/
+bundle/
+output/
 
 ### JetBrains template
 .idea/
