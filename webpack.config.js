@@ -1,18 +1,21 @@
-let path = require('path');
-let webpack = require('webpack');
-// html helper/copier
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+
 // files copier
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 // uglify plugin
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// html helper/copier
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// webpack css extractor
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => ({
     entry: {
         'background': './src/js/background.js',
         'content': './src/js/content.js',
-        'option': './src/js/option.js',
-        'popup': './src/js/popup.js'
+        'option': ['./src/js/option.js', './src/styles/option.scss'],
+        'popup': ['./src/js/popup.js', './src/styles/popup.scss']
     },
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -22,7 +25,11 @@ module.exports = (env, argv) => ({
     plugins: [
         // define global variables
         new webpack.DefinePlugin({
-            'DEVMODE': JSON.stringify(argv.mode)
+            'isDev': (argv.mode === 'development')
+        }),
+        // webpack css extractor
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
         }),
         new HtmlWebpackPlugin({
             filename: 'background.html',
@@ -49,36 +56,8 @@ module.exports = (env, argv) => ({
             {from: './src/manifest.json', to: 'manifest.json'}
         ])
     ],
-    watch: true,
     module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
-            },
-            {
-                test: /\.(woff|woff2|otf|eot|ttf)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 10240,
-                            name: 'fonts/[name].[ext]'
-                        }
-                    }
-                ]
-            },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
@@ -87,22 +66,59 @@ module.exports = (env, argv) => ({
                 }
             },
             {
-                test: /\.(png|jpg|jpeg|gif)$/,
+                test: /\.scss$/,
+                use: [
+                    (argv.mode === 'production') ? MiniCssExtractPlugin.loader : 'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    (argv.mode === 'production') ? MiniCssExtractPlugin.loader : 'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(woff|woff2|otf|eot|ttf)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: './bundle/'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    emitFile: false,
-                    name: '[name].[ext]?v=[hash]'
+                    name: '[name].[ext]',
+                    outputPath: './bundle/'
                 }
             }
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx']
+        alias: {
+            '~': path.join(__dirname, './'),
+            '@': path.join(__dirname, './')
+        },
+        extensions: ['*', '.js', '.jsx', '.json', '.scss']
     },
     devServer: {
         historyApiFallback: true,
-        noInfo: true,
-        overlay: true
+        contentBase: path.join(__dirname, 'dist'),
+        overlay: true,
+        noInfo: false,
+        host: '127.0.0.1',
+        port: 8090,
+        proxy: {
+            '/api/': 'http://127.0.0.1:8080'
+        }
     },
     performance: {
         hints: false
@@ -116,7 +132,17 @@ module.exports = (env, argv) => ({
                 parallel: true,
                 sourceMap: true
             })
-        ] : []
+        ] : [],
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        }
     },
     devtool: (argv.mode === 'production') ? '' : '#source-map'
 });
