@@ -1,7 +1,7 @@
 {
   "name": "react-extension",
   "description": "Building chrome extension using Webpack and ReactJS.",
-  "version": "18.7.31",
+  "version": "18.9.1",
   "author": "Madan Sapkota <code@madansapkota.com>",
   "license": "MIT",
   "private": true,
