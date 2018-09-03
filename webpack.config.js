@@ -28,9 +28,9 @@ module.exports = (env, argv) => ({
             'isDev': (argv.mode === 'development')
         }),
         // webpack css extractor
-        new MiniCssExtractPlugin({
+        (argv.mode === 'production') ? new MiniCssExtractPlugin({
             filename: 'css/[name].css'
-        }),
+        }) : null,
         new HtmlWebpackPlugin({
             filename: 'background.html',
             template: 'src/background.html',
@@ -57,6 +57,7 @@ module.exports = (env, argv) => ({
         ])
     ],
     module: {
+        noParse: /lodash/,
         rules: [
             {
                 test: /\.(js|jsx)$/,
@@ -128,7 +129,8 @@ module.exports = (env, argv) => ({
         minimize: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')),
         minimizer: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')) ? [
             new UglifyJsPlugin({
-                cache: false,
+                test: /\.js($|\?)/i,
+                cache: true,
                 parallel: true,
                 sourceMap: true
             })
