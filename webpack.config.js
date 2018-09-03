@@ -56,6 +56,7 @@ module.exports = (env, argv) => ({
             {from: './src/manifest.json', to: 'manifest.json'}
         ])
     ],
+    watch: argv.mode !== 'production' || (argv.watch !== undefined && argv.watch === 'true'),
     module: {
         noParse: /lodash/,
         rules: [
