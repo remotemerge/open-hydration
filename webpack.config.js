@@ -10,6 +10,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // webpack css extractor
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// use mini css in production
+let getStyleLoader = (argv) => {
+    return (argv.mode === 'production') ? MiniCssExtractPlugin.loader : 'style-loader';
+};
+
 module.exports = (env, argv) => ({
     entry: {
         'background': './src/js/background.js',
@@ -23,14 +28,14 @@ module.exports = (env, argv) => ({
         filename: 'js/[name].js'
     },
     plugins: [
+        // webpack css extractor
+        (argv.mode === 'production') ? new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        }) : new webpack.DefinePlugin({}),
         // define global variables
         new webpack.DefinePlugin({
             'isDev': (argv.mode === 'development')
         }),
-        // webpack css extractor
-        (argv.mode === 'production') ? new MiniCssExtractPlugin({
-            filename: 'css/[name].css'
-        }) : null,
         new HtmlWebpackPlugin({
             filename: 'background.html',
             template: 'src/background.html',
@@ -70,7 +75,7 @@ module.exports = (env, argv) => ({
             {
                 test: /\.scss$/,
                 use: [
-                    (argv.mode === 'production') ? MiniCssExtractPlugin.loader : 'style-loader',
+                    getStyleLoader(argv),
                     'css-loader',
                     'sass-loader'
                 ]
@@ -78,7 +83,7 @@ module.exports = (env, argv) => ({
             {
                 test: /\.css$/,
                 use: [
-                    (argv.mode === 'production') ? MiniCssExtractPlugin.loader : 'style-loader',
+                    getStyleLoader(argv),
                     'css-loader'
                 ]
             },
