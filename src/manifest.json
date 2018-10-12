@@ -4,7 +4,7 @@
   "short_name": "ReactExtension",
   "description": "Building chrome extension using Webpack and ReactJS.",
   "default_locale": "en",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "minimum_chrome_version": "55",
   "author": "Madan Sapkota <code@madansapkota.com>",
   "browser_action": {
