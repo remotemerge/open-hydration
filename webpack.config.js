@@ -3,8 +3,8 @@ const webpack = require('webpack');
 
 // files copier
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// uglify plugin
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// babel minify plugin
+const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
 // html helper/copier
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // webpack css extractor
@@ -134,11 +134,13 @@ module.exports = (env, argv) => ({
         runtimeChunk: false,
         minimize: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')),
         minimizer: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')) ? [
-            new UglifyJsPlugin({
+            new BabelMinifyPlugin({
+                removeConsole: true,
+                removeDebugger: true
+            }, {
                 test: /\.js($|\?)/i,
-                cache: true,
-                parallel: true,
-                sourceMap: true
+                comments: false,
+                sourceMap: false
             })
         ] : [],
         splitChunks: {
