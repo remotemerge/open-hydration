@@ -1,28 +1,28 @@
 ## ignore build directories
-dist/
-build/
-bundle/
-output/
+/dist/
+/build/
+/bundle/
+/output/
 
 ### JetBrains template
-.idea/
+/.idea/
 
 ### VisualStudioCode template
-.vscode/
+/.vscode/
 
 ### NetBeans template
-nbproject/
-nbbuild/
-nbdist/
-.nb-gradle/
+/nbproject/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
 
 ### Node template
+/node_modules/
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-node_modules/
 .npm
 .eslintcache
 .node_repl_history
@@ -31,7 +31,7 @@ node_modules/
 .next
 
 ### Sass template
-.sass-cache/
+/.sass-cache/
 *.css.map
 
 ### Windows template
@@ -52,6 +52,20 @@ ehthumbs_vista.db
 .Trash-*
 .nfs*
 
-### custom ignores
-composer-lock.json
+### lock files
 package-lock.json
+
+### test files
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+/playground
+
+### local env files
+.env
+
+### editor files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
