@@ -1,5 +1,7 @@
 // init path module
 const path = require('path');
+// init fs module
+const fs = require('fs');
 
 // init copy plugin
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -110,20 +112,15 @@ const backgroundConfig = (argv) => merge(commonConfig(argv), {
     }),
     new CopyWebpackPlugin([
       {
-        from: './src/assets',
+        from: './public/assets',
         to: 'assets',
         toType: 'dir',
       },
       {
-        from: './src/_locales',
+        from: './public/_locales',
         to: '_locales',
         toType: 'dir',
       },
-      {
-        from: './src/manifest.json',
-        to: 'manifest.json',
-        toType: 'file',
-      }
     ]),
   ],
 });
@@ -164,6 +161,11 @@ const popupConfig = (argv) => merge(commonConfig(argv), {
     }),
   ],
 });
+
+// generate chrome manifest
+const Manifest = require('./src/manifest/index');
+fs.existsSync('./dist') || fs.mkdirSync('./dist');
+fs.createWriteStream('./dist/manifest.json', 'utf-8').write(JSON.stringify(new Manifest));
 
 // export multiple configs
 module.exports = (env, argv) => [backgroundConfig(argv), contentConfig(argv), optionConfig(argv), popupConfig(argv)];

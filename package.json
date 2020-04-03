@@ -1,5 +1,7 @@
 {
   "name": "@cixware/cereact",
+  "app_name": "React Extension",
+  "app_name_short": "Extension",
   "description": "The chrome extension base using ReactJS.",
   "version": "20.04.03",
   "homepage": "https://cixware.io",
