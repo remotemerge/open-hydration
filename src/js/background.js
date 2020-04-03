@@ -1,2 +1,2 @@
 'use strict';
-console.log("Hello, Background!");
+console.log('Hello, Background!');

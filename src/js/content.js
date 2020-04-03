@@ -1,2 +1,2 @@
 'use strict';
-console.log("Hello, Content!");
+console.log('Hello, Content!');
