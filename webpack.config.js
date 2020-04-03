@@ -1,158 +1,169 @@
+// init path module
 const path = require('path');
-const webpack = require('webpack');
 
-// files copier
+// init copy plugin
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// babel minify plugin
-const BabelMinifyPlugin = require("babel-minify-webpack-plugin");
-// html helper/copier
+// init html plugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// webpack css extractor
+// init css extract plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-// use mini css in production
-let getStyleLoader = (argv) => {
-    return (argv.mode === 'production') ? MiniCssExtractPlugin.loader : 'style-loader';
-};
+// init merge plugin
+const merge = require('webpack-merge');
 
-module.exports = (env, argv) => ({
-    entry: {
-        'background': './src/js/background.js',
-        'content': './src/js/content.js',
-        'option': ['./src/js/option.js', './src/styles/option.scss'],
-        'popup': ['./src/js/popup.js', './src/styles/popup.scss']
-    },
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/',
-        filename: 'js/[name].js'
-    },
-    plugins: [
-        // webpack css extractor
-        (argv.mode === 'production') ? new MiniCssExtractPlugin({
-            filename: 'css/[name].css'
-        }) : new webpack.DefinePlugin({}),
-        // define global variables
-        new webpack.DefinePlugin({
-            'isDev': (argv.mode === 'development')
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'background.html',
-            template: 'src/background.html',
-            inject: true,
-            chunks: ['background']
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'option.html',
-            template: 'src/option.html',
-            inject: true,
-            chunks: ['option']
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'popup.html',
-            template: 'src/popup.html',
-            inject: true,
-            chunks: ['popup']
-        }),
-        // copy static files
-        new CopyWebpackPlugin([
-            {from: './src/assets', to: 'assets'},
-            {from: './src/_locales', to: '_locales'},
-            {from: './src/manifest.json', to: 'manifest.json'}
-        ])
-    ],
-    watch: argv.mode !== 'production' || (argv.watch !== undefined && argv.watch === 'true'),
-    module: {
-        noParse: /lodash/,
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader'
-                }
+// build environment
+const isProduction = process.env.NODE_ENV === 'production';
+
+// common configs
+const commonConfig = () => ({
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
+    filename: 'js/[' + (isProduction ? 'hash' : 'name') + '].js',
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[' + (isProduction ? 'hash' : 'name') + '].css',
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: !isProduction,
             },
-            {
-                test: /\.scss$/,
-                use: [
-                    getStyleLoader(argv),
-                    'css-loader',
-                    'sass-loader'
-                ]
+          },
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              sassOptions: {
+                fiber: require('fibers'),
+              },
             },
-            {
-                test: /\.css$/,
-                use: [
-                    getStyleLoader(argv),
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.(woff|woff2|otf|eot|ttf)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: './bundle/'
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(png|jpg|jpeg|gif|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: './bundle/'
-                }
-            }
+          },
+          'postcss-loader',
         ]
-    },
-    resolve: {
-        alias: {
-            '~': path.join(__dirname, './'),
-            '@': path.join(__dirname, './')
-        },
-        extensions: ['*', '.js', '.jsx', '.json', '.scss']
-    },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: path.join(__dirname, 'dist'),
-        overlay: true,
-        noInfo: false,
-        host: '127.0.0.1',
-        port: 8090,
-        proxy: {
-            '/api/': 'http://127.0.0.1:8080'
-        }
-    },
-    performance: {
-        hints: false
-    },
-    optimization: {
-        runtimeChunk: false,
-        minimize: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')),
-        minimizer: (argv.mode === 'production' && (argv.uglify === undefined || argv.uglify === 'true')) ? [
-            new BabelMinifyPlugin({
-                removeConsole: true,
-                removeDebugger: true
-            }, {
-                test: /\.js($|\?)/i,
-                comments: false,
-                sourceMap: false
-            })
-        ] : [],
-        splitChunks: {
-            cacheGroups: {
-                styles: {
-                    name: 'styles',
-                    test: /\.css$/,
-                    chunks: 'all',
-                    enforce: true
-                }
+      },
+      {
+        test: /\.(woff|woff2|otf|eot|ttf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[' + (isProduction ? 'hash' : 'name') + '].[ext]',
+              outputPath: './fonts/',
+              publicPath: '/fonts/',
             }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[' + (isProduction ? 'hash' : 'name') + '].[ext]',
+          outputPath: './images/',
+          publicPath: '/images/',
         }
+      }
+    ]
+  },
+  resolve: {
+    alias: {
+      '~': path.join(__dirname, './'),
+      '@': path.join(__dirname, './')
     },
-    devtool: (argv.mode === 'production') ? '' : '#source-map'
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.json', '.scss']
+  },
+  performance: {
+    hints: isProduction ? false : 'warning'
+  },
+  optimization: {
+    runtimeChunk: false,
+    minimize: isProduction,
+  },
+  devtool: false,
 });
+
+// background configs
+const backgroundConfig = (argv) => merge(commonConfig(argv), {
+  entry: {
+    'background': './src/js/background.js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'background.html',
+      template: 'src/background.html',
+      inject: true,
+      chunks: ['background']
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: './src/assets',
+        to: 'assets',
+        toType: 'dir',
+      },
+      {
+        from: './src/_locales',
+        to: '_locales',
+        toType: 'dir',
+      },
+      {
+        from: './src/manifest.json',
+        to: 'manifest.json',
+        toType: 'file',
+      }
+    ]),
+  ],
+});
+
+// content configs
+const contentConfig = (argv) => merge(commonConfig(argv), {
+  entry: {
+    'content': './src/js/content.js',
+  },
+});
+
+// option configs
+const optionConfig = (argv) => merge(commonConfig(argv), {
+  entry: {
+    'option': './src/js/option.js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'option.html',
+      template: 'src/option.html',
+      inject: true,
+      chunks: ['option']
+    }),
+  ],
+});
+
+// popup configs
+const popupConfig = (argv) => merge(commonConfig(argv), {
+  entry: {
+    'popup': './src/js/popup.js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'popup.html',
+      template: 'src/popup.html',
+      inject: true,
+      chunks: ['popup']
+    }),
+  ],
+});
+
+// export multiple configs
+module.exports = (env, argv) => [backgroundConfig(argv), contentConfig(argv), optionConfig(argv), popupConfig(argv)];
