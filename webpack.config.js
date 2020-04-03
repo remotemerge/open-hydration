@@ -15,11 +15,11 @@ const merge = require('webpack-merge');
 const isProduction = process.env.NODE_ENV === 'production';
 
 // common configs
-const commonConfig = () => ({
+const commonConfig = (hashName = true) => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'js/[' + (isProduction ? 'hash' : 'name') + '].js',
+    filename: 'js/[' + (isProduction && hashName ? 'hash' : 'name') + '].js',
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -99,14 +99,14 @@ const commonConfig = () => ({
 // background configs
 const backgroundConfig = (argv) => merge(commonConfig(argv), {
   entry: {
-    'background': './src/js/background.js',
+    'app': './src/background/index.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'background.html',
-      template: 'src/background.html',
+      template: 'src/background/index.html',
       inject: true,
-      chunks: ['background']
+      chunks: ['app']
     }),
     new CopyWebpackPlugin([
       {
@@ -129,23 +129,23 @@ const backgroundConfig = (argv) => merge(commonConfig(argv), {
 });
 
 // content configs
-const contentConfig = (argv) => merge(commonConfig(argv), {
+const contentConfig = () => merge(commonConfig(false), {
   entry: {
-    'content': './src/js/content.js',
+    'content': './src/content/index.js',
   },
 });
 
 // option configs
 const optionConfig = (argv) => merge(commonConfig(argv), {
   entry: {
-    'option': './src/js/option.js',
+    'app': './src/option/index.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'option.html',
-      template: 'src/option.html',
+      template: 'src/option/index.html',
       inject: true,
-      chunks: ['option']
+      chunks: ['app']
     }),
   ],
 });
@@ -153,14 +153,14 @@ const optionConfig = (argv) => merge(commonConfig(argv), {
 // popup configs
 const popupConfig = (argv) => merge(commonConfig(argv), {
   entry: {
-    'popup': './src/js/popup.js',
+    'app': './src/popup/index.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'popup.html',
-      template: 'src/popup.html',
+      template: 'src/popup/index.html',
       inject: true,
-      chunks: ['popup']
+      chunks: ['app']
     }),
   ],
 });
