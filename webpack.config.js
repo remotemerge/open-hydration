@@ -162,10 +162,5 @@ const popupConfig = (argv) => merge(commonConfig(argv), {
   ],
 });
 
-// generate chrome manifest
-const Manifest = require('./src/manifest/index');
-fs.existsSync('./dist') || fs.mkdirSync('./dist');
-fs.createWriteStream('./dist/manifest.json', 'utf-8').write(JSON.stringify(new Manifest));
-
 // export multiple configs
 module.exports = (env, argv) => [backgroundConfig(argv), contentConfig(argv), optionConfig(argv), popupConfig(argv)];
