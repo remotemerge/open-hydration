@@ -1,7 +1,5 @@
 // init path module
 const path = require('path');
-// init fs module
-const fs = require('fs');
 
 // init copy plugin
 const CopyWebpackPlugin = require('copy-webpack-plugin');
