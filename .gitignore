@@ -69,3 +69,7 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+### ignore archives
+/*.zip
+/*.7z
