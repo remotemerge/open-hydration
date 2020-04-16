@@ -33,7 +33,7 @@
     "manifest": "node ./manifest.js",
     "archive": "node ./archive.js",
     "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --mode=development",
-    "build": "yarn clean && cross-env NODE_ENV=production webpack --config webpack.config.js --mode=production --progress --hide-modules",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --mode=production --progress --hide-modules",
     "package": "yarn clean && yarn build && yarn manifest && yarn archive"
   },
   "dependencies": {
