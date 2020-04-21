@@ -104,7 +104,7 @@ const commonConfig = (hashName = true) => ({
 // background configs
 const backgroundConfig = (argv) => merge(commonConfig(argv), {
   entry: {
-    'app': './src/background/index.js',
+    'app': './src/background/index.ts',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -131,7 +131,7 @@ const backgroundConfig = (argv) => merge(commonConfig(argv), {
 // content configs
 const contentConfig = () => merge(commonConfig(false), {
   entry: {
-    'content': './src/content/index.js',
+    'content': './src/content/index.ts',
   },
 });
 
