@@ -113,18 +113,20 @@ const backgroundConfig = (argv) => merge(commonConfig(argv), {
       inject: true,
       chunks: ['app']
     }),
-    new CopyWebpackPlugin([
-      {
-        from: './public/assets',
-        to: 'assets',
-        toType: 'dir',
-      },
-      {
-        from: './public/_locales',
-        to: '_locales',
-        toType: 'dir',
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './public/assets',
+          to: 'assets',
+          toType: 'dir',
+        },
+        {
+          from: './public/_locales',
+          to: '_locales',
+          toType: 'dir',
+        },
+      ],
+    }),
   ],
 });
 
