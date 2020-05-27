@@ -30,11 +30,14 @@
   ],
   "scripts": {
     "clean": "rm -rf ./dist/* ./*.zip ./*.7z",
-    "manifest": "node ./manifest.js",
     "archive": "node ./archive.js",
-    "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --mode=development",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --mode=production --progress --hide-modules",
-    "package": "yarn clean && yarn build && yarn manifest && yarn archive"
+    "manifest:dev": "cross-env NODE_ENV=development node ./manifest.js",
+    "manifest:pro": "cross-env NODE_ENV=production node ./manifest.js",
+    "webpack:dev": "cross-env NODE_ENV=development webpack --mode=development",
+    "webpack:pro": "cross-env NODE_ENV=production webpack --mode=production",
+    "dev": "yarn manifest:dev && yarn webpack:dev",
+    "build": "yarn manifest:pro && yarn webpack:pro",
+    "package": "yarn clean && yarn build && yarn archive"
   },
   "dependencies": {
     "axios": "^0.19.2",
