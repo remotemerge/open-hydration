@@ -4,10 +4,10 @@ module.exports = {
       '@babel/preset-react',
       {
         targets: {
-          node: 'current'
-        }
-      }
+          node: 'current',
+        },
+      },
     ],
   ],
-  ignore: ['dist/*', 'playground/*']
+  ignore: ['dist/*', 'playground/*'],
 };

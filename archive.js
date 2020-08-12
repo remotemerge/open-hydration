@@ -7,7 +7,7 @@ const output = fs.createWriteStream(__dirname + '/dist.zip');
 const archive = archiver('zip', {
   zlib: {
     level: 9,
-  }
+  },
 });
 
 // pipe archive

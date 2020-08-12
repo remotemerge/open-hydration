@@ -1,3 +1,7 @@
+## ignore vendor directories
+/vendor
+/node_modules
+
 ## ignore build directories
 /dist/
 /build/
@@ -5,7 +9,9 @@
 /output/
 
 ### JetBrains template
-/.idea/
+/.idea/*
+!/.idea/dictionaries/
+!/.idea/dictionaries/*.xml
 
 ### VisualStudioCode template
 /.vscode/
@@ -15,24 +21,6 @@
 /nbbuild/
 /nbdist/
 /.nb-gradle/
-
-### Node template
-/node_modules/
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.npm
-.eslintcache
-.node_repl_history
-*.tgz
-.yarn-integrity
-.next
-
-### Sass template
-/.sass-cache/
-*.css.map
 
 ### Windows template
 Thumbs.db
@@ -52,17 +40,6 @@ ehthumbs_vista.db
 .Trash-*
 .nfs*
 
-### lock files
-package-lock.json
-
-### test files
-/tests/e2e/videos/
-/tests/e2e/screenshots/
-/playground
-
-### local env files
-.env
-
 ### editor files
 *.suo
 *.ntvs*
@@ -70,6 +47,14 @@ package-lock.json
 *.sln
 *.sw?
 
-### ignore archives
-/*.zip
-/*.7z
+### Composer
+composer.lock
+composer.phar
+package-lock.json
+
+### Generated files
+.env
+*.cache
+*.log
+*.key
+*.zip
