@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // init merge plugin
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 
 // build environment
 const isProduction = process.env.NODE_ENV === 'production';
@@ -58,7 +58,7 @@ const commonConfig = (hashName = true) => ({
             },
           },
           'postcss-loader',
-        ]
+        ],
       },
       {
         test: /\.(woff|woff2|otf|eot|ttf)$/,
@@ -69,9 +69,9 @@ const commonConfig = (hashName = true) => ({
               name: '[' + (isProduction ? 'hash' : 'name') + '].[ext]',
               outputPath: './fonts/',
               publicPath: '/fonts/',
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -80,19 +80,19 @@ const commonConfig = (hashName = true) => ({
           name: '[' + (isProduction ? 'hash' : 'name') + '].[ext]',
           outputPath: './images/',
           publicPath: '/images/',
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   resolve: {
     alias: {
       '~': path.join(__dirname, './'),
-      '@': path.join(__dirname, './')
+      '@': path.join(__dirname, './'),
     },
-    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.json', '.scss']
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
   },
   performance: {
-    hints: isProduction ? false : 'warning'
+    hints: isProduction ? false : 'warning',
   },
   optimization: {
     runtimeChunk: false,
@@ -102,70 +102,79 @@ const commonConfig = (hashName = true) => ({
 });
 
 // background configs
-const backgroundConfig = (argv) => merge(commonConfig(argv), {
-  entry: {
-    'app': './src/background/index.ts',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'background.html',
-      template: 'src/background/index.html',
-      inject: true,
-      chunks: ['app']
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: './public/assets',
-          to: 'assets',
-          toType: 'dir',
-        },
-        {
-          from: './public/_locales',
-          to: '_locales',
-          toType: 'dir',
-        },
-      ],
-    }),
-  ],
-});
+const backgroundConfig = (argv) =>
+  merge(commonConfig(argv), {
+    entry: {
+      app: './src/background/index.ts',
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: 'background.html',
+        template: 'src/background/index.html',
+        inject: true,
+        chunks: ['app'],
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: './public/assets',
+            to: 'assets',
+            toType: 'dir',
+          },
+          {
+            from: './public/_locales',
+            to: '_locales',
+            toType: 'dir',
+          },
+        ],
+      }),
+    ],
+  });
 
 // content configs
-const contentConfig = () => merge(commonConfig(false), {
-  entry: {
-    'content': './src/content/index.ts',
-  },
-});
+const contentConfig = () =>
+  merge(commonConfig(false), {
+    entry: {
+      content: './src/content/index.ts',
+    },
+  });
 
 // option configs
-const optionConfig = (argv) => merge(commonConfig(argv), {
-  entry: {
-    'app': './src/option/index.js',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'option.html',
-      template: 'src/option/index.html',
-      inject: true,
-      chunks: ['app']
-    }),
-  ],
-});
+const optionConfig = (argv) =>
+  merge(commonConfig(argv), {
+    entry: {
+      app: './src/option/index.js',
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: 'option.html',
+        template: 'src/option/index.html',
+        inject: true,
+        chunks: ['app'],
+      }),
+    ],
+  });
 
 // popup configs
-const popupConfig = (argv) => merge(commonConfig(argv), {
-  entry: {
-    'app': './src/popup/index.js',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'popup.html',
-      template: 'src/popup/index.html',
-      inject: true,
-      chunks: ['app']
-    }),
-  ],
-});
+const popupConfig = (argv) =>
+  merge(commonConfig(argv), {
+    entry: {
+      app: './src/popup/index.js',
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: 'popup.html',
+        template: 'src/popup/index.html',
+        inject: true,
+        chunks: ['app'],
+      }),
+    ],
+  });
 
 // export multiple configs
-module.exports = (env, argv) => [backgroundConfig(argv), contentConfig(argv), optionConfig(argv), popupConfig(argv)];
+module.exports = (env, argv) => [
+  backgroundConfig(argv),
+  contentConfig(argv),
+  optionConfig(argv),
+  popupConfig(argv),
+];
