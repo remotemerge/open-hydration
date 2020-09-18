@@ -5,18 +5,18 @@ let plugins = [];
 if (buildEnv === 'production') {
   plugins = [
     require('cssnano')({
-      preset: ['default', {
-        discardComments: {
-          removeAll: true,
+      preset: [
+        'default',
+        {
+          discardComments: {
+            removeAll: true,
+          },
         },
-      }],
+      ],
     }),
   ];
 }
 
 module.exports = {
-  plugins: [
-    require('autoprefixer'),
-    ...plugins
-  ]
+  plugins: [require('autoprefixer'), ...plugins],
 };
