@@ -15,15 +15,15 @@ const { merge } = require('webpack-merge');
 const isProduction = process.env.NODE_ENV === 'production';
 
 // common configs
-const commonConfig = (hashName = true) => ({
+const commonConfig = (useHash = true) => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'js/[' + (isProduction && hashName ? 'hash' : 'name') + '].js',
+    filename: 'js/[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[' + (isProduction ? 'hash' : 'name') + '].css',
+      filename: 'css/[' + (isProduction ? 'contenthash' : 'name') + '].css',
     }),
   ],
   module: {
@@ -66,7 +66,7 @@ const commonConfig = (hashName = true) => ({
           {
             loader: 'file-loader',
             options: {
-              name: '[' + (isProduction ? 'hash' : 'name') + '].[ext]',
+              name: '[' + (isProduction ? 'contenthash' : 'name') + '].[ext]',
               outputPath: './fonts/',
               publicPath: '/fonts/',
             },
@@ -77,7 +77,7 @@ const commonConfig = (hashName = true) => ({
         test: /\.(png|jpg|jpeg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[' + (isProduction ? 'hash' : 'name') + '].[ext]',
+          name: '[' + (isProduction ? 'contenthash' : 'name') + '].[ext]',
           outputPath: './images/',
           publicPath: '/images/',
         },
