@@ -19,7 +19,8 @@ const commonConfig = (useHash = true) => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'js/[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
+    filename:
+      'js/[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -43,9 +44,6 @@ const commonConfig = (useHash = true) => ({
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: !isProduction,
-            },
           },
           'css-loader',
           {
