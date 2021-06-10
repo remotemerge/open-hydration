@@ -3,7 +3,7 @@
   "app_name": "React Extension",
   "app_name_short": "Extension",
   "description": "The chrome extension base using ReactJS.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "homepage": "https://cixware.io",
   "author": {
     "name": "Madan Sapkota",
