@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:workapps/cereact.git"
+    "url": "git@github.com:remotemerge/cereact.git"
   },
   "engines": {
     "node": ">=12"
