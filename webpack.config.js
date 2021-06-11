@@ -108,8 +108,8 @@ const backgroundConfig = () =>
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: './public/assets',
-            to: 'assets',
+            from: './public/icons',
+            to: 'icons',
             toType: 'dir',
           },
           {

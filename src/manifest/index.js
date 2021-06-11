@@ -10,15 +10,15 @@ class Manifest {
       minimum_chrome_version: JSON.stringify(88),
       author: process.env.npm_package_author_name,
       icons: {
-        16: 'assets/img/16.png',
-        48: 'assets/img/48.png',
-        128: 'assets/img/128.png',
+        16: '/icons/16.png',
+        48: '/icons/48.png',
+        128: '/icons/128.png',
       },
       action: {
         default_icon: {
-          16: 'assets/img/16.png',
-          24: 'assets/img/24.png',
-          32: 'assets/img/32.png',
+          16: '/icons/16.png',
+          24: '/icons/24.png',
+          32: '/icons/32.png',
         },
         default_title: process.env.npm_package_app_name_short,
         default_popup: 'popup.html',
