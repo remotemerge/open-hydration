@@ -19,8 +19,7 @@ const commonConfig = (useHash = true) => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename:
-      'js/[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
+    filename: 'js/[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -100,18 +99,12 @@ const commonConfig = (useHash = true) => ({
 });
 
 // background configs
-const backgroundConfig = (argv) =>
-  merge(commonConfig(argv), {
+const backgroundConfig = () =>
+  merge(commonConfig(false), {
     entry: {
-      app: './src/background/index.ts',
+      worker: './src/background/index.ts',
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        filename: 'background.html',
-        template: 'src/background/index.html',
-        inject: true,
-        chunks: ['app'],
-      }),
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -154,8 +147,8 @@ const optionConfig = (argv) =>
   });
 
 // popup configs
-const popupConfig = (argv) =>
-  merge(commonConfig(argv), {
+const popupConfig = () =>
+  merge(commonConfig(true), {
     entry: {
       app: './src/popup/index.js',
     },
@@ -170,9 +163,4 @@ const popupConfig = (argv) =>
   });
 
 // export multiple configs
-module.exports = (env, argv) => [
-  backgroundConfig(argv),
-  contentConfig(argv),
-  optionConfig(argv),
-  popupConfig(argv),
-];
+module.exports = () => [backgroundConfig(), contentConfig(), optionConfig(), popupConfig()];
