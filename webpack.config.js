@@ -2,11 +2,11 @@
 const path = require('path');
 
 // init copy plugin
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 // init html plugin
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 // init css extract plugin
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssExtractPlugin = require('mini-css-extract-plugin');
 
 // init merge plugin
 const { merge } = require('webpack-merge');
@@ -22,7 +22,7 @@ const commonConfig = (useHash = true) => ({
     filename: '[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
   },
   plugins: [
-    new MiniCssExtractPlugin({
+    new CssExtractPlugin({
       filename: 'css/[' + (isProduction ? 'contenthash' : 'name') + '].css',
     }),
   ],
@@ -42,7 +42,7 @@ const commonConfig = (useHash = true) => ({
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
+            loader: CssExtractPlugin.loader,
           },
           'css-loader',
           {
@@ -105,7 +105,7 @@ const backgroundConfig = () =>
       worker: './src/background/index.ts',
     },
     plugins: [
-      new CopyWebpackPlugin({
+      new CopyPlugin({
         patterns: [
           {
             from: './public/icons',
@@ -137,7 +137,7 @@ const optionConfig = (argv) =>
       option: './src/option/index.js',
     },
     plugins: [
-      new HtmlWebpackPlugin({
+      new HtmlPlugin({
         filename: 'option.html',
         template: 'src/option/index.html',
         inject: true,
@@ -150,14 +150,14 @@ const optionConfig = (argv) =>
 const popupConfig = () =>
   merge(commonConfig(true), {
     entry: {
-      app: './src/popup/index.js',
+      popup: './src/popup/index.js',
     },
     plugins: [
-      new HtmlWebpackPlugin({
+      new HtmlPlugin({
         filename: 'popup.html',
         template: 'src/popup/index.html',
         inject: true,
-        chunks: ['app'],
+        chunks: ['popup'],
       }),
     ],
   });
