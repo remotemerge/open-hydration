@@ -19,7 +19,7 @@ const commonConfig = (useHash = true) => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'js/[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
+    filename: '[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -134,14 +134,14 @@ const contentConfig = () =>
 const optionConfig = (argv) =>
   merge(commonConfig(argv), {
     entry: {
-      app: './src/option/index.js',
+      option: './src/option/index.js',
     },
     plugins: [
       new HtmlWebpackPlugin({
         filename: 'option.html',
         template: 'src/option/index.html',
         inject: true,
-        chunks: ['app'],
+        chunks: ['option'],
       }),
     ],
   });

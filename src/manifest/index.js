@@ -25,12 +25,12 @@ class Manifest {
       },
       options_page: 'option.html',
       background: {
-        service_worker: 'js/worker.js',
+        service_worker: 'worker.js',
       },
       content_scripts: [
         {
           matches: ['<all_urls>'],
-          js: [`js/content.js`],
+          js: ['content.js'],
           match_about_blank: false,
           all_frames: false,
         },
