@@ -9,7 +9,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const CssPlugin = require('mini-css-extract-plugin');
 
 // init merge plugin
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 
 // build environment
 const isProduction = process.env.NODE_ENV === 'production';
@@ -99,14 +99,6 @@ const backgroundConfig = () =>
     ],
   });
 
-// content configs
-const contentConfig = () =>
-  merge(commonConfig(false), {
-    entry: {
-      content: './src/content/index.ts',
-    },
-  });
-
 // option configs
 const optionConfig = (argv) =>
   merge(commonConfig(argv), {
@@ -140,4 +132,4 @@ const popupConfig = () =>
   });
 
 // export multiple configs
-module.exports = () => [backgroundConfig(), contentConfig(), optionConfig(), popupConfig()];
+module.exports = () => [backgroundConfig(), optionConfig(), popupConfig()];

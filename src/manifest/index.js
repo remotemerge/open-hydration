@@ -20,24 +20,16 @@ module.exports = class Manifest {
           24: '/icons/24.png',
           32: '/icons/32.png',
         },
-        default_title: process.env.npm_package_app_name_short,
+        default_title: '__MSG_extName__',
         default_popup: 'popup.html',
       },
       options_page: 'option.html',
       background: {
         service_worker: 'worker.js',
       },
-      content_scripts: [
-        {
-          matches: ['<all_urls>'],
-          js: ['content.js'],
-          match_about_blank: false,
-          all_frames: false,
-        },
-      ],
       permissions: ['notifications'],
       host_permissions: ['<all_urls>'],
       web_accessible_resources: [],
     };
   }
-}
+};
