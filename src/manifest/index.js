@@ -35,7 +35,7 @@ module.exports = class Manifest {
           all_frames: false,
         },
       ],
-      permissions: ['tabs'],
+      permissions: ['notifications'],
       host_permissions: ['<all_urls>'],
       web_accessible_resources: [],
     };
