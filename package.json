@@ -1,7 +1,5 @@
 {
   "name": "@remotemerge/drink-water",
-  "app_name": "Drink Water",
-  "app_name_short": "Drink Water",
   "description": "Drink Water is an open source browser extension to keep you hydrated.",
   "version": "3.0.1",
   "homepage": "https://madansapkota.com",

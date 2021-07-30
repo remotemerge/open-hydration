@@ -2,9 +2,9 @@ class Manifest {
   constructor() {
     return {
       manifest_version: 3,
-      name: process.env.npm_package_app_name,
-      short_name: process.env.npm_package_app_name_short,
-      description: process.env.npm_package_description,
+      name: '__MSG_extName__',
+      short_name: '__MSG_extShortName__',
+      description: '__MSG_extDescription__',
       default_locale: 'en',
       version: process.env.npm_package_version,
       minimum_chrome_version: JSON.stringify(88),
