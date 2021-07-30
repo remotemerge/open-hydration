@@ -9,5 +9,5 @@ module.exports = {
       },
     ],
   ],
-  ignore: ['dist/*', 'playground/*'],
+  ignore: ['dist/*', 'tests/*'],
 };

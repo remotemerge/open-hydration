@@ -6,7 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 // init html plugin
 const HtmlPlugin = require('html-webpack-plugin');
 // init css extract plugin
-const CssExtractPlugin = require('mini-css-extract-plugin');
+const CssPlugin = require('mini-css-extract-plugin');
 
 // init merge plugin
 const { merge } = require('webpack-merge');
@@ -22,7 +22,7 @@ const commonConfig = (useHash = true) => ({
     filename: '[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
   },
   plugins: [
-    new CssExtractPlugin({
+    new CssPlugin({
       filename: 'css/[' + (isProduction ? 'contenthash' : 'name') + '].css',
     }),
   ],
@@ -39,44 +39,21 @@ const commonConfig = (useHash = true) => ({
         loader: 'babel-loader',
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.s[ac]ss$/i,
         use: [
           {
-            loader: CssExtractPlugin.loader,
+            loader: isProduction ? CssPlugin.loader : 'style-loader',
           },
           'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-              sassOptions: {
-                fiber: require('fibers'),
-              },
-            },
-          },
+          'sass-loader',
           'postcss-loader',
         ],
       },
       {
-        test: /\.(woff|woff2|otf|eot|ttf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[' + (isProduction ? 'contenthash' : 'name') + '].[ext]',
-              outputPath: './fonts/',
-              publicPath: '/fonts/',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[' + (isProduction ? 'contenthash' : 'name') + '].[ext]',
-          outputPath: './images/',
-          publicPath: '/images/',
+        test: /\.(eot|gif|jpe?g|otf|png|svg|ttf|webp|woff|woff2)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: `static/[contenthash]-[name][ext]`,
         },
       },
     ],
