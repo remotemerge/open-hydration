@@ -1,22 +1,21 @@
-// build environment
-const buildEnv = process.env.NODE_ENV;
-
-let plugins = [];
-if (buildEnv === 'production') {
-  plugins = [
-    require('cssnano')({
-      preset: [
-        'default',
-        {
-          discardComments: {
-            removeAll: true,
-          },
-        },
-      ],
-    }),
-  ];
-}
+// check build environment
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  plugins: [require('autoprefixer'), ...plugins],
+  plugins: [
+    require('autoprefixer'),
+    // cssnano advanced
+    isProduction
+      ? require('cssnano')({
+          preset: [
+            'advanced',
+            {
+              discardComments: {
+                removeAll: true,
+              },
+            },
+          ],
+        })
+      : null,
+  ],
 };
