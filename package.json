@@ -56,7 +56,6 @@
     "cssnano": "^5.0.7",
     "eslint": "^7.31.0",
     "eslint-plugin-react": "^7.24.0",
-    "fibers": "^5.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.1.0",

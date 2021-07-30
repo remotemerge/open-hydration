@@ -45,14 +45,7 @@ const commonConfig = (useHash = true) => ({
             loader: isProduction ? CssExtractPlugin.loader  : 'style-loader',
           },
           'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                fiber: require('fibers'),
-              },
-            },
-          },
+          'sass-loader',
           'postcss-loader',
         ],
       },
