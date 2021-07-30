@@ -29,14 +29,13 @@
   ],
   "scripts": {
     "clean": "rm -rf ./dist/* ./dist/*.txt",
-    "archive": "node ./archive.js",
-    "manifest:dev": "cross-env NODE_ENV=development node ./manifest.js",
-    "manifest:pro": "cross-env NODE_ENV=production node ./manifest.js",
-    "webpack:dev": "cross-env NODE_ENV=development webpack --mode=development",
-    "webpack:pro": "cross-env NODE_ENV=production webpack --mode=production",
-    "dev": "yarn manifest:dev && yarn webpack:dev",
-    "build": "yarn manifest:pro && yarn webpack:pro",
-    "package": "yarn clean && yarn build && yarn archive"
+    "create:archive": "node ./archive.js",
+    "create:manifest": "node ./manifest.js",
+    "webpack:dev": "webpack --mode=development --node-env development",
+    "webpack:pro": "webpack --mode=production --node-env production",
+    "dev": "yarn create:manifest && yarn webpack:dev",
+    "build": "yarn create:manifest && yarn webpack:pro",
+    "package": "yarn clean && yarn build && yarn create:archive"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -51,7 +50,6 @@
     "autoprefixer": "^10.3.1",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
-    "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
     "cssnano": "^5.0.7",
     "eslint": "^7.31.0",

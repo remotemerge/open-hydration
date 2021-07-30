@@ -42,7 +42,7 @@ const commonConfig = (useHash = true) => ({
         test: /\.s[ac]ss$/i,
         use: [
           {
-            loader: isProduction ? CssExtractPlugin.loader  : 'style-loader',
+            loader: isProduction ? CssExtractPlugin.loader : 'style-loader',
           },
           'css-loader',
           'sass-loader',
