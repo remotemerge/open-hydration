@@ -1,13 +1,13 @@
 {
-  "name": "@cixware/cereact",
+  "name": "@remotemerge/cereact",
   "app_name": "React Extension",
   "app_name_short": "Extension",
   "description": "The chrome extension base using ReactJS.",
   "version": "3.0.1",
-  "homepage": "https://cixware.io",
+  "homepage": "https://madansapkota.com",
   "author": {
     "name": "Madan Sapkota",
-    "email": "code@madansapkota.com",
+    "email": "contact+code@madansapkota.com",
     "url": "https://madansapkota.com"
   },
   "license": "UNLICENSED",
