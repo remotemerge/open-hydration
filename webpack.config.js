@@ -39,16 +39,15 @@ const commonConfig = (useHash = true) => ({
         loader: 'babel-loader',
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.s[ac]ss$/i,
         use: [
           {
-            loader: CssExtractPlugin.loader,
+            loader: isProduction ? CssExtractPlugin.loader  : 'style-loader',
           },
           'css-loader',
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass'),
               sassOptions: {
                 fiber: require('fibers'),
               },
