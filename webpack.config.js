@@ -9,7 +9,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const CssPlugin = require('mini-css-extract-plugin');
 
 // init merge plugin
-const { merge } = require('webpack-merge');
+const {merge} = require('webpack-merge');
 
 // build environment
 const isProduction = process.env.NODE_ENV === 'production';

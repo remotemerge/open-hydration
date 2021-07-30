@@ -1,4 +1,4 @@
-class Manifest {
+module.exports = class Manifest {
   constructor() {
     return {
       manifest_version: 3,
@@ -41,6 +41,3 @@ class Manifest {
     };
   }
 }
-
-// export configs
-module.exports = Manifest;
