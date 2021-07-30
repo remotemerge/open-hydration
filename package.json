@@ -31,8 +31,8 @@
     "chrome >= 88"
   ],
   "scripts": {
-    "clean": "rm -rf ./dist/* ./dist/*.txt",
-    "create:archive": "node ./archive.js",
+    "clean": "rm -rf ./dist/*",
+    "create:archive": "rm -rf ./dist/*.txt && node ./archive.js",
     "create:manifest": "node ./manifest.js",
     "webpack:dev": "webpack --mode=development --node-env development",
     "webpack:pro": "webpack --mode=production --node-env production",
