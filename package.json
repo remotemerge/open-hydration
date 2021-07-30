@@ -1,28 +1,33 @@
 {
-  "name": "@remotemerge/cereact",
-  "app_name": "React Extension",
-  "app_name_short": "Extension",
-  "description": "The chrome extension base using ReactJS.",
+  "name": "@remotemerge/drink-water",
+  "app_name": "Drink Water",
+  "app_name_short": "Drink Water",
+  "description": "Drink Water is an Open Source Chrome extension to keep you hydrated.",
   "version": "3.0.1",
   "homepage": "https://madansapkota.com",
   "author": {
     "name": "Madan Sapkota",
-    "email": "contact+code@madansapkota.com",
+    "email": "contact+github@madansapkota.com",
     "url": "https://madansapkota.com"
   },
-  "license": "UNLICENSED",
-  "private": true,
+  "license": "MIT",
+  "private": false,
   "keywords": [
     "chrome",
+    "drink",
     "extension",
-    "react"
+    "water"
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:remotemerge/cereact.git"
+    "url": "git@github.com:remotemerge/drink-water.git"
+  },
+  "bugs": {
+    "email": "contact+github@madansapkota.com",
+    "url": "https://github.com/remotemerge/drink-water/issues"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "browserslist": [
     "chrome >= 88"
