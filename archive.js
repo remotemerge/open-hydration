@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const archiver = require('archiver');
 
-const output = fs.createWriteStream(__dirname + '/dist.zip');
+const output = fs.createWriteStream(__dirname + '/output/dist.zip');
 const archive = archiver('zip', {
   zlib: {
     level: 9,
@@ -17,4 +17,4 @@ archive.pipe(output);
 archive.directory('dist/', false);
 
 // finalize the archive
-archive.finalize().then(r => console.log(r));
+archive.finalize().then(() => console.log('The package file is generated.'));
