@@ -12,7 +12,9 @@ const archive = archiver('zip', {
 
 // pipe archive
 archive.pipe(output);
+
 // append files
 archive.directory('dist/', false);
+
 // finalize the archive
-archive.finalize();
+archive.finalize().then(r => console.log(r));
