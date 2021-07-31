@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 // styles
 import '../styles/popup.scss';
+// images
+import logoImg from '../../../public/icons/48.png';
 
 export default class Popup extends Component {
   render() {
     return (
       <div className="popup text-base">
         <div className="flex items-center px-2">
-          <img src="/icons/48.png" width="48" alt="Logo" />
+          <img src={logoImg} width="48" alt="Logo" />
           <h2 className="pt-5 text-2xl text-blue-500">Drink Water</h2>
         </div>
         <div className="my-2 px-2">
