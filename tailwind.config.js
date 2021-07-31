@@ -1,5 +1,7 @@
 module.exports = {
-  purge: ['./src/*/components/*.jsx', './src/*/*.html'],
+  purge: {
+    enabled: false,
+  },
   darkMode: false,
   theme: {
     extend: {},
