@@ -29,11 +29,6 @@ const commonConfig = () => ({
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        loader: 'ts-loader',
-      },
-      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -63,7 +58,7 @@ const commonConfig = () => ({
       '~': path.join(__dirname, './'),
       '@': path.join(__dirname, './'),
     },
-    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.json', '.scss'],
+    extensions: ['*', '.js', '.jsx', '.json', '.scss'],
   },
   performance: {
     hints: isProduction ? false : 'warning',
@@ -79,7 +74,7 @@ const commonConfig = () => ({
 const backgroundConfig = () =>
   merge(commonConfig(false), {
     entry: {
-      worker: './src/background/index.ts',
+      worker: './src/background/index.js',
     },
     output: {
       filename: '[name].js',
