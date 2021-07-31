@@ -42,7 +42,6 @@
     "package": "yarn clean && yarn build && yarn create:archive"
   },
   "dependencies": {
-    "bootstrap": "^5.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^2.2.7"
