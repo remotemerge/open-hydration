@@ -6,19 +6,20 @@ import '../styles/popup.scss';
 export default class Popup extends Component {
   render() {
     return (
-      <div className="popup p-2">
-        <div className="flex items-center space-x-2">
-          <img src="https://via.placeholder.com/120x36?text=Logo" className="rounded" alt="Logo" />
-          <h2 className="text-2xl text-blue-500">Drink Water</h2>
+      <div className="popup text-base">
+        <div className="flex items-center px-2">
+          <img src="/icons/48.png" width="48" alt="Logo" />
+          <h2 className="pt-5 text-2xl text-blue-500">Drink Water</h2>
         </div>
-        <div className="mt-3">
-          <blockquote className="relative pt-4 pl-9 text-base italic leading-normal text-gray-600">
+        <div className="my-2 px-2">
+          <blockquote className="relative pt-4 pl-9 italic leading-normal text-gray-600">
             Things may come to those who wait, but only the things left by those who hustle.
             <cite className="inline-block text-xs leading-normal text-gray-400">Abraham Lincoln</cite>
           </blockquote>
         </div>
-        <div className="mt-3 bg-yellow-500">
-          <span>Settings</span>
+        <div className="flex mt-3 text-center">
+          <div className="flex-1 p-2 bg-gray-300 text-gray-600 cursor-pointer">Close</div>
+          <div className="flex-1 p-2 bg-blue-500 text-gray-100 cursor cursor-pointer">Settings</div>
         </div>
       </div>
     );
