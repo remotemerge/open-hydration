@@ -108,7 +108,7 @@ const optionConfig = (argv) =>
     plugins: [
       new HtmlPlugin({
         filename: 'option.html',
-        template: 'src/option/index.html',
+        template: './public/template.html',
         inject: true,
         chunks: ['option'],
       }),
@@ -124,7 +124,7 @@ const popupConfig = () =>
     plugins: [
       new HtmlPlugin({
         filename: 'popup.html',
-        template: 'src/popup/index.html',
+        template: './public/template.html',
         inject: true,
         chunks: ['popup'],
       }),
