@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 
 export default class Popup extends Component {
-  constructor(props) {
-    super(props);
-    // init variables
-    this.state = {
-      title: 'Hello, Popup!',
-    };
-  }
-
   render() {
-    return <div>{this.state.title}</div>;
+    return (
+      <div className="m-1">
+        <div className="flex items-center space-x-1">
+          <img src="https://via.placeholder.com/120x32?text=Logo" width="80" height="32" alt="Logo" />
+          <h2>Drink Water</h2>
+        </div>
+      </div>
+    );
   }
 }

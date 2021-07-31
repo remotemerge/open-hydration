@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// components
 import Popup from './components/Popup';
+// styles
 import './styles/popup.scss';
-// render the app
-ReactDOM.render(<Popup />, document.getElementById('app'));
+
+// render
+ReactDOM.render(<Popup />, document.getElementById('root'));
