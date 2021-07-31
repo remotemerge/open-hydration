@@ -36,6 +36,7 @@
     "create:manifest": "node ./manifest.js",
     "webpack:dev": "webpack --mode=development --node-env development",
     "webpack:pro": "webpack --mode=production --node-env production",
+    "watch": "yarn dev --watch",
     "dev": "yarn create:manifest && yarn webpack:dev",
     "build": "yarn create:manifest && yarn webpack:pro",
     "package": "yarn clean && yarn build && yarn create:archive"
