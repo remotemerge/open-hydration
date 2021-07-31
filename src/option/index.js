@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// components
 import Option from './components/Option';
-
-import './styles/option.scss';
+// styles
+import '../styles/global.scss';
 
 // render the app
-ReactDOM.render(<Option />, document.getElementById('app'));
+ReactDOM.render(<Option />, document.getElementById('root'));
