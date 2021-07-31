@@ -15,15 +15,15 @@ const { merge } = require('webpack-merge');
 const isProduction = process.env.NODE_ENV === 'production';
 
 // common configs
-const commonConfig = (useHash = true) => ({
+const commonConfig = () => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: '[' + (isProduction && useHash ? 'contenthash' : 'name') + '].js',
+    filename: 'js/[id]-[contenthash:6]-[name].js',
   },
   plugins: [
     new CssPlugin({
-      filename: 'css/[' + (isProduction ? 'contenthash' : 'name') + '].css',
+      filename: 'css/[id]-[contenthash:6]-[name].css',
     }),
   ],
   module: {
@@ -53,7 +53,7 @@ const commonConfig = (useHash = true) => ({
         test: /\.(eot|gif|jpe?g|otf|png|svg|ttf|webp|woff|woff2)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'static/[id]-[hash:6]-[name][ext]',
+          filename: 'static/[id]-[contenthash:6]-[name][ext]',
         },
       },
     ],
@@ -80,6 +80,9 @@ const backgroundConfig = () =>
   merge(commonConfig(false), {
     entry: {
       worker: './src/background/index.ts',
+    },
+    output: {
+      filename: '[name].js',
     },
     plugins: [
       new CopyPlugin({
