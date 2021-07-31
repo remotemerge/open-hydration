@@ -52,6 +52,9 @@ const commonConfig = (useHash = true) => ({
       {
         test: /\.(eot|gif|jpe?g|otf|png|svg|ttf|webp|woff|woff2)$/,
         type: 'asset/resource',
+        generator: {
+          filename: 'static/[id]-[hash:6]-[name][ext]',
+        },
       },
     ],
   },
