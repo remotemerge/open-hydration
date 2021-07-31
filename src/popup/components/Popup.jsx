@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // styles
 import '../styles/popup.scss';
 // images
-import logoImg from '../../../public/icons/48.png';
+import logoImg from '@/public/icons/48.png';
 
 export default class Popup extends Component {
   render() {
