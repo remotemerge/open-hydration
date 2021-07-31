@@ -1,0 +1,26 @@
+body {
+  background-color: #E5E7EB;
+}
+
+.popup {
+  width: 350px;
+  height: auto;
+}
+
+blockquote {
+  &::before {
+    font-family: Georgia, serif;
+    color: #9CA3AF;
+    content: "\201C";
+    font-size: 80px;
+    left: -10px;
+    position: absolute;
+    top: -20px;
+  }
+
+  cite {
+    &::before {
+      content: "\2014 \2009";
+    }
+  }
+}
