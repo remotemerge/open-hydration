@@ -15,13 +15,20 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:promise/recommended",
+    "standard"
   ],
   "parser": "@babel/eslint-parser",
   "plugins": [
-    "react"
+    "react",
+    "promise"
   ],
   "rules": {
-    "indent": "off"
+    "comma-dangle": "off",
+    "indent": "off",
+    "react/react-in-jsx-scope": "off",
+    "semi": "off",
+    "space-before-function-paren": "off"
   }
 }
