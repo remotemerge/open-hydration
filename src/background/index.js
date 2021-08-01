@@ -4,5 +4,5 @@ chrome.notifications.create('Hello', {
   iconUrl: '/icons/128.png',
   type: 'basic',
   requireInteraction: true,
-  buttons: [{ title: 'Next → 12:35 PM' }],
+  buttons: [{ title: 'Close' }, { title: 'Next → 12:35 PM' }],
 });
