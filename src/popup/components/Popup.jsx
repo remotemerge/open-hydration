@@ -20,12 +20,14 @@ export default class Popup extends Component {
           </blockquote>
         </div>
         <div className="flex mt-3 text-center">
-          <div onClick={() => window.close()} className="flex-1 p-2 bg-gray-300 text-gray-600 cursor-pointer">
+          <div
+            onClick={() => window.close()}
+            className="flex-1 p-2 cursor-pointer bg-gray-300 text-gray-600 hover:bg-gray-400 transition duration-200">
             Close
           </div>
           <div
             onClick={() => chrome.runtime.openOptionsPage()}
-            className="flex-1 p-2 bg-blue-500 text-gray-100 cursor cursor-pointer">
+            className="flex-1 p-2 cursor-pointer bg-blue-500 text-gray-100 hover:bg-blue-600 transition duration-200">
             Settings
           </div>
         </div>
