@@ -21,8 +21,7 @@
   ],
   "parser": "@babel/eslint-parser",
   "plugins": [
-    "react",
-    "promise"
+    "react"
   ],
   "rules": {
     "comma-dangle": "off",
