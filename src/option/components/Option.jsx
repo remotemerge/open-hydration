@@ -1,17 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
+// styles
 import '../styles/option.scss';
 
-export default class Option extends Component {
-  constructor(props) {
-    super(props);
-    // init variables
-    this.state = {
-      title: 'Hello, Option!',
-    };
-  }
-
-  render() {
-    return <div>{this.state.title}</div>;
-  }
+export default function Option() {
+  return <div className="option">Hello, World!</div>;
 }
