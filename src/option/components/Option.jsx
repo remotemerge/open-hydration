@@ -8,15 +8,19 @@ import logoImg from '@/public/icons/48.png';
 export default function Option() {
   return (
     <div className="flex h-screen justify-center items-center text-base bg-gradient-to-b from-blue-100 to-blue-500">
-      <div className="flex flex-col bg-gray-200 p-5 rounded shadow-lg">
+      <div className="w-3/4 flex flex-col bg-gray-100 px-5 pt-2 rounded shadow-lg">
         {/* logo */}
         <div className="flex items-center -ml-3">
           <img src={logoImg} width="48" alt="Logo" />
           <h1 className="pt-5 text-2xl text-blue-500">Drink Water</h1>
+          <div className="pl-5 form-check form-switch pt-4 ml-4">
+            <label className="sr-only" htmlFor="status" />
+            <input className="form-check-input" type="checkbox" id="status" style={{ width: '48px', height: '24px' }} />
+          </div>
         </div>
         {/* reminders */}
-        <div className="mt-3">
-          <h2 className="border-b border-gray-400">Reminders</h2>
+        <div className="mt-10">
+          <h2 className="text-2xl">Reminders</h2>
 
           <form className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" value="true" />
@@ -33,6 +37,39 @@ export default function Option() {
               </div>
             </div>
           </form>
+
+          <div className="w-1/2 mt-3">
+            <table className="table table-bordered bg-gray-100 rounded text-left">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th className="flex align-middle justify-center">Time</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                  <td>09:12</td>
+                  <td>Another</td>
+                </tr>
+                <tr>
+                  <td>Accusamus earum incidunt maxime officia, possimus quae quas ullam.</td>
+                  <td>12:35</td>
+                  <td>Another</td>
+                </tr>
+                <tr>
+                  <td>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, eaque eligendi, eos illo laborum
+                    nihil quis quisquam sapiente sequi tempora, velit voluptates. Aspernatur beatae corporis, error
+                    impedit inventore iusto nostrum.
+                  </td>
+                  <td>05:11</td>
+                  <td>Another</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* faqs */}
@@ -64,7 +101,8 @@ export default function Option() {
 
           <div className="flex flex-col mt-5 text-gray-700">
             <h1 className="text-3xl pb-2">About</h1>
-            <p className="text-sm">Software developer Madan Sapkota developed the extension.</p>
+            <p className="text-sm">The software developer who forgot to drink water develop this extension.</p>
+            <div className="flex">1</div>
           </div>
         </div>
       </div>
