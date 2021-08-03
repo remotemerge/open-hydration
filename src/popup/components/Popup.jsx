@@ -2,15 +2,15 @@ import React from 'react';
 
 // styles
 import '../styles/popup.scss';
-// images
-import logoImg from '@/public/icons/48.png';
+// resources
+import logoImg from '@/public/icons/logo.svg';
 
 export default function Popup() {
   return (
     <div className="popup text-base">
-      <div className="flex items-center px-2">
-        <img src={logoImg} width="48" alt="Logo" />
-        <h2 className="pt-5 text-2xl text-blue-500">Drink Water</h2>
+      <div className="flex items-center p-2 space-x-1 bg-gray-100 border-b border-gray-300">
+        <img src={logoImg} role="img" width="32" alt="Logo" />
+        <p className="text-3xl text-blue-500">Drink Water</p>
       </div>
       <div className="my-2 px-2">
         <blockquote className="relative pt-4 pl-9 italic leading-normal text-gray-600">
