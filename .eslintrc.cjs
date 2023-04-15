@@ -1,10 +1,17 @@
 module.exports = {
+  globals: {
+    chrome: true,
+  },
   env: {
     browser: true,
     es2022: true,
+    node: true,
   },
-  globals: {
-    chrome: 'readonly',
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
   },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react/recommended'],
   parser: '@typescript-eslint/parser',
