@@ -3,32 +3,36 @@
   "description": "Stay hydrated with timely water intake notifications to refresh and energize you throughout the day!",
   "version": "3.0.1",
   "homepage": "https://madansapkota.com",
+  "license": "MIT",
   "author": {
     "name": "Madan Sapkota",
     "email": "contact+github@madansapkota.com",
     "url": "https://madansapkota.com"
   },
-  "license": "MIT",
-  "private": false,
-  "keywords": [
-    "drink",
-    "water"
-  ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:remotemerge/drink-water.git"
+    "url": "git+https://github.com/remotemerge/drink-water.git"
   },
   "bugs": {
-    "email": "contact+github@madansapkota.com",
     "url": "https://github.com/remotemerge/drink-water/issues"
-  },
-  "engines": {
-    "node": ">=14"
   },
   "browserslist": [
     "chrome >= 88"
   ],
+  "engines": {
+    "node": ">=18.16"
+  },
+  "prettier": {
+    "bracketSameLine": true,
+    "printWidth": 120,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all"
+  },
+  "type": "module",
   "scripts": {
+    "lint": "eslint --ext .ts src",
+    "lint:fix": "eslint --ext .ts --fix src",
     "clean": "rm -rf ./dist/*",
     "create:archive": "rm -rf ./dist/*.txt && node ./archive.js",
     "create:manifest": "node ./manifest.js",
@@ -77,5 +81,8 @@
     "webpack": "^5.47.1",
     "webpack-cli": "^4.7.2",
     "webpack-merge": "^5.8.0"
+  },
+  "optionalDependencies": {
+    "prettier": "^2.8.7"
   }
 }
