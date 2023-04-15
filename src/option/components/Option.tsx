@@ -2,8 +2,6 @@ import React from 'react';
 
 // styles
 import '../styles/option.scss';
-// images
-import logoImg from '@/public/icons/48.png';
 
 export default function Option() {
   return (
@@ -11,7 +9,7 @@ export default function Option() {
       <div className="w-3/4 flex flex-col bg-gray-100 px-5 pt-2 rounded shadow-lg">
         {/* logo */}
         <div className="flex items-center -ml-3">
-          <img src={logoImg} width="48" alt="Logo" />
+          <img src="/icons/48.png" width="48" alt="Logo" />
           <h1 className="pt-5 text-2xl text-blue-500">Drink Water</h1>
           <div className="pl-5 form-check form-switch pt-4 ml-4">
             <label className="sr-only" htmlFor="status" />
