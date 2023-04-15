@@ -1,8 +1,5 @@
-module.exports = {
-  purge: {
-    enabled: false,
-  },
-  darkMode: false,
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},
   },

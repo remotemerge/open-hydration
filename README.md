@@ -1,2 +1,3 @@
 # Drink Water
-Drink Water is an open source browser extension to keep you hydrated.
+
+Stay hydrated with timely water intake notifications to refresh and energize you throughout the day!
