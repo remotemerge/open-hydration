@@ -36,10 +36,10 @@
     "create:manifest": "node ./manifest.js",
     "webpack:dev": "webpack --mode=development --node-env development",
     "webpack:pro": "webpack --mode=production --node-env production",
-    "watch": "yarn dev --watch",
-    "dev": "yarn create:manifest && yarn webpack:dev",
-    "build": "yarn create:manifest && yarn webpack:pro",
-    "package": "yarn clean && yarn build && yarn create:archive"
+    "watch": "npm run dev --watch",
+    "dev": "npm run create:manifest && npm run webpack:dev",
+    "build": "npm run create:manifest && npm run webpack:pro",
+    "package": "npm run clean && npm run build && npm run create:archive"
   },
   "dependencies": {
     "bootstrap": "^5.0.2",
