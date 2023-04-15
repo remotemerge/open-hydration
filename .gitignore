@@ -1,12 +1,17 @@
-### ignore vendor directories
+## Vendor directories
 /.yarn/
 /node_modules/
 /vendor/
 
-### ignore build directories
+## Build directories
 /build/
 /bundle/
 /dist/
+
+### JetBrains template
+/.idea/*
+!/.idea/dictionaries/
+!/.idea/dictionaries/*.xml
 
 ### Generated files
 *.cache
