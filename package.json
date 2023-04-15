@@ -1,6 +1,6 @@
 {
   "name": "@remotemerge/drink-water",
-  "description": "Drink Water is an open source browser extension to keep you hydrated.",
+  "description": "Stay hydrated with timely water intake notifications to refresh and energize you throughout the day!",
   "version": "3.0.1",
   "homepage": "https://madansapkota.com",
   "author": {
@@ -11,9 +11,7 @@
   "license": "MIT",
   "private": false,
   "keywords": [
-    "chrome",
     "drink",
-    "extension",
     "water"
   ],
   "repository": {
