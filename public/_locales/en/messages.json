@@ -1,11 +1,11 @@
 {
   "extName": {
-    "message": "Drink Water"
+    "message": "Drink Water — Stay Hydrated"
   },
   "extShortName": {
     "message": "Drink Water"
   },
   "extDescription": {
-    "message": "Drink Water is an open source browser extension to keep you hydrated."
+    "message": "Stay hydrated with timely water intake notifications to refresh and energize you throughout the day!"
   }
 }
