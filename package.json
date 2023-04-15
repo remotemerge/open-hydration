@@ -32,7 +32,12 @@
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .ts src",
-    "lint:fix": "eslint --ext .ts --fix src"
+    "lint:fix": "eslint --ext .ts --fix src",
+    "make:manifest": "node --no-warnings ./makers/manifest.js",
+    "make:archive": "node --no-warnings ./makers/archive.js",
+    "dev": "npm run make:manifest && vite build --watch",
+    "build": "npm run make:manifest && vite build",
+    "package": "npm run build && npm run make:archive"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
