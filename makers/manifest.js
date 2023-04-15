@@ -36,6 +36,6 @@ const manifest = {
 };
 
 // generate chrome manifest
-const publicPath = join(resolve(), 'public');
+const publicPath = join(resolve(), 'dist');
 await mkdir(publicPath, { recursive: true });
 await writeFile(join(publicPath, 'manifest.json'), JSON.stringify(manifest), 'utf-8');
