@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 // components
 import Popup from './components/Popup';
@@ -8,9 +8,8 @@ import Popup from './components/Popup';
 import '../styles/global.scss';
 
 // render the application
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Popup />
   </React.StrictMode>,
-  document.getElementById('root'),
 );
