@@ -1,15 +1,15 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 // components
 import Option from './components/Option';
+
 // styles
 import '../styles/global.scss';
 
 // render the application
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Option />
   </React.StrictMode>,
-  document.getElementById('root'),
 );

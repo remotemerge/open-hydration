@@ -35,7 +35,7 @@
     "lint:fix": "eslint --ext .ts --fix src",
     "make:manifest": "node --no-warnings ./makers/manifest.js",
     "make:archive": "node --no-warnings ./makers/archive.js",
-    "dev": "npm run make:manifest && vite build --watch",
+    "dev": "npm run make:manifest && vite dev",
     "build": "npm run make:manifest && vite build",
     "package": "npm run build && npm run make:archive"
   },
