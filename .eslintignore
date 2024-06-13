@@ -1,5 +1,7 @@
-/.github/
-/.idea/
-/__tests__/
+# Directories
 /dist/
 /node_modules/
+/output/
+
+# Files
+.eslintrc.cjs

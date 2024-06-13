@@ -1,16 +1,24 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
     "module": "ESNext",
     "moduleResolution": "node",
+    "noEmit": true,
+    "outDir": "dist",
     "skipLibCheck": true,
     "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "target": "ESNext",
     "typeRoots": [
-      "node_modules/@types",
-      "src/types"
+      "src/typings",
+      "node_modules/@types"
     ]
   },
   "include": [
-    "src/**/*.ts"
+    "makers/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ]
 }
