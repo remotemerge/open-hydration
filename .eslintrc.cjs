@@ -1,11 +1,12 @@
 module.exports = {
+  root: true,
   globals: {
     chrome: true,
   },
   env: {
-    browser: true,
-    es2022: true,
     node: true,
+    browser: true,
+    es2024: true,
   },
   settings: {
     react: {
@@ -13,7 +14,8 @@ module.exports = {
       version: 'detect',
     },
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react/recommended'],
+  plugins: ['@typescript-eslint', 'react', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -21,11 +23,16 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'react'],
   rules: {
-    indent: ['error', 2],
+    // Prettier rules
+    'prettier/prettier': 'error',
+    // Custom rules
+    indent: ['error', 2, { SwitchCase: 1, ignoredNodes: ['PropertyDefinition'] }],
     'linebreak-style': ['error', 'unix'],
+    'prefer-const': 'error',
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
   },
