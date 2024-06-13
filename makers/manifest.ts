@@ -1,11 +1,12 @@
+import { readFileSync } from 'fs';
 import { mkdir, writeFile } from 'fs/promises';
 import { join, resolve } from 'path';
 
-// use vars from package config
-import pc from '../package.json' assert { type: 'json' };
+// Use vars from package config
+const pc = JSON.parse(readFileSync(`${resolve()}/package.json`, 'utf8'));
 
-// format manifest
-const manifest = {
+// Format manifest
+const configs = {
   manifest_version: 3,
   name: '__MSG_extName__',
   short_name: '__MSG_extShortName__',
@@ -16,6 +17,7 @@ const manifest = {
   author: pc.author.name,
   icons: {
     16: '/icons/16.png',
+    32: '/icons/32.png',
     48: '/icons/48.png',
     128: '/icons/128.png',
   },
@@ -35,7 +37,7 @@ const manifest = {
   permissions: ['notifications'],
 };
 
-// generate chrome manifest
-const publicPath = join(resolve(), 'dist');
+// Generate chrome manifest
+const publicPath = join(resolve(), 'public');
 await mkdir(publicPath, { recursive: true });
-await writeFile(join(publicPath, 'manifest.json'), JSON.stringify(manifest), 'utf-8');
+await writeFile(join(publicPath, 'manifest.json'), JSON.stringify(configs), 'utf-8');
