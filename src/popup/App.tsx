@@ -1,7 +1,5 @@
-import * as React from 'react';
-
 // styles
-import './popup.scss';
+import './style.scss';
 
 export default function App() {
   return (

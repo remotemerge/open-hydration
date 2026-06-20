@@ -1,7 +1,5 @@
-import React from 'react';
-
 // styles
-import './option.scss';
+import './style.scss';
 
 export default function App() {
   return (
