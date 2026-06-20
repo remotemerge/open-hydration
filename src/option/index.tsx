@@ -8,7 +8,7 @@ import Option from './components/Option';
 import '../styles/global.scss';
 
 // render the application
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Option />
   </React.StrictMode>,

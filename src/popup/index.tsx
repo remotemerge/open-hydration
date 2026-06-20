@@ -8,7 +8,7 @@ import Popup from './components/Popup';
 import '../styles/global.scss';
 
 // render the application
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Popup />
   </React.StrictMode>,
