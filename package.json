@@ -1,41 +1,35 @@
 {
-  "name": "@remotemerge/drink-water",
-  "description": "Stay hydrated with timely water intake notifications to refresh and energize you throughout the day!",
-  "version": "3.0.1",
+  "name": "@remotemerge/open-hydration",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Maintain your focus and hydration. An open-source, privacy-first water reminder built for desk workers.",
   "homepage": "https://madansapkota.com",
-  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/remotemerge/open-hydration/issues"
+  },
+  "license": "MIT",
   "author": {
     "name": "Madan Sapkota",
-    "role": "Maintainer",
-    "email": "contact+gh@madansapkota.com",
-    "url": "https://madansapkota.com"
+    "email": "contact+github@madansapkota.com",
+    "url": "https://madansapkota.com",
+    "role": "Maintainer"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/remotemerge/drink-water.git"
-  },
-  "bugs": {
-    "url": "https://github.com/remotemerge/drink-water/issues"
-  },
-  "browserslist": [
-    "chrome >= 88"
-  ],
-  "engines": {
-    "node": ">=20.14 <21.0.0"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "printWidth": 120
+    "url": "git+https://github.com/remotemerge/open-hydration.git"
   },
   "type": "module",
   "scripts": {
-    "lint": "eslint 'src/**/*.{ts,tsx,vue}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx,vue}' --fix",
-    "make:manifest": "tsx ./makers/manifest.ts",
-    "make:archive": "tsx ./makers/archive.ts",
-    "dev": "npm run make:manifest && vite build --watch",
-    "build": "npm run make:manifest && vite build",
-    "package": "npm run build && npm run make:archive"
+    "lint": "oxlint && oxfmt --check",
+    "lint:fix": "oxlint --fix && oxfmt",
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "tsc --noEmit",
+    "postinstall": "wxt prepare"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
@@ -46,9 +40,14 @@
   "devDependencies": {
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@wxt-dev/module-react": "^1.2.2",
     "oxfmt": "^0.55.0",
     "oxlint": "^1.70.0",
     "sass": "^1.101.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wxt": "^0.20.26"
+  },
+  "engines": {
+    "bun": ">=1.3.14 <2.0.0"
   }
 }
