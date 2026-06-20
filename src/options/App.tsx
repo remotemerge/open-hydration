@@ -1,9 +1,9 @@
 import React from 'react';
 
 // styles
-import '../styles/option.scss';
+import './option.scss';
 
-export default function Option() {
+export default function App() {
   return (
     <div className="flex h-screen justify-center items-center text-base bg-gradient-to-b from-blue-100 to-blue-500">
       <div className="w-3/4 flex flex-col bg-gray-100 px-5 pt-2 rounded shadow-lg">
