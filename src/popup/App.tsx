@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 // styles
-import '../styles/popup.scss';
+import './popup.scss';
 
-export default function Popup() {
+export default function App() {
   return (
     <div className="popup text-base">
       <div className="flex items-center p-2 space-x-1 bg-gray-100 border-b border-gray-300">
@@ -24,7 +24,7 @@ export default function Popup() {
           Close
         </div>
         <div
-          onClick={() => chrome.runtime.openOptionsPage()}
+          onClick={() => browser.runtime.openOptionsPage()}
           className="flex-1 p-2 cursor-pointer bg-blue-500 text-gray-100 hover:bg-blue-600 transition duration-200"
         >
           Settings
