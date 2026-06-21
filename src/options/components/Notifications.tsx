@@ -1,7 +1,13 @@
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '@/db/db';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 
 export default function Notifications() {
+  const settings = useLiveQuery(() => db.settings.get('settings'));
+
+  if (!settings) return null;
+
   return (
     <Section
       title="Notifications"
@@ -24,28 +30,33 @@ export default function Notifications() {
           <p className="text-sm font-semibold">Enable notifications</p>
           <p className="mt-0.5 text-[13px] text-muted">Receive a gentle reminder when it's time to drink.</p>
         </div>
-        <ToggleSwitch checked label="Enable notifications" />
+        <ToggleSwitch
+          checked={settings.notificationsEnabled}
+          onChange={(checked) => db.settings.update('settings', { notificationsEnabled: checked })}
+          label="Enable notifications"
+        />
       </div>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
         <div className="flex-1">
           <p className="text-sm font-semibold">Reminder sound</p>
           <p className="mt-0.5 text-[13px] text-muted">Play a soft chime with each reminder.</p>
         </div>
-        <ToggleSwitch checked={false} label="Reminder sound" />
+        <ToggleSwitch
+          checked={settings.reminderSound}
+          onChange={(checked) => db.settings.update('settings', { reminderSound: checked })}
+          label="Reminder sound"
+        />
       </div>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
         <div className="flex-1">
           <p className="text-sm font-semibold">Desktop notification icon</p>
           <p className="mt-0.5 text-[13px] text-muted">Show the droplet icon in system notifications.</p>
         </div>
-        <ToggleSwitch checked label="Desktop notification icon" />
-      </div>
-      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
-        <div className="flex-1">
-          <p className="text-sm font-semibold">Motivational messages</p>
-          <p className="mt-0.5 text-[13px] text-muted">Include an encouraging line with each reminder.</p>
-        </div>
-        <ToggleSwitch checked label="Motivational messages" />
+        <ToggleSwitch
+          checked={settings.desktopNotificationIcon}
+          onChange={(checked) => db.settings.update('settings', { desktopNotificationIcon: checked })}
+          label="Desktop notification icon"
+        />
       </div>
     </Section>
   );

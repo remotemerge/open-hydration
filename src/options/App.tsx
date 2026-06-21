@@ -7,8 +7,10 @@ import Appearance from './components/Appearance';
 import DataPrivacy from './components/DataPrivacy';
 import OpenSource from './components/OpenSource';
 import SaveBar from './components/SaveBar';
+import { useTheme } from './hooks/useTheme';
 
 export default function App() {
+  useTheme();
   return (
     <div className="flex min-h-screen justify-center bg-bg px-6 pb-16 pt-11 font-sans text-fg antialiased">
       <div className="flex w-full max-w-180 flex-col gap-4.5">

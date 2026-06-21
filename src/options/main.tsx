@@ -7,9 +7,14 @@ import App from './App';
 // styles
 import '@/styles/global.css';
 
-// render the application
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+// db
+import { ensureSettings } from '@/db/db';
+
+// initialize database then render the application
+ensureSettings().then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+});

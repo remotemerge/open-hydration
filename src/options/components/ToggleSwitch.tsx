@@ -1,15 +1,17 @@
 interface ToggleSwitchProps {
   checked: boolean;
   label: string;
+  onChange?: (checked: boolean) => void;
 }
 
-export default function ToggleSwitch({ checked, label }: ToggleSwitchProps) {
+export default function ToggleSwitch({ checked, label, onChange }: ToggleSwitchProps) {
   return (
     <button
       type="button"
       role="switch"
       aria-checked={checked}
       aria-label={label}
+      onClick={() => onChange?.(!checked)}
       className={`flex h-6 w-10.5 shrink-0 items-center rounded-full p-0.5 transition-colors ${checked ? 'bg-primary' : 'bg-border'}`}
     >
       <span

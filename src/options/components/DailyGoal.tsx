@@ -1,6 +1,25 @@
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '@/db/db';
+import type { Settings } from '@/db/settings';
 import Section from './Section';
 
+function updateGoalType(goalType: Settings['goalType']) {
+  db.settings.update('settings', { goalType });
+}
+
 export default function DailyGoal() {
+  const settings = useLiveQuery(() => db.settings.get('settings'));
+
+  if (!settings) return null;
+
+  function updateDailyGoal(delta: number) {
+    const next = Math.min(16, Math.max(1, settings!.dailyGoal + delta));
+    db.settings.update('settings', { dailyGoal: next });
+  }
+
+  const goalLabel =
+    settings.goalType === 'glasses' ? `${settings.dailyGoal} glasses` : `${settings.dailyGoal * 250} ml`;
+
   return (
     <Section
       title="Daily goal"
@@ -18,11 +37,16 @@ export default function DailyGoal() {
         <div className="inline-flex gap-0.5 rounded-[10px] border border-border bg-elevated p-0.5">
           <button
             type="button"
-            className="rounded-lg bg-surface px-4 py-1.5 text-[13px] font-medium text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]"
+            onClick={() => updateGoalType('glasses')}
+            className={`rounded-lg px-4 py-1.5 text-[13px] font-medium transition-colors ${settings.goalType === 'glasses' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
           >
             Glasses
           </button>
-          <button type="button" className="rounded-lg px-4 py-1.5 text-[13px] font-medium text-muted">
+          <button
+            type="button"
+            onClick={() => updateGoalType('ml')}
+            className={`rounded-lg px-4 py-1.5 text-[13px] font-medium transition-colors ${settings.goalType === 'ml' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
+          >
             Milliliters
           </button>
         </div>
@@ -36,14 +60,16 @@ export default function DailyGoal() {
           <button
             type="button"
             aria-label="Decrease goal"
+            onClick={() => updateDailyGoal(-1)}
             className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg"
           >
             −
           </button>
-          <span className="min-w-22 text-center text-sm font-semibold">8 glasses</span>
+          <span className="min-w-22 text-center text-sm font-semibold">{goalLabel}</span>
           <button
             type="button"
             aria-label="Increase goal"
+            onClick={() => updateDailyGoal(1)}
             className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg"
           >
             +
