@@ -12,8 +12,8 @@ db.version(1).stores({
 
 export { db };
 
-// Seeds default settings on first run.
-export async function ensureSettings(): Promise<void> {
+// Applies default settings on first run
+export async function applyDefaultSettings(): Promise<void> {
   const existing = await db.settings.get('settings');
   if (!existing) {
     await db.settings.add(defaultSettings);

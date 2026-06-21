@@ -1,17 +1,17 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-// components
+// Components
 import App from './App';
 
-// styles
+// Styles
 import '@/styles/global.css';
 
-// db
-import { ensureSettings } from '@/db/db';
+// Database
+import { applyDefaultSettings } from '@/db/db';
 
-// initialize database then render the application
-ensureSettings().then(() => {
+// Apply default settings before mounting
+applyDefaultSettings().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <App />
