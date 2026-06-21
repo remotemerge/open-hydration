@@ -3,9 +3,9 @@ import './style.scss';
 export default function App() {
   return (
     <div className="min-h-screen bg-bg text-fg font-sans antialiased flex justify-center px-6 pt-11 pb-16">
-      <div className="flex w-full max-w-[720px] flex-col gap-[18px]">
+      <div className="flex w-full max-w-180 flex-col gap-4.5">
         {/* Page header */}
-        <div className="flex items-center gap-[15px] px-0.5 pb-1">
+        <div className="flex items-center gap-3.75 px-0.5 pb-1">
           <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary shadow-[0_6px_18px_-6px_var(--primary)]">
             <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none">
               <path d="M12 3s-6 6.7-6 11.3a6 6 0 1 0 12 0C18 9.7 12 3 12 3Z" fill="#fff" />
@@ -58,15 +58,15 @@ export default function App() {
               <button
                 type="button"
                 aria-label="Decrease goal"
-                className="h-[38px] w-[38px] text-lg text-muted transition-colors hover:text-fg"
+                className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg"
               >
                 −
               </button>
-              <span className="min-w-[88px] text-center text-sm font-semibold">8 glasses</span>
+              <span className="min-w-22 text-center text-sm font-semibold">8 glasses</span>
               <button
                 type="button"
                 aria-label="Increase goal"
-                className="h-[38px] w-[38px] text-lg text-muted transition-colors hover:text-fg"
+                className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg"
               >
                 +
               </button>
@@ -143,7 +143,7 @@ export default function App() {
               <p className="text-sm font-semibold">Pause reminders during</p>
               <p className="mt-0.5 text-[13px] text-muted">Stay quiet when you need to focus.</p>
             </div>
-            <div className="flex max-w-[300px] flex-wrap justify-end gap-2">
+            <div className="flex max-w-75 flex-wrap justify-end gap-2">
               <button
                 type="button"
                 className="rounded-[9px] border border-border bg-elevated px-3.5 py-1.5 text-[13px] font-medium text-muted transition-colors"
@@ -183,7 +183,7 @@ export default function App() {
             <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted">Notifications</h2>
           </div>
 
-          <div className="flex items-center gap-5 border-t border-border px-5 py-[15px]">
+          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
             <div className="flex-1">
               <p className="text-sm font-semibold">Enable notifications</p>
               <p className="mt-0.5 text-[13px] text-muted">Receive a gentle reminder when it's time to drink.</p>
@@ -193,12 +193,12 @@ export default function App() {
               role="switch"
               aria-checked="true"
               aria-label="Enable notifications"
-              className="flex h-6 w-[42px] shrink-0 items-center rounded-full bg-primary p-0.5 transition-colors"
+              className="flex h-6 w-10.5 shrink-0 items-center rounded-full bg-primary p-0.5 transition-colors"
             >
-              <span className="h-5 w-5 translate-x-[18px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
+              <span className="h-5 w-5 translate-x-4.5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
             </button>
           </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-[15px]">
+          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
             <div className="flex-1">
               <p className="text-sm font-semibold">Reminder sound</p>
               <p className="mt-0.5 text-[13px] text-muted">Play a soft chime with each reminder.</p>
@@ -208,12 +208,12 @@ export default function App() {
               role="switch"
               aria-checked="false"
               aria-label="Reminder sound"
-              className="flex h-6 w-[42px] shrink-0 items-center rounded-full bg-border p-0.5 transition-colors"
+              className="flex h-6 w-10.5 shrink-0 items-center rounded-full bg-border p-0.5 transition-colors"
             >
               <span className="h-5 w-5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
             </button>
           </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-[15px]">
+          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
             <div className="flex-1">
               <p className="text-sm font-semibold">Desktop notification icon</p>
               <p className="mt-0.5 text-[13px] text-muted">Show the droplet icon in system notifications.</p>
@@ -223,12 +223,12 @@ export default function App() {
               role="switch"
               aria-checked="true"
               aria-label="Desktop notification icon"
-              className="flex h-6 w-[42px] shrink-0 items-center rounded-full bg-primary p-0.5 transition-colors"
+              className="flex h-6 w-10.5 shrink-0 items-center rounded-full bg-primary p-0.5 transition-colors"
             >
-              <span className="h-5 w-5 translate-x-[18px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
+              <span className="h-5 w-5 translate-x-4.5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
             </button>
           </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-[15px]">
+          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
             <div className="flex-1">
               <p className="text-sm font-semibold">Motivational messages</p>
               <p className="mt-0.5 text-[13px] text-muted">Include an encouraging line with each reminder.</p>
@@ -238,9 +238,9 @@ export default function App() {
               role="switch"
               aria-checked="true"
               aria-label="Motivational messages"
-              className="flex h-6 w-[42px] shrink-0 items-center rounded-full bg-primary p-0.5 transition-colors"
+              className="flex h-6 w-10.5 shrink-0 items-center rounded-full bg-primary p-0.5 transition-colors"
             >
-              <span className="h-5 w-5 translate-x-[18px] rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
+              <span className="h-5 w-5 translate-x-4.5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
             </button>
           </div>
         </section>
@@ -287,7 +287,7 @@ export default function App() {
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-[15px]">
+          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
             <div className="flex-1">
               <p className="text-sm font-semibold">Compact mode</p>
               <p className="mt-0.5 text-[13px] text-muted">Reduce padding for a denser popup.</p>
@@ -297,12 +297,12 @@ export default function App() {
               role="switch"
               aria-checked="false"
               aria-label="Compact mode"
-              className="flex h-6 w-[42px] shrink-0 items-center rounded-full bg-border p-0.5 transition-colors"
+              className="flex h-6 w-10.5 shrink-0 items-center rounded-full bg-border p-0.5 transition-colors"
             >
               <span className="h-5 w-5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
             </button>
           </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-[15px]">
+          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
             <div className="flex-1">
               <p className="text-sm font-semibold">Reduced motion</p>
               <p className="mt-0.5 text-[13px] text-muted">Minimize animations and transitions.</p>
@@ -312,7 +312,7 @@ export default function App() {
               role="switch"
               aria-checked="false"
               aria-label="Reduced motion"
-              className="flex h-6 w-[42px] shrink-0 items-center rounded-full bg-border p-0.5 transition-colors"
+              className="flex h-6 w-10.5 shrink-0 items-center rounded-full bg-border p-0.5 transition-colors"
             >
               <span className="h-5 w-5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform" />
             </button>
@@ -380,7 +380,7 @@ export default function App() {
               href="https://github.com/open-hydration"
               className="inline-flex items-center gap-1.5 text-[13px] font-medium text-primary hover:underline"
             >
-              <svg className="h-[15px] w-[15px]" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="h-3.75 w-3.75" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
               </svg>
               github.com/open-hydration
@@ -397,10 +397,10 @@ export default function App() {
           <div className="border-t border-border px-5 py-4">
             <button
               type="button"
-              className="inline-flex h-[38px] items-center gap-1.5 rounded-[10px] border border-border bg-elevated px-4 text-[13px] font-semibold transition-colors hover:bg-border focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+              className="inline-flex h-9.5 items-center gap-1.5 rounded-[10px] border border-border bg-elevated px-4 text-[13px] font-semibold transition-colors hover:bg-border focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
             >
               <svg
-                className="h-[15px] w-[15px]"
+                className="h-3.75 w-3.75"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -421,13 +421,13 @@ export default function App() {
           <p className="flex-1 text-[13px] text-muted">Changes apply instantly and save locally.</p>
           <button
             type="button"
-            className="h-10 rounded-[11px] border border-border bg-elevated px-[18px] text-[13.5px] font-semibold transition-colors hover:bg-border focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            className="h-10 rounded-[11px] border border-border bg-elevated px-4.5 text-[13.5px] font-semibold transition-colors hover:bg-border focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             Reset to defaults
           </button>
           <button
             type="button"
-            className="h-10 rounded-[11px] bg-primary px-[22px] text-[13.5px] font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+            className="h-10 rounded-[11px] bg-primary px-5.5 text-[13.5px] font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
           >
             Save changes
           </button>
