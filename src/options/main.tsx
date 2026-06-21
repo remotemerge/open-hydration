@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 
 // styles
-import '@/styles/global.scss';
+import '@/styles/global.css';
 
 // render the application
 createRoot(document.getElementById('root')!).render(
