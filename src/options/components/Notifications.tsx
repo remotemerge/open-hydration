@@ -1,0 +1,52 @@
+import Section from './Section';
+import ToggleSwitch from './ToggleSwitch';
+
+export default function Notifications() {
+  return (
+    <Section
+      title="Notifications"
+      icon={
+        <svg
+          className="h-4 w-4 stroke-primary"
+          viewBox="0 0 24 24"
+          fill="none"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+        </svg>
+      }
+    >
+      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
+        <div className="flex-1">
+          <p className="text-sm font-semibold">Enable notifications</p>
+          <p className="mt-0.5 text-[13px] text-muted">Receive a gentle reminder when it's time to drink.</p>
+        </div>
+        <ToggleSwitch checked label="Enable notifications" />
+      </div>
+      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
+        <div className="flex-1">
+          <p className="text-sm font-semibold">Reminder sound</p>
+          <p className="mt-0.5 text-[13px] text-muted">Play a soft chime with each reminder.</p>
+        </div>
+        <ToggleSwitch checked={false} label="Reminder sound" />
+      </div>
+      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
+        <div className="flex-1">
+          <p className="text-sm font-semibold">Desktop notification icon</p>
+          <p className="mt-0.5 text-[13px] text-muted">Show the droplet icon in system notifications.</p>
+        </div>
+        <ToggleSwitch checked label="Desktop notification icon" />
+      </div>
+      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
+        <div className="flex-1">
+          <p className="text-sm font-semibold">Motivational messages</p>
+          <p className="mt-0.5 text-[13px] text-muted">Include an encouraging line with each reminder.</p>
+        </div>
+        <ToggleSwitch checked label="Motivational messages" />
+      </div>
+    </Section>
+  );
+}

@@ -1,0 +1,20 @@
+interface ToggleSwitchProps {
+  checked: boolean;
+  label: string;
+}
+
+export default function ToggleSwitch({ checked, label }: ToggleSwitchProps) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={label}
+      className={`flex h-6 w-10.5 shrink-0 items-center rounded-full p-0.5 transition-colors ${checked ? 'bg-primary' : 'bg-border'}`}
+    >
+      <span
+        className={`h-5 w-5 rounded-full bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)] transition-transform ${checked ? 'translate-x-4.5' : ''}`}
+      />
+    </button>
+  );
+}
