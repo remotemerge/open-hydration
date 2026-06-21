@@ -6,7 +6,7 @@ export default function App() {
     <div className="popup text-base">
       <div className="flex items-center p-2 space-x-1 bg-gray-100 border-b border-gray-300">
         <img src="/icons/logo.svg" role="img" width="32" alt="Logo" />
-        <p className="text-3xl text-blue-500">Drink Water</p>
+        <p className="text-3xl text-blue-500">Open Hydration</p>
       </div>
       <div className="my-2 px-2">
         <blockquote className="relative pt-4 pl-9 italic leading-normal text-gray-600">
