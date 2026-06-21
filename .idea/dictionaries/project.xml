@@ -5,6 +5,7 @@
       <w>entrypoints</w>
       <w>oxfmt</w>
       <w>oxlint</w>
+      <w>valibot</w>
     </words>
   </dictionary>
 </component>
