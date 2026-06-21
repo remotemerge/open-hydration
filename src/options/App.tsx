@@ -1,16 +1,14 @@
-import React from 'react';
-
 // styles
-import '../styles/option.scss';
+import './style.scss';
 
-export default function Option() {
+export default function App() {
   return (
     <div className="flex h-screen justify-center items-center text-base bg-gradient-to-b from-blue-100 to-blue-500">
       <div className="w-3/4 flex flex-col bg-gray-100 px-5 pt-2 rounded shadow-lg">
         {/* logo */}
         <div className="flex items-center -ml-3">
           <img src="/icons/48.png" width="48" alt="Logo" />
-          <h1 className="pt-5 text-2xl text-blue-500">Drink Water</h1>
+          <h1 className="pt-5 text-2xl text-blue-500">Open Hydration</h1>
           <div className="pl-5 form-check form-switch pt-4 ml-4">
             <label className="sr-only" htmlFor="status" />
             <input className="form-check-input" type="checkbox" id="status" style={{ width: '48px', height: '24px' }} />
