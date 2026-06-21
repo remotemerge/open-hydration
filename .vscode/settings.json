@@ -29,7 +29,7 @@
   "files.exclude": {
     "**/.output": true,
     "**/.wxt": true,
-    "**/node_modules": true,
+    "**/node_modules": true
   },
 
   // Workbench
@@ -40,12 +40,12 @@
     "**/node_modules": true,
     "**/dist": true,
     "**/.output": true,
-    "**/.wxt": true,
+    "**/.wxt": true
   },
 
   // Oxc
   "oxc.enable": true,
 
   // TypeScript
-  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative"
 }
