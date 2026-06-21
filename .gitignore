@@ -11,6 +11,8 @@
 /.idea/*
 !/.idea/dictionaries/
 !/.idea/dictionaries/*.xml
+!/.idea/OxcSettings.xml
+!/.idea/OxfmtSettings.xml
 !/.idea/vcs.xml
 
 ### Visual Studio Code
