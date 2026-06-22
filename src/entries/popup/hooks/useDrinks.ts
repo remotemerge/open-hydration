@@ -3,7 +3,8 @@ import { db } from '@/db/db';
 import { dateIdFor, getTodayId, type DrinkDay } from '@/db/drinks';
 
 export function useTodayGlasses() {
-  return useLiveQuery(() => db.drinks.get(getTodayId()));
+  const today = getTodayId();
+  return useLiveQuery(() => db.drinks.get(today), [today]);
 }
 
 // Uses the day's frozen goal, falling back to the live goal for legacy rows.
@@ -14,6 +15,7 @@ function metGoal(day: DrinkDay, dayGoal: number): boolean {
 export function useStreak(dailyGoal: number): number {
   return (
     useLiveQuery(async () => {
+      const today = getTodayId();
       // The date the next row must have for the run to stay unbroken.
       const expected = new Date();
       let streak = 0;
@@ -21,18 +23,20 @@ export function useStreak(dailyGoal: number): number {
       // Reverse cursor stops at the first break, so it reads only streak-length rows.
       await db.drinks
         .where('id')
-        .belowOrEqual(getTodayId())
+        .belowOrEqual(today)
         // oxlint-disable-next-line unicorn/no-array-reverse
         .reverse()
         .until((day: DrinkDay) => {
+          const expectedId = dateIdFor(expected);
+
           // Today still below goal doesn't break a streak earned yesterday.
-          if (day.id === getTodayId() && !metGoal(day, dailyGoal)) {
+          if (day.id === today && !metGoal(day, dailyGoal)) {
             expected.setDate(expected.getDate() - 1);
             return false;
           }
 
           // A missing day (id gap) or an unmet goal ends the streak.
-          if (day.id !== dateIdFor(expected) || !metGoal(day, dailyGoal)) {
+          if (day.id !== expectedId || !metGoal(day, dailyGoal)) {
             return true;
           }
 
@@ -40,7 +44,7 @@ export function useStreak(dailyGoal: number): number {
           expected.setDate(expected.getDate() - 1);
           return false;
         }, false)
-        .toArray();
+        .each(() => {});
 
       return streak;
     }, [dailyGoal]) ?? 0
