@@ -13,12 +13,13 @@ export default function DailyGoal() {
 
   if (!settings) return null;
 
+  const { goalType, dailyGoal } = settings;
+
   function updateDailyGoal(delta: number) {
-    const next = Math.min(16, Math.max(1, settings!.dailyGoal + delta));
+    const next = Math.min(16, Math.max(1, dailyGoal + delta));
     db.settings.update('settings', { dailyGoal: next });
   }
 
-  const { goalType, dailyGoal } = settings;
   const goalLabel =
     goalType === 'glasses' ? `${dailyGoal} ${dailyGoal === 1 ? 'glass' : 'glasses'}` : `${dailyGoal * 250} ml`;
 
