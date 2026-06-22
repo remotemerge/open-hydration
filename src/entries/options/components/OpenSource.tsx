@@ -1,5 +1,5 @@
 import Section from './Section';
-import { version } from '~/package.json';
+import { version } from '@/package.json';
 
 const GITHUB_REPO = 'remotemerge/open-hydration';
 const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;

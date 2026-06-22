@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db/db';
+import { db } from '@/src/db/db';
 
 export function useTheme() {
   const settings = useLiveQuery(() => db.settings.get('settings'));

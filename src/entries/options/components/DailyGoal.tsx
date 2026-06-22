@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db/db';
-import type { Settings } from '@/db/settings';
+import { db } from '@/src/db/db';
+import type { Settings } from '@/src/db/settings';
 import Section from './Section';
 
 function updateGoalType(goalType: Settings['goalType']) {

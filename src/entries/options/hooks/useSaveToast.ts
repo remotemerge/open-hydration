@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db/db';
+import { db } from '@/src/db/db';
 
 export function useSaveToast() {
   const settings = useLiveQuery(() => db.settings.get('settings'));

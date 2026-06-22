@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db/db';
+import { db } from '@/src/db/db';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 

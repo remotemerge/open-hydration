@@ -5,10 +5,10 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 
 // Styles
-import '@/styles/global.css';
+import '@/src/styles/global.css';
 
 // Database
-import { applyDefaultSettings } from '@/db/db';
+import { applyDefaultSettings } from '@/src/db/db';
 
 // Apply default settings before mounting
 applyDefaultSettings().then(() => {

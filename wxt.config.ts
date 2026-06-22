@@ -8,7 +8,8 @@ export default defineConfig({
   }),
   modules: ['@wxt-dev/module-react'],
   manifestVersion: 3,
-  entrypointsDir: 'src',
+  srcDir: 'src',
+  entrypointsDir: 'entries',
   zip: {
     artifactTemplate: 'v{{version}}-{{browser}}.zip',
     sourcesTemplate: 'v{{version}}-sources.zip',
