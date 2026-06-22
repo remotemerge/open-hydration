@@ -16,7 +16,6 @@ export const settingsSchema = vb.object({
   // Notifications
   notificationsEnabled: vb.boolean(),
   reminderSound: vb.boolean(),
-  desktopNotificationIcon: vb.boolean(),
 
   // Current state
   paused: vb.boolean(),
@@ -48,7 +47,6 @@ export const defaultSettings: Settings = {
   // Notifications
   notificationsEnabled: true,
   reminderSound: false,
-  desktopNotificationIcon: true,
 
   // Current state
   paused: false,

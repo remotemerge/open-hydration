@@ -32,17 +32,6 @@ export default function Notifications() {
           label="Reminder sound"
         />
       </div>
-      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
-        <div className="flex-1">
-          <p className="text-sm font-semibold">Desktop notification icon</p>
-          <p className="mt-0.5 text-[13px] text-muted">Show the droplet icon in system notifications.</p>
-        </div>
-        <ToggleSwitch
-          checked={settings.desktopNotificationIcon}
-          onChange={(checked) => updateSettings({ desktopNotificationIcon: checked })}
-          label="Desktop notification icon"
-        />
-      </div>
     </Section>
   );
 }
