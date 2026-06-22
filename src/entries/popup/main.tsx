@@ -7,14 +7,9 @@ import App from './App';
 // Styles
 import '@/styles/global.css';
 
-// Database
-import { applyDefaultSettings } from '@/db/db';
-
-// Apply default settings before mounting
-applyDefaultSettings().then(() => {
-  createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-      <App />
-    </StrictMode>,
-  );
-});
+// Render the app
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
