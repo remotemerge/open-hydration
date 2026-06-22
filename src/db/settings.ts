@@ -18,6 +18,9 @@ export const settingsSchema = vb.object({
   reminderSound: vb.boolean(),
   desktopNotificationIcon: vb.boolean(),
 
+  // Current state
+  paused: vb.boolean(),
+
   // Appearance
   theme: vb.picklist(['system', 'light', 'dark']),
   compactMode: vb.boolean(),
@@ -46,6 +49,9 @@ export const defaultSettings: Settings = {
   notificationsEnabled: true,
   reminderSound: false,
   desktopNotificationIcon: true,
+
+  // Current state
+  paused: false,
 
   // Appearance
   theme: 'light',
