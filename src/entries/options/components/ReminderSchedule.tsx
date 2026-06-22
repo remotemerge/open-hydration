@@ -9,8 +9,9 @@ const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
   '20m': '20 minutes',
   '30m': '30 minutes',
   '45m': '45 minutes',
-  '60m': '60 minutes',
-  custom: 'Custom',
+  '60m': '1 hour',
+  '120m': '2 hours',
+  '240m': '4 hours',
 };
 
 function updateInterval(value: string) {

@@ -18,8 +18,9 @@ export default function DailyGoal() {
     db.settings.update('settings', { dailyGoal: next });
   }
 
+  const { goalType, dailyGoal } = settings;
   const goalLabel =
-    settings.goalType === 'glasses' ? `${settings.dailyGoal} glasses` : `${settings.dailyGoal * 250} ml`;
+    goalType === 'glasses' ? `${dailyGoal} ${dailyGoal === 1 ? 'glass' : 'glasses'}` : `${dailyGoal * 250} ml`;
 
   return (
     <Section title="Daily goal" icon={<IconDropletFilled className="h-4 w-4 text-primary" />}>
