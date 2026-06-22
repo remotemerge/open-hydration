@@ -1,7 +1,6 @@
 import { IconClock, IconChevronDown } from '@tabler/icons-react';
-import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
-import { useSettings } from '../hooks/useSettings';
+import { updateSettings, useSettings } from '../hooks/useSettings';
 import Section from './Section';
 
 const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
@@ -15,16 +14,15 @@ const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
 };
 
 function updateInterval(value: string) {
-  const interval = value as Settings['reminderInterval'];
-  db.settings.update('settings', { reminderInterval: interval });
+  updateSettings({ reminderInterval: value as Settings['reminderInterval'] });
 }
 
 function updateActiveHoursStart(value: string) {
-  db.settings.update('settings', { activeHoursStart: value });
+  updateSettings({ activeHoursStart: value });
 }
 
 function updateActiveHoursEnd(value: string) {
-  db.settings.update('settings', { activeHoursEnd: value });
+  updateSettings({ activeHoursEnd: value });
 }
 
 export default function ReminderSchedule() {

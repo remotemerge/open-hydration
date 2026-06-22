@@ -1,6 +1,5 @@
 import { IconBell } from '@tabler/icons-react';
-import { db } from '@/db/db';
-import { useSettings } from '../hooks/useSettings';
+import { updateSettings, useSettings } from '../hooks/useSettings';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 
@@ -18,7 +17,7 @@ export default function Notifications() {
         </div>
         <ToggleSwitch
           checked={settings.notificationsEnabled}
-          onChange={(checked) => db.settings.update('settings', { notificationsEnabled: checked })}
+          onChange={(checked) => updateSettings({ notificationsEnabled: checked })}
           label="Enable notifications"
         />
       </div>
@@ -29,7 +28,7 @@ export default function Notifications() {
         </div>
         <ToggleSwitch
           checked={settings.reminderSound}
-          onChange={(checked) => db.settings.update('settings', { reminderSound: checked })}
+          onChange={(checked) => updateSettings({ reminderSound: checked })}
           label="Reminder sound"
         />
       </div>
@@ -40,7 +39,7 @@ export default function Notifications() {
         </div>
         <ToggleSwitch
           checked={settings.desktopNotificationIcon}
-          onChange={(checked) => db.settings.update('settings', { desktopNotificationIcon: checked })}
+          onChange={(checked) => updateSettings({ desktopNotificationIcon: checked })}
           label="Desktop notification icon"
         />
       </div>

@@ -1,11 +1,17 @@
 import { IconDropletFilled } from '@tabler/icons-react';
-import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
-import { useSettings } from '../hooks/useSettings';
+import { updateSettings, useSettings } from '../hooks/useSettings';
 import Section from './Section';
 
+// Goal bounds mirror the schema validation
+const MIN_GOAL = 1;
+const MAX_GOAL = 16;
+
+// Millilitres per glass for the ml equivalent display
+const ML_PER_GLASS = 250;
+
 function updateGoalType(goalType: Settings['goalType']) {
-  db.settings.update('settings', { goalType });
+  updateSettings({ goalType });
 }
 
 export default function DailyGoal() {
@@ -16,12 +22,12 @@ export default function DailyGoal() {
   const { goalType, dailyGoal } = settings;
 
   function updateDailyGoal(delta: number) {
-    const next = Math.min(16, Math.max(1, dailyGoal + delta));
-    db.settings.update('settings', { dailyGoal: next });
+    const next = Math.min(MAX_GOAL, Math.max(MIN_GOAL, dailyGoal + delta));
+    updateSettings({ dailyGoal: next });
   }
 
   const goalLabel =
-    goalType === 'glasses' ? `${dailyGoal} ${dailyGoal === 1 ? 'glass' : 'glasses'}` : `${dailyGoal * 250} ml`;
+    goalType === 'glasses' ? `${dailyGoal} ${dailyGoal === 1 ? 'glass' : 'glasses'}` : `${dailyGoal * ML_PER_GLASS} ml`;
 
   return (
     <Section title="Daily goal" icon={<IconDropletFilled className="h-4 w-4 text-primary" />}>

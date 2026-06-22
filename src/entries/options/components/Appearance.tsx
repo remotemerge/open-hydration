@@ -1,12 +1,11 @@
 import { IconSun } from '@tabler/icons-react';
-import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
-import { useSettings } from '../hooks/useSettings';
+import { updateSettings, useSettings } from '../hooks/useSettings';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 
 function updateTheme(theme: Settings['theme']) {
-  db.settings.update('settings', { theme });
+  updateSettings({ theme });
 }
 
 export default function Appearance() {
@@ -41,7 +40,7 @@ export default function Appearance() {
         </div>
         <ToggleSwitch
           checked={settings.compactMode}
-          onChange={(checked) => db.settings.update('settings', { compactMode: checked })}
+          onChange={(checked) => updateSettings({ compactMode: checked })}
           label="Compact mode"
         />
       </div>
@@ -52,7 +51,7 @@ export default function Appearance() {
         </div>
         <ToggleSwitch
           checked={settings.reducedMotion}
-          onChange={(checked) => db.settings.update('settings', { reducedMotion: checked })}
+          onChange={(checked) => updateSettings({ reducedMotion: checked })}
           label="Reduced motion"
         />
       </div>
