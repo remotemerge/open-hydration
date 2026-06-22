@@ -1,7 +1,7 @@
-import { useLiveQuery } from 'dexie-react-hooks';
 import { IconClock, IconChevronDown } from '@tabler/icons-react';
 import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
+import { useSettings } from '../hooks/useSettings';
 import Section from './Section';
 
 const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
@@ -28,7 +28,7 @@ function updateActiveHoursEnd(value: string) {
 }
 
 export default function ReminderSchedule() {
-  const settings = useLiveQuery(() => db.settings.get('settings'));
+  const settings = useSettings();
 
   if (!settings) return null;
 

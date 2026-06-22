@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/db/db';
+import { useSettings } from './useSettings';
 
 export function useTheme() {
-  const settings = useLiveQuery(() => db.settings.get('settings'));
+  const settings = useSettings();
 
   useEffect(() => {
     if (!settings) return;

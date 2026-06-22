@@ -1,11 +1,11 @@
-import { useLiveQuery } from 'dexie-react-hooks';
 import { IconBell } from '@tabler/icons-react';
 import { db } from '@/db/db';
+import { useSettings } from '../hooks/useSettings';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 
 export default function Notifications() {
-  const settings = useLiveQuery(() => db.settings.get('settings'));
+  const settings = useSettings();
 
   if (!settings) return null;
 

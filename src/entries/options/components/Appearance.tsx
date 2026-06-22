@@ -1,7 +1,7 @@
-import { useLiveQuery } from 'dexie-react-hooks';
 import { IconSun } from '@tabler/icons-react';
 import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
+import { useSettings } from '../hooks/useSettings';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 
@@ -10,7 +10,7 @@ function updateTheme(theme: Settings['theme']) {
 }
 
 export default function Appearance() {
-  const settings = useLiveQuery(() => db.settings.get('settings'));
+  const settings = useSettings();
 
   if (!settings) return null;
 
