@@ -1,8 +1,8 @@
 import Section from './Section';
-import { version } from '@@/package.json';
 
 const GITHUB_REPO = 'remotemerge/open-hydration';
 const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;
+const appVersion = browser.runtime.getManifest().version;
 
 function openTab(url: string) {
   browser.tabs.create({ url });
@@ -46,7 +46,7 @@ export default function OpenSource() {
       </div>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.5">
         <p className="flex-1 text-sm font-semibold">Version</p>
-        <p className="text-[13px] text-muted">v{version}</p>
+        <p className="text-[13px] text-muted">v{appVersion}</p>
       </div>
       <div className="border-t border-border px-5 py-4">
         <button
