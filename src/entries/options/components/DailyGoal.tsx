@@ -1,5 +1,6 @@
 import { IconDropletFilled } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
+import { syncTodayGoal } from '@/entries/popup/hooks/useDrinks';
 import { updateSettings, useSettings } from '../hooks/useSettings';
 import Section from './Section';
 
@@ -33,6 +34,9 @@ export default function DailyGoal() {
     const next = Math.min(MAX_GOAL, Math.max(MIN_GOAL, dailyGoal + delta));
     if (next !== dailyGoal) {
       updateSettings({ dailyGoal: next });
+      syncTodayGoal(next).catch(() => {
+        //
+      });
     }
   }
 
