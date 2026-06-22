@@ -4,6 +4,10 @@ interface ToggleSwitchProps {
   onChange?: (checked: boolean) => void;
 }
 
+/**
+ * Render an accessible on/off switch
+ * @param props - The checked state, accessible label and change handler
+ */
 export default function ToggleSwitch({ checked, label, onChange }: ToggleSwitchProps) {
   return (
     <button

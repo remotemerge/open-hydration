@@ -5,10 +5,15 @@ const GITHUB_REPO = 'remotemerge/open-hydration';
 const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;
 const appVersion = browser.runtime.getManifest().version;
 
+/**
+ * Open a URL in a new browser tab
+ * @param url - The URL to open
+ */
 function openTab(url: string) {
   browser.tabs.create({ url });
 }
 
+/** Render the open source section with repository, license and version details */
 export default function OpenSource() {
   return (
     <Section title="Open source" icon={<IconBrandOpenSource className="h-4 w-4 text-primary" />}>

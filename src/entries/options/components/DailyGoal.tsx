@@ -17,12 +17,18 @@ export default function DailyGoal() {
 
   const { goalType, dailyGoal } = settings;
 
+  /**
+   * Update the goal type when it differs from the current value
+   */
   function updateGoalType(next: Settings['goalType']) {
     if (next !== goalType) {
       updateSettings({ goalType: next });
     }
   }
 
+  /**
+   * Adjust the daily goal within bounds, skipping no-op changes
+   */
   function updateDailyGoal(delta: number) {
     const next = Math.min(MAX_GOAL, Math.max(MIN_GOAL, dailyGoal + delta));
     if (next !== dailyGoal) {

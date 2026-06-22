@@ -4,6 +4,9 @@ import { updateSettings, useSettings } from '../hooks/useSettings';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 
+/**
+ * Persist the selected theme
+ */
 function updateTheme(theme: Settings['theme']) {
   updateSettings({ theme });
 }

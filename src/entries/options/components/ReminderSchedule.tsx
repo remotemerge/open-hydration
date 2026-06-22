@@ -13,14 +13,23 @@ const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
   '240m': '4 hours',
 };
 
+/**
+ * Persist the selected reminder interval
+ */
 function updateInterval(value: string) {
   updateSettings({ reminderInterval: value as Settings['reminderInterval'] });
 }
 
+/**
+ * Persist the active hours start time
+ */
 function updateActiveHoursStart(value: string) {
   updateSettings({ activeHoursStart: value });
 }
 
+/**
+ * Persist the active hours end time
+ */
 function updateActiveHoursEnd(value: string) {
   updateSettings({ activeHoursEnd: value });
 }
