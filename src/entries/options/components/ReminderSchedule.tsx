@@ -40,10 +40,10 @@ export default function ReminderSchedule() {
   if (!settings) return null;
 
   return (
-    <Section title="Reminder schedule" icon={<IconClock className="h-4 w-4 text-accent" />}>
+    <Section title="Schedule" icon={<IconClock className="h-4 w-4 text-accent" />}>
       <div className="flex items-center gap-5 border-t border-border px-5 py-4">
         <div className="flex-1">
-          <p className="text-sm font-semibold">Reminder interval</p>
+          <p className="text-sm font-semibold">Interval</p>
           <p className="mt-0.5 text-[13px] text-muted">How often you'd like a gentle nudge.</p>
         </div>
         <div className="relative">

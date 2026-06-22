@@ -1,7 +1,7 @@
 import { updateSettings, useSettings } from '../../options/hooks/useSettings';
 
 function completeOnboarding() {
-  updateSettings({ firstLaunchComplete: true });
+  updateSettings({ onboardingComplete: true });
 }
 
 export default function FirstLaunchView() {

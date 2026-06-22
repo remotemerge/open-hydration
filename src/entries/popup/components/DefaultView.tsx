@@ -34,7 +34,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
   const ml = glasses * ML_PER_GLASS;
   const full = glasses >= settings.dailyGoal;
 
-  const paused = settings.paused;
+  const paused = !settings.remindersEnabled;
   const nextReminderMin = formatInterval(settings.reminderInterval);
   const nextReminderDate = new Date(Date.now() + nextReminderMin * 60 * 1000);
 
@@ -43,7 +43,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
   }, [settings.dailyGoal]);
 
   const togglePause = useCallback(() => {
-    updateSettings({ paused: !paused });
+    updateSettings({ remindersEnabled: paused });
   }, [paused]);
 
   return (

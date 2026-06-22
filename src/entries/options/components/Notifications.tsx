@@ -9,16 +9,16 @@ export default function Notifications() {
   if (!settings) return null;
 
   return (
-    <Section title="Notifications" icon={<IconBell className="h-4 w-4 text-primary" />}>
+    <Section title="Reminders" icon={<IconBell className="h-4 w-4 text-primary" />}>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
         <div className="flex-1">
-          <p className="text-sm font-semibold">Enable notifications</p>
+          <p className="text-sm font-semibold">Enable reminders</p>
           <p className="mt-0.5 text-[13px] text-muted">Receive a gentle reminder when it's time to drink.</p>
         </div>
         <ToggleSwitch
-          checked={settings.notificationsEnabled}
-          onChange={(checked) => updateSettings({ notificationsEnabled: checked })}
-          label="Enable notifications"
+          checked={settings.remindersEnabled}
+          onChange={(checked) => updateSettings({ remindersEnabled: checked })}
+          label="Enable reminders"
         />
       </div>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
@@ -27,8 +27,8 @@ export default function Notifications() {
           <p className="mt-0.5 text-[13px] text-muted">Play a soft chime with each reminder.</p>
         </div>
         <ToggleSwitch
-          checked={settings.reminderSound}
-          onChange={(checked) => updateSettings({ reminderSound: checked })}
+          checked={settings.soundEnabled}
+          onChange={(checked) => updateSettings({ soundEnabled: checked })}
           label="Reminder sound"
         />
       </div>

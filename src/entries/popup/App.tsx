@@ -5,7 +5,6 @@ import { useTodayGlasses, useStreak } from './hooks/useDrinks';
 import DefaultView from './components/DefaultView';
 import FirstLaunchView from './components/FirstLaunchView';
 import GoalCompletedView from './components/GoalCompletedView';
-import NotificationsDisabledView from './components/NotificationsDisabledView';
 
 export default function App() {
   const settings = useSettings();
@@ -17,18 +16,10 @@ export default function App() {
 
   if (!settings) return null;
 
-  if (!settings.firstLaunchComplete) {
+  if (!settings.onboardingComplete) {
     return (
       <PopupShell>
         <FirstLaunchView />
-      </PopupShell>
-    );
-  }
-
-  if (!settings.notificationsEnabled) {
-    return (
-      <PopupShell>
-        <NotificationsDisabledView />
       </PopupShell>
     );
   }
@@ -82,11 +73,11 @@ function StatusBadge() {
   const glasses = today?.glasses ?? 0;
   const full = glasses >= (settings?.dailyGoal ?? 8);
 
-  if (!settings?.firstLaunchComplete) {
+  if (!settings?.onboardingComplete) {
     return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-[11px] font-semibold text-muted">Setup</span>;
   }
 
-  if (!settings?.notificationsEnabled) {
+  if (!settings?.remindersEnabled) {
     return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-[11px] font-semibold text-muted">Paused</span>;
   }
 
