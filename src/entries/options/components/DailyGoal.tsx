@@ -10,10 +10,6 @@ const MAX_GOAL = 16;
 // Millilitres per glass for the ml equivalent display
 const ML_PER_GLASS = 250;
 
-function updateGoalType(goalType: Settings['goalType']) {
-  updateSettings({ goalType });
-}
-
 export default function DailyGoal() {
   const settings = useSettings();
 
@@ -21,9 +17,17 @@ export default function DailyGoal() {
 
   const { goalType, dailyGoal } = settings;
 
+  function updateGoalType(next: Settings['goalType']) {
+    if (next !== goalType) {
+      updateSettings({ goalType: next });
+    }
+  }
+
   function updateDailyGoal(delta: number) {
     const next = Math.min(MAX_GOAL, Math.max(MIN_GOAL, dailyGoal + delta));
-    updateSettings({ dailyGoal: next });
+    if (next !== dailyGoal) {
+      updateSettings({ dailyGoal: next });
+    }
   }
 
   const goalLabel =
