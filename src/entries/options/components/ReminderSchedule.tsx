@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/src/db/db';
-import type { Settings } from '@/src/db/settings';
+import { db } from '@/db/db';
+import type { Settings } from '@/db/settings';
 import Section from './Section';
 
 const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
