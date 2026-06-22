@@ -22,6 +22,9 @@ export const settingsSchema = vb.object({
   theme: vb.picklist(['system', 'light', 'dark']),
   compactMode: vb.boolean(),
   reducedMotion: vb.boolean(),
+
+  // Onboarding
+  firstLaunchComplete: vb.boolean(),
 });
 
 export type Settings = vb.InferOutput<typeof settingsSchema>;
@@ -48,4 +51,7 @@ export const defaultSettings: Settings = {
   theme: 'light',
   compactMode: false,
   reducedMotion: false,
+
+  // Onboarding
+  firstLaunchComplete: false,
 };
