@@ -1,21 +1,19 @@
 import { Dexie, type EntityTable } from 'dexie';
 import { defaultSettings, type Settings } from './settings';
 
-// Single-table store keyed by 'id'.
+// IndexedDB store holding the single document
 const db = new Dexie('OpenHydration') as Dexie & {
   settings: EntityTable<Settings, 'id'>;
 };
 
+// Set the database version and schema
 db.version(1).stores({
   settings: 'id',
 });
 
-export { db };
+// Seeds default settings once, on initial database creation
+db.on('populate', () => {
+  db.settings.add(defaultSettings);
+});
 
-// Applies default settings on first run
-export async function applyDefaultSettings(): Promise<void> {
-  const existing = await db.settings.get('settings');
-  if (!existing) {
-    await db.settings.add(defaultSettings);
-  }
-}
+export { db };
