@@ -14,11 +14,8 @@ export const settingsSchema = vb.object({
   activeHoursEnd: vb.string(), // "HH:mm"
 
   // Notifications
-  notificationsEnabled: vb.boolean(),
-  reminderSound: vb.boolean(),
-
-  // Current state
-  paused: vb.boolean(),
+  remindersEnabled: vb.boolean(),
+  soundEnabled: vb.boolean(),
 
   // Appearance
   theme: vb.picklist(['system', 'light', 'dark']),
@@ -26,7 +23,7 @@ export const settingsSchema = vb.object({
   reducedMotion: vb.boolean(),
 
   // Onboarding
-  firstLaunchComplete: vb.boolean(),
+  onboardingComplete: vb.boolean(),
 });
 
 export type Settings = vb.InferOutput<typeof settingsSchema>;
@@ -45,11 +42,8 @@ export const defaultSettings: Settings = {
   activeHoursEnd: '22:00',
 
   // Notifications
-  notificationsEnabled: true,
-  reminderSound: false,
-
-  // Current state
-  paused: false,
+  remindersEnabled: true,
+  soundEnabled: false,
 
   // Appearance
   theme: 'light',
@@ -57,5 +51,5 @@ export const defaultSettings: Settings = {
   reducedMotion: false,
 
   // Onboarding
-  firstLaunchComplete: false,
+  onboardingComplete: false,
 };
