@@ -1,4 +1,4 @@
-import { IconDropletFilled } from '@tabler/icons-react';
+import { IconDroplet } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { syncTodayGoal } from '@/entries/popup/hooks/useDrinks';
 import { updateSettings, useSettings } from '../hooks/useSettings';
@@ -44,7 +44,7 @@ export default function DailyGoal() {
     goalType === 'glasses' ? `${dailyGoal} ${dailyGoal === 1 ? 'glass' : 'glasses'}` : `${dailyGoal * ML_PER_GLASS} ml`;
 
   return (
-    <Section title="Daily goal" icon={<IconDropletFilled className="h-4 w-4 text-primary" />}>
+    <Section title="Daily goal" icon={<IconDroplet className="h-4 w-4 text-primary" />}>
       <div className="flex items-center gap-5 border-t border-border px-5 py-4">
         <div className="flex-1">
           <p className="text-sm font-semibold">Goal type</p>
