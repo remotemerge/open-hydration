@@ -1,5 +1,6 @@
 import './style.scss';
 
+import { IconDropletFilled } from '@tabler/icons-react';
 import DailyGoal from './components/DailyGoal';
 import ReminderSchedule from './components/ReminderSchedule';
 import Notifications from './components/Notifications';
@@ -20,16 +21,7 @@ export default function App() {
         {/* Page header */}
         <div className="flex items-center gap-3.75 px-0.5 pb-1">
           <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary shadow-[0_6px_18px_-6px_var(--primary)]">
-            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3s-6 6.7-6 11.3a6 6 0 1 0 12 0C18 9.7 12 3 12 3Z" fill="#fff" />
-              <path
-                d="M9 13.7a2.6 2.6 0 0 0 1.9 3.6"
-                stroke="#fff"
-                strokeOpacity=".5"
-                strokeWidth="1.3"
-                strokeLinecap="round"
-              />
-            </svg>
+            <IconDropletFilled className="h-6 w-6 text-white" />
           </div>
           <div>
             <h1 className="text-[21px] font-semibold leading-tight">Open Hydration Settings</h1>

@@ -1,4 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
+import { IconClock, IconChevronDown } from '@tabler/icons-react';
 import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
 import Section from './Section';
@@ -31,22 +32,7 @@ export default function ReminderSchedule() {
   if (!settings) return null;
 
   return (
-    <Section
-      title="Reminder schedule"
-      icon={
-        <svg
-          className="h-4 w-4 stroke-accent"
-          viewBox="0 0 24 24"
-          fill="none"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 7.5V12l3 2" />
-        </svg>
-      }
-    >
+    <Section title="Reminder schedule" icon={<IconClock className="h-4 w-4 text-accent" />}>
       <div className="flex items-center gap-5 border-t border-border px-5 py-4">
         <div className="flex-1">
           <p className="text-sm font-semibold">Reminder interval</p>
@@ -64,16 +50,7 @@ export default function ReminderSchedule() {
               </option>
             ))}
           </select>
-          <svg
-            className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 stroke-muted"
-            viewBox="0 0 24 24"
-            fill="none"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="m6 9 6 6 6-6" />
-          </svg>
+          <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
         </div>
       </div>
       <div className="flex items-center gap-5 border-t border-border px-5 py-4">

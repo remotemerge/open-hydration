@@ -1,4 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
+import { IconSun } from '@tabler/icons-react';
 import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
 import Section from './Section';
@@ -14,22 +15,7 @@ export default function Appearance() {
   if (!settings) return null;
 
   return (
-    <Section
-      title="Appearance"
-      icon={
-        <svg
-          className="h-4 w-4 stroke-accent"
-          viewBox="0 0 24 24"
-          fill="none"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4" />
-        </svg>
-      }
-    >
+    <Section title="Appearance" icon={<IconSun className="h-4 w-4 text-accent" />}>
       <div className="flex items-center gap-5 border-t border-border px-5 py-4">
         <div className="flex-1">
           <p className="text-sm font-semibold">Theme</p>

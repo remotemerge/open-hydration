@@ -1,4 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
+import { IconDropletFilled } from '@tabler/icons-react';
 import { db } from '@/db/db';
 import type { Settings } from '@/db/settings';
 import Section from './Section';
@@ -21,14 +22,7 @@ export default function DailyGoal() {
     settings.goalType === 'glasses' ? `${settings.dailyGoal} glasses` : `${settings.dailyGoal * 250} ml`;
 
   return (
-    <Section
-      title="Daily goal"
-      icon={
-        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3s-6 6.7-6 11.3a6 6 0 1 0 12 0C18 9.7 12 3 12 3Z" className="fill-primary" />
-        </svg>
-      }
-    >
+    <Section title="Daily goal" icon={<IconDropletFilled className="h-4 w-4 text-primary" />}>
       <div className="flex items-center gap-5 border-t border-border px-5 py-4">
         <div className="flex-1">
           <p className="text-sm font-semibold">Goal type</p>
