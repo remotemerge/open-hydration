@@ -1,5 +1,3 @@
-import './style.scss';
-
 import { IconDropletFilled } from '@tabler/icons-react';
 import DailyGoal from './components/DailyGoal';
 import ReminderSchedule from './components/ReminderSchedule';
