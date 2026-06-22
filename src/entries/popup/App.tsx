@@ -1,30 +1,100 @@
+import type { ReactNode } from 'react';
+import { useSettings } from '../options/hooks/useSettings';
+import { useTheme } from '../options/hooks/useTheme';
+import { useTodayGlasses, useStreak } from './hooks/useDrinks';
+import DefaultView from './components/DefaultView';
+import FirstLaunchView from './components/FirstLaunchView';
+import GoalCompletedView from './components/GoalCompletedView';
+import NotificationsDisabledView from './components/NotificationsDisabledView';
+
 export default function App() {
+  const settings = useSettings();
+  const today = useTodayGlasses();
+  const glasses = today?.glasses ?? 0;
+  const streak = useStreak(settings?.dailyGoal ?? 8);
+
+  useTheme();
+
+  if (!settings) return null;
+
+  if (!settings.firstLaunchComplete) {
+    return (
+      <PopupShell>
+        <FirstLaunchView />
+      </PopupShell>
+    );
+  }
+
+  if (!settings.notificationsEnabled) {
+    return (
+      <PopupShell>
+        <NotificationsDisabledView />
+      </PopupShell>
+    );
+  }
+
+  if (glasses >= settings.dailyGoal) {
+    return (
+      <PopupShell>
+        <GoalCompletedView settings={settings} streak={streak} />
+      </PopupShell>
+    );
+  }
+
   return (
-    <div className="popup text-base">
-      <div className="flex items-center p-2 space-x-1 bg-gray-100 border-b border-gray-300">
-        <img src="/icons/logo.svg" role="img" width="32" alt="Logo" />
-        <p className="text-3xl text-blue-500">Open Hydration</p>
-      </div>
-      <div className="my-2 px-2">
-        <blockquote className="relative pt-4 pl-9 italic leading-normal text-gray-600">
-          Things may come to those who wait, but only the things left by those who hustle.
-          <cite className="inline-block text-xs leading-normal text-gray-400">Abraham Lincoln</cite>
-        </blockquote>
-      </div>
-      <div className="flex mt-3 text-center">
-        <div
-          onClick={() => window.close()}
-          className="flex-1 p-2 cursor-pointer bg-gray-300 text-gray-600 hover:bg-gray-400 transition duration-200"
-        >
-          Close
-        </div>
-        <div
-          onClick={() => browser.runtime.openOptionsPage()}
-          className="flex-1 p-2 cursor-pointer bg-blue-500 text-gray-100 hover:bg-blue-600 transition duration-200"
-        >
-          Settings
-        </div>
-      </div>
-    </div>
+    <PopupShell>
+      <DefaultView settings={settings} />
+    </PopupShell>
+  );
+}
+
+function PopupShell({ children }: { children: ReactNode }) {
+  return (
+    <main className="flex h-130 w-90 flex-col overflow-hidden rounded-[20px] border border-border bg-surface shadow-[0_30px_70px_-28px_rgba(0,0,0,0.6)]">
+      <Header />
+      {children}
+    </main>
+  );
+}
+
+function Header() {
+  return (
+    <header className="flex shrink-0 items-center gap-2.5 border-b border-border px-4 py-3.5">
+      <svg className="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3s-6 6.7-6 11.3a6 6 0 1 0 12 0C18 9.7 12 3 12 3Z" className="fill-primary" />
+        <path
+          d="M9 13.7a2.6 2.6 0 0 0 1.9 3.6"
+          stroke="#fff"
+          strokeOpacity=".6"
+          strokeWidth={1.3}
+          strokeLinecap="round"
+        />
+      </svg>
+      <h1 className="flex-1 text-sm font-semibold">Open Hydration</h1>
+      <StatusBadge />
+    </header>
+  );
+}
+
+function StatusBadge() {
+  const today = useTodayGlasses();
+  const settings = useSettings();
+  const glasses = today?.glasses ?? 0;
+  const full = glasses >= (settings?.dailyGoal ?? 8);
+
+  if (!settings?.firstLaunchComplete) {
+    return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-[11px] font-semibold text-muted">Setup</span>;
+  }
+
+  if (!settings?.notificationsEnabled) {
+    return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-[11px] font-semibold text-muted">Paused</span>;
+  }
+
+  return (
+    <span
+      className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${full ? 'bg-success/15 text-success' : 'bg-warning/15 text-warning'}`}
+    >
+      {full ? 'Hydrated' : 'Drink due'}
+    </span>
   );
 }
