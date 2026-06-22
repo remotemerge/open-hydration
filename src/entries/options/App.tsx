@@ -1,4 +1,3 @@
-import { IconDropletFilled } from '@tabler/icons-react';
 import DailyGoal from './components/DailyGoal';
 import ReminderSchedule from './components/ReminderSchedule';
 import Notifications from './components/Notifications';
@@ -18,9 +17,7 @@ export default function App() {
       <div className="flex w-full max-w-180 flex-col gap-4.5">
         {/* Page header */}
         <div className="flex items-center gap-3.75 px-0.5 pb-1">
-          <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary shadow-[0_6px_18px_-6px_var(--primary)]">
-            <IconDropletFilled className="h-6 w-6 text-white" />
-          </div>
+          <img src="/icons/48.png" alt="" className="h-11 w-11 rounded-xl" />
           <div>
             <h1 className="text-[21px] font-semibold leading-tight">Open Hydration Settings</h1>
             <p className="mt-0.5 text-sm text-muted">Configure your hydration reminders and daily goals.</p>

@@ -51,16 +51,7 @@ function PopupShell({ children }: { children: ReactNode }) {
 function Header() {
   return (
     <header className="flex shrink-0 items-center gap-2.5 border-b border-border px-4 py-3.5">
-      <svg className="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3s-6 6.7-6 11.3a6 6 0 1 0 12 0C18 9.7 12 3 12 3Z" className="fill-primary" />
-        <path
-          d="M9 13.7a2.6 2.6 0 0 0 1.9 3.6"
-          stroke="#fff"
-          strokeOpacity=".6"
-          strokeWidth={1.3}
-          strokeLinecap="round"
-        />
-      </svg>
+      <img src="/icons/24.png" alt="" className="h-5.5 w-5.5" />
       <h1 className="flex-1 text-sm font-semibold">Open Hydration</h1>
       <StatusBadge />
       <button
