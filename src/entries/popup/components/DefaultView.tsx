@@ -108,7 +108,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
             className="flex h-10.5 flex-[1.7] items-center justify-center gap-1.5 rounded-[11px] bg-primary text-body font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 disabled:opacity-50"
           >
             <IconDropletFilled className="h-4 w-4 text-white" />
-            Drink water
+            Log drink
           </button>
           <button
             type="button"
