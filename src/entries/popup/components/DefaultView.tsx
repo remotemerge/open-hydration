@@ -5,6 +5,7 @@ import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
   IconBrandGithub,
+  IconBulb,
 } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { ML_PER_GLASS } from '@/utils/constants';
@@ -14,6 +15,15 @@ import ProgressRing from './ProgressRing';
 
 interface DefaultViewProps {
   settings: Settings;
+}
+
+const GITHUB_URL = 'https://github.com/remotemerge/open-hydration';
+
+/**
+ * Open a URL in a new browser tab
+ */
+function openTab(url: string) {
+  browser.tabs.create({ url });
 }
 
 function messageFor(glasses: number, goal: number) {
@@ -135,19 +145,24 @@ export default function DefaultView({ settings }: DefaultViewProps) {
         </section>
       </div>
 
-      <footer className="flex items-center gap-2 border-t border-border px-4 py-3 text-[11px] text-muted">
-        <span>Open source</span>
-        <span className="opacity-50">·</span>
-        <a
-          href="https://github.com/anomalyco/open-hydration"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 transition-colors hover:text-primary"
+      <footer className="grid grid-cols-[1fr_auto_1fr] items-stretch border-t border-border text-[11px] font-medium text-muted">
+        <button
+          type="button"
+          onClick={() => openTab(`${GITHUB_URL}/issues/new`)}
+          className="inline-flex cursor-pointer items-center justify-center gap-1.5 py-3 transition-colors hover:text-primary"
         >
-          <IconBrandGithub className="h-3.25 w-3.25" />
-          View on GitHub
-        </a>
-        <span className="ml-auto">v1.0.0</span>
+          <IconBulb className="h-3.5 w-3.5" />
+          Feature Request
+        </button>
+        <span aria-hidden="true" className="w-px self-stretch bg-border" />
+        <button
+          type="button"
+          onClick={() => openTab(GITHUB_URL)}
+          className="inline-flex cursor-pointer items-center justify-center gap-1.5 py-3 transition-colors hover:text-primary"
+        >
+          <IconBrandGithub className="h-3.5 w-3.5" />
+          Star on GitHub
+        </button>
       </footer>
     </>
   );
