@@ -2,8 +2,6 @@ import { IconBrandOpenSource, IconBrandGithub, IconInfoCircle } from '@tabler/ic
 import { GITHUB_REPO, GITHUB_URL } from '@/utils/constants';
 import Section from './Section';
 
-const appVersion = browser.runtime.getManifest().version;
-
 /**
  * Open a URL in a new browser tab
  * @param url - The URL to open
@@ -14,6 +12,8 @@ function openTab(url: string) {
 
 /** Render the open source section with repository, license and version details */
 export default function OpenSource() {
+  const appVersion = browser.runtime.getManifest().version;
+
   return (
     <Section title="Open source" icon={<IconBrandOpenSource className="h-4 w-4 text-primary" />}>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.5">
