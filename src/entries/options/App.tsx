@@ -5,8 +5,8 @@ import Appearance from './components/Appearance';
 import DataPrivacy from './components/DataPrivacy';
 import OpenSource from './components/OpenSource';
 import Toast from './components/Toast';
-import { useTheme } from './hooks/useTheme';
-import { useSaveToast } from './hooks/useSaveToast';
+import { useTheme } from '@/hooks/useTheme';
+import { useSaveToast } from '@/hooks/useSaveToast';
 
 export default function App() {
   useTheme();

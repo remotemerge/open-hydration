@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { IconSettings } from '@tabler/icons-react';
-import { useSettings } from '../options/hooks/useSettings';
-import { useTheme } from '../options/hooks/useTheme';
-import { useTodayGlasses, useStreak } from './hooks/useDrinks';
+import { useSettings } from '@/hooks/useSettings';
+import { useTheme } from '@/hooks/useTheme';
+import { useTodayGlasses, useStreak } from '@/hooks/useDrinks';
 import DefaultView from './components/DefaultView';
 import FirstLaunchView from './components/FirstLaunchView';
 import GoalCompletedView from './components/GoalCompletedView';

@@ -1,7 +1,7 @@
 import { IconDroplet } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
-import { syncTodayGoal } from '@/entries/popup/hooks/useDrinks';
-import { updateSettings, useSettings } from '../hooks/useSettings';
+import { syncTodayGoal } from '@/hooks/useDrinks';
+import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
 
 // Goal bounds mirror the schema validation

@@ -1,6 +1,6 @@
 import { IconClock, IconChevronDown } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
-import { updateSettings, useSettings } from '../hooks/useSettings';
+import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
 
 const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {

@@ -1,4 +1,4 @@
-import { updateSettings, useSettings } from '../../options/hooks/useSettings';
+import { updateSettings, useSettings } from '@/hooks/useSettings';
 
 function completeOnboarding() {
   updateSettings({ onboardingComplete: true });

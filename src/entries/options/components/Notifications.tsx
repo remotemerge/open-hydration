@@ -1,5 +1,5 @@
 import { IconBell } from '@tabler/icons-react';
-import { updateSettings, useSettings } from '../hooks/useSettings';
+import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
 import ToggleSwitch from './ToggleSwitch';
 

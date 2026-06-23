@@ -7,8 +7,8 @@ import {
   IconBrandGithub,
 } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
-import { logDrink, useTodayGlasses, useStreak } from '../hooks/useDrinks';
-import { updateSettings } from '../../options/hooks/useSettings';
+import { logDrink, useTodayGlasses, useStreak } from '@/hooks/useDrinks';
+import { updateSettings } from '@/hooks/useSettings';
 import ProgressRing from './ProgressRing';
 
 interface DefaultViewProps {
