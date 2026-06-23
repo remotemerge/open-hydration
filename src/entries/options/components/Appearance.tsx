@@ -6,8 +6,8 @@ import Section from './Section';
 /**
  * Persist the selected theme
  */
-function updateTheme(theme: Settings['theme']) {
-  updateSettings({ theme });
+async function updateTheme(theme: Settings['theme']) {
+  await updateSettings({ theme });
 }
 
 export default function Appearance() {

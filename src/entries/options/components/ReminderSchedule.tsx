@@ -16,22 +16,22 @@ const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
 /**
  * Persist the selected reminder interval
  */
-function updateInterval(value: string) {
-  updateSettings({ reminderInterval: value as Settings['reminderInterval'] });
+async function updateInterval(value: string) {
+  await updateSettings({ reminderInterval: value as Settings['reminderInterval'] });
 }
 
 /**
  * Persist the active hours start time
  */
-function updateActiveHoursStart(value: string) {
-  updateSettings({ activeHoursStart: value });
+async function updateActiveHoursStart(value: string) {
+  await updateSettings({ activeHoursStart: value });
 }
 
 /**
  * Persist the active hours end time
  */
-function updateActiveHoursEnd(value: string) {
-  updateSettings({ activeHoursEnd: value });
+async function updateActiveHoursEnd(value: string) {
+  await updateSettings({ activeHoursEnd: value });
 }
 
 export default function ReminderSchedule() {

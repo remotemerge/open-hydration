@@ -16,8 +16,8 @@ const saveListeners = new Set<() => void>();
 /**
  * Persist a settings change and signal an explicit save
  */
-export function updateSettings(changes: Partial<Omit<Settings, 'id'>>): void {
-  db.settings.update('settings', changes);
+export async function updateSettings(changes: Partial<Omit<Settings, 'id'>>): Promise<void> {
+  await db.settings.update('settings', changes);
   saveListeners.forEach((listener) => listener());
 }
 

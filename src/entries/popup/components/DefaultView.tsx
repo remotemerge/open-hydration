@@ -48,8 +48,8 @@ export default function DefaultView({ settings }: DefaultViewProps) {
     await logDrink(settings.dailyGoal);
   }, [settings.dailyGoal]);
 
-  const togglePause = useCallback(() => {
-    updateSettings({ remindersEnabled: paused });
+  const togglePause = useCallback(async () => {
+    await updateSettings({ remindersEnabled: paused });
   }, [paused]);
 
   return (

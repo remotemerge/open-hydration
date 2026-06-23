@@ -15,22 +15,20 @@ export default function DailyGoal() {
   /**
    * Update the goal type when it differs from the current value
    */
-  function updateGoalType(next: Settings['goalType']) {
+  async function updateGoalType(next: Settings['goalType']) {
     if (next !== goalType) {
-      updateSettings({ goalType: next });
+      await updateSettings({ goalType: next });
     }
   }
 
   /**
    * Adjust the daily goal within bounds, skipping no-op changes
    */
-  function updateDailyGoal(delta: number) {
+  async function updateDailyGoal(delta: number) {
     const next = Math.min(MAX_GOAL, Math.max(MIN_GOAL, dailyGoal + delta));
     if (next !== dailyGoal) {
-      updateSettings({ dailyGoal: next });
-      syncTodayGoal(next).catch(() => {
-        //
-      });
+      await updateSettings({ dailyGoal: next });
+      await syncTodayGoal(next);
     }
   }
 

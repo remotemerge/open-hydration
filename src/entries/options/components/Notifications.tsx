@@ -17,7 +17,9 @@ export default function Notifications() {
         </div>
         <ToggleSwitch
           checked={settings.remindersEnabled}
-          onChange={(checked) => updateSettings({ remindersEnabled: checked })}
+          onChange={async (checked) => {
+            await updateSettings({ remindersEnabled: checked });
+          }}
           label="Enable reminders"
         />
       </div>
@@ -28,7 +30,9 @@ export default function Notifications() {
         </div>
         <ToggleSwitch
           checked={settings.soundEnabled}
-          onChange={(checked) => updateSettings({ soundEnabled: checked })}
+          onChange={async (checked) => {
+            await updateSettings({ soundEnabled: checked });
+          }}
           label="Reminder sound"
         />
       </div>
