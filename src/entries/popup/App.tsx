@@ -16,7 +16,9 @@ export default function App() {
 
   useTheme();
 
-  if (!settings) return null;
+  if (!settings) {
+    return null;
+  }
 
   if (!settings.onboardingComplete) {
     return (
