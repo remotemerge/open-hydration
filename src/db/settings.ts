@@ -45,7 +45,7 @@ export const defaultSettings: Settings = {
   soundEnabled: false,
 
   // Appearance
-  theme: 'light',
+  theme: 'system',
 
   // Onboarding
   onboardingComplete: false,
