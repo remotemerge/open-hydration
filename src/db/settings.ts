@@ -18,6 +18,9 @@ export const settingsSchema = vb.object({
   remindersEnabled: vb.boolean(),
   soundEnabled: vb.boolean(),
 
+  // Scheduler
+  lastReminderAt: vb.pipe(vb.number(), vb.integer(), vb.minValue(0)),
+
   // Appearance
   theme: vb.picklist(['system', 'light', 'dark']),
 
@@ -43,6 +46,9 @@ export const defaultSettings: Settings = {
   // Notifications
   remindersEnabled: true,
   soundEnabled: false,
+
+  // Scheduler bookkeeping
+  lastReminderAt: 0,
 
   // Appearance
   theme: 'system',
