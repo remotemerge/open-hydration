@@ -1,6 +1,7 @@
 import { IconBell } from '@tabler/icons-react';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
+import SettingRow from './SettingRow';
 import ToggleSwitch from './ToggleSwitch';
 
 export default function Notifications() {
@@ -10,11 +11,7 @@ export default function Notifications() {
     <Section title="Reminders" icon={<IconBell className="h-4 w-4 text-primary" />} loading={!settings}>
       {settings && (
         <>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
-            <div className="flex-1">
-              <p className="text-sm font-semibold">Enable reminders</p>
-              <p className="mt-0.5 text-[13px] text-muted">Receive a gentle reminder when it's time to drink.</p>
-            </div>
+          <SettingRow title="Enable reminders" description="Receive a gentle reminder when it's time to drink.">
             <ToggleSwitch
               checked={settings.remindersEnabled}
               onChange={async (checked) => {
@@ -22,12 +19,8 @@ export default function Notifications() {
               }}
               label="Enable reminders"
             />
-          </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
-            <div className="flex-1">
-              <p className="text-sm font-semibold">Reminder sound</p>
-              <p className="mt-0.5 text-[13px] text-muted">Play a soft chime with each reminder.</p>
-            </div>
+          </SettingRow>
+          <SettingRow title="Reminder sound" description="Play a soft chime with each reminder.">
             <ToggleSwitch
               checked={settings.soundEnabled}
               onChange={async (checked) => {
@@ -35,7 +28,7 @@ export default function Notifications() {
               }}
               label="Reminder sound"
             />
-          </div>
+          </SettingRow>
         </>
       )}
     </Section>

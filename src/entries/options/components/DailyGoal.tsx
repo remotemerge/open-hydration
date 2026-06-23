@@ -4,6 +4,7 @@ import { ML_PER_GLASS, MIN_GOAL, MAX_GOAL } from '@/utils/constants';
 import { syncTodayGoal } from '@/hooks/useDrinks';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
+import SettingRow from './SettingRow';
 
 export default function DailyGoal() {
   const settings = useSettings();
@@ -43,11 +44,7 @@ export default function DailyGoal() {
     <Section title="Daily goal" icon={<IconDroplet className="h-4 w-4 text-primary" />} loading={!settings}>
       {settings && (
         <>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-4">
-            <div className="flex-1">
-              <p className="text-sm font-semibold">Goal type</p>
-              <p className="mt-0.5 text-[13px] text-muted">Track your intake in glasses or millilitres.</p>
-            </div>
+          <SettingRow title="Goal type" description="Track your intake in glasses or millilitres.">
             <div className="inline-flex gap-0.5 rounded-[10px] border border-border bg-elevated p-0.5">
               <button
                 type="button"
@@ -66,12 +63,8 @@ export default function DailyGoal() {
                 Milliliters
               </button>
             </div>
-          </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-4">
-            <div className="flex-1">
-              <p className="text-sm font-semibold">Daily goal</p>
-              <p className="mt-0.5 text-[13px] text-muted">How much water you aim to drink each day.</p>
-            </div>
+          </SettingRow>
+          <SettingRow title="Daily goal" description="How much water you aim to drink each day.">
             <div className="flex items-center overflow-hidden rounded-[10px] border border-border bg-elevated">
               <button
                 type="button"
@@ -91,7 +84,7 @@ export default function DailyGoal() {
                 +
               </button>
             </div>
-          </div>
+          </SettingRow>
         </>
       )}
     </Section>

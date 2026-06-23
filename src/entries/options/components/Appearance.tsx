@@ -2,6 +2,7 @@ import { IconSun } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
+import SettingRow from './SettingRow';
 
 /**
  * Persist the selected theme
@@ -16,11 +17,7 @@ export default function Appearance() {
   return (
     <Section title="Appearance" icon={<IconSun className="h-4 w-4 text-accent" />} loading={!settings}>
       {settings && (
-        <div className="flex items-center gap-5 border-t border-border px-5 py-4">
-          <div className="flex-1">
-            <p className="text-sm font-semibold">Theme</p>
-            <p className="mt-0.5 text-[13px] text-muted">Match your system or pick a side.</p>
-          </div>
+        <SettingRow title="Theme" description="Match your system or pick a side.">
           <div className="inline-flex gap-0.5 rounded-[10px] border border-border bg-elevated p-0.5">
             {(['system', 'light', 'dark'] as const).map((value) => (
               <button
@@ -34,7 +31,7 @@ export default function Appearance() {
               </button>
             ))}
           </div>
-        </div>
+        </SettingRow>
       )}
     </Section>
   );

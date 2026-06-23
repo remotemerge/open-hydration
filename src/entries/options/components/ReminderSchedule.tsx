@@ -2,6 +2,7 @@ import { IconClock, IconChevronDown } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
+import SettingRow from './SettingRow';
 
 const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
   '15m': '15 minutes',
@@ -41,11 +42,7 @@ export default function ReminderSchedule() {
     <Section title="Schedule" icon={<IconClock className="h-4 w-4 text-accent" />} loading={!settings}>
       {settings && (
         <>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-4">
-            <div className="flex-1">
-              <p className="text-sm font-semibold">Interval</p>
-              <p className="mt-0.5 text-[13px] text-muted">How often you'd like a gentle nudge.</p>
-            </div>
+          <SettingRow title="Interval" description="How often you'd like a gentle nudge.">
             <div className="relative">
               <select
                 value={settings.reminderInterval}
@@ -60,12 +57,8 @@ export default function ReminderSchedule() {
               </select>
               <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
             </div>
-          </div>
-          <div className="flex items-center gap-5 border-t border-border px-5 py-4">
-            <div className="flex-1">
-              <p className="text-sm font-semibold">Active hours</p>
-              <p className="mt-0.5 text-[13px] text-muted">Reminders only run between these times.</p>
-            </div>
+          </SettingRow>
+          <SettingRow title="Active hours" description="Reminders only run between these times.">
             <div className="flex items-center gap-2">
               <input
                 type="time"
@@ -81,7 +74,7 @@ export default function ReminderSchedule() {
                 className="rounded-[10px] border border-border bg-elevated px-3 py-2 text-[13px] font-semibold text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
               />
             </div>
-          </div>
+          </SettingRow>
         </>
       )}
     </Section>
