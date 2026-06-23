@@ -8,7 +8,7 @@ import {
   IconBulb,
 } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
-import { ML_PER_GLASS } from '@/utils/constants';
+import { ML_PER_GLASS, GITHUB_URL } from '@/utils/constants';
 import { logDrink, useTodayGlasses, useStreak } from '@/hooks/useDrinks';
 import { updateSettings } from '@/hooks/useSettings';
 import ProgressRing from './ProgressRing';
@@ -16,8 +16,6 @@ import ProgressRing from './ProgressRing';
 interface DefaultViewProps {
   settings: Settings;
 }
-
-const GITHUB_URL = 'https://github.com/remotemerge/open-hydration';
 
 /**
  * Open a URL in a new browser tab

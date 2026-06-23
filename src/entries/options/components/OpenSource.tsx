@@ -1,8 +1,7 @@
 import { IconBrandOpenSource, IconBrandGithub, IconInfoCircle } from '@tabler/icons-react';
+import { GITHUB_REPO, GITHUB_URL } from '@/utils/constants';
 import Section from './Section';
 
-const GITHUB_REPO = 'remotemerge/open-hydration';
-const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;
 const appVersion = browser.runtime.getManifest().version;
 
 /**
