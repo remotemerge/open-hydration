@@ -45,7 +45,7 @@ export default function App() {
 
 function PopupShell({ children }: { children: ReactNode }) {
   return (
-    <main className="flex h-130 w-90 flex-col overflow-hidden bg-surface">
+    <main className="flex max-h-[600px] min-h-110 w-90 flex-col overflow-hidden bg-surface">
       <Header />
       {children}
     </main>
