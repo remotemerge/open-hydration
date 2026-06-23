@@ -1,8 +1,7 @@
 import { IconSun } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
-import { updateSettings, useSettings } from '../hooks/useSettings';
+import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
-import ToggleSwitch from './ToggleSwitch';
 
 /**
  * Persist the selected theme
@@ -35,28 +34,6 @@ export default function Appearance() {
             </button>
           ))}
         </div>
-      </div>
-      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
-        <div className="flex-1">
-          <p className="text-sm font-semibold">Compact mode</p>
-          <p className="mt-0.5 text-[13px] text-muted">Reduce padding for a denser popup.</p>
-        </div>
-        <ToggleSwitch
-          checked={settings.compactMode}
-          onChange={(checked) => updateSettings({ compactMode: checked })}
-          label="Compact mode"
-        />
-      </div>
-      <div className="flex items-center gap-5 border-t border-border px-5 py-3.75">
-        <div className="flex-1">
-          <p className="text-sm font-semibold">Reduced motion</p>
-          <p className="mt-0.5 text-[13px] text-muted">Minimize animations and transitions.</p>
-        </div>
-        <ToggleSwitch
-          checked={settings.reducedMotion}
-          onChange={(checked) => updateSettings({ reducedMotion: checked })}
-          label="Reduced motion"
-        />
       </div>
     </Section>
   );

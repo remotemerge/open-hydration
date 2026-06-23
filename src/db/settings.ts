@@ -19,8 +19,6 @@ export const settingsSchema = vb.object({
 
   // Appearance
   theme: vb.picklist(['system', 'light', 'dark']),
-  compactMode: vb.boolean(),
-  reducedMotion: vb.boolean(),
 
   // Onboarding
   onboardingComplete: vb.boolean(),
@@ -47,8 +45,6 @@ export const defaultSettings: Settings = {
 
   // Appearance
   theme: 'light',
-  compactMode: false,
-  reducedMotion: false,
 
   // Onboarding
   onboardingComplete: false,
