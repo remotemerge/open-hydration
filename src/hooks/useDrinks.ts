@@ -68,3 +68,10 @@ export async function logDrink(dailyGoal: number) {
 export async function syncTodayGoal(dailyGoal: number) {
   await db.drinks.update(getTodayId(), { goal: dailyGoal });
 }
+
+/**
+ * Removes every recorded day, wiping all hydration history.
+ */
+export async function clearDrinks() {
+  await db.drinks.clear();
+}
