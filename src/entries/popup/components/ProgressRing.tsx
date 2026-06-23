@@ -1,15 +1,24 @@
+import type { Settings } from '@/db/settings';
+import { ML_PER_GLASS } from '@/utils/constants';
+
 const CIRCUMFERENCE = 2 * Math.PI * 52;
 
 interface ProgressRingProps {
   glasses: number;
   goal: number;
+  goalType: Settings['goalType'];
   color?: string;
 }
 
-export default function ProgressRing({ glasses, goal, color }: ProgressRingProps) {
+export default function ProgressRing({ glasses, goal, goalType, color }: ProgressRingProps) {
   const progress = Math.min(1, glasses / goal);
   const offset = CIRCUMFERENCE * (1 - progress);
   const strokeClass = color ?? 'stroke-primary';
+
+  // Progress fill stays glass-based; only the readout scales to the chosen unit.
+  const isMl = goalType === 'ml';
+  const current = isMl ? glasses * ML_PER_GLASS : glasses;
+  const unitLabel = isMl ? 'ml' : 'glasses';
 
   return (
     <div className="relative h-34.5 w-34.5">
@@ -33,13 +42,10 @@ export default function ProgressRing({ glasses, goal, color }: ProgressRingProps
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <p className="text-display font-semibold leading-none">
-          <span>{glasses}</span>
-          <span className="font-medium text-muted">
-            /<span>{goal}</span>
-          </span>
+        <p className={`${isMl ? 'text-title' : 'text-display'} font-semibold leading-none`}>
+          {current.toLocaleString('en-US')}
         </p>
-        <p className="text-xs font-medium text-muted">glasses</p>
+        <p className="text-xs font-medium text-muted">{unitLabel}</p>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
     <>
       <div className="flex flex-1 flex-col gap-3 overflow-hidden py-3.5">
         <section className="flex flex-col items-center gap-1.5 px-4">
-          <ProgressRing glasses={glasses} goal={settings.dailyGoal} />
+          <ProgressRing glasses={glasses} goal={settings.dailyGoal} goalType={settings.goalType} />
           <p className="min-h-4.5 px-4 text-center text-body leading-snug text-muted">
             {messageFor(glasses, settings.dailyGoal)}
           </p>
