@@ -1,6 +1,7 @@
 import type { Settings } from '@/db/settings';
 import { ML_PER_GLASS } from '@/utils/constants';
 import ProgressRing from './ProgressRing';
+import PopupFooter from './PopupFooter';
 
 interface GoalCompletedViewProps {
   settings: Settings;
@@ -43,6 +44,7 @@ export default function GoalCompletedView({ settings, streak }: GoalCompletedVie
           Done for today
         </button>
       </div>
+      <PopupFooter />
     </>
   );
 }
