@@ -19,5 +19,6 @@ export default defineConfig({
     short_name: '__MSG_extShortName__',
     description: '__MSG_extDescription__',
     default_locale: 'en',
+    permissions: ['alarms', 'notifications'],
   },
 });
