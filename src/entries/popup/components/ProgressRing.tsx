@@ -13,7 +13,7 @@ export default function ProgressRing({ glasses, goal, color }: ProgressRingProps
 
   return (
     <div className="relative h-34.5 w-34.5">
-      <svg className="h-34.5 w-34.5" viewBox="0 0 138 138">
+      <svg className="h-34.5 w-34.5" viewBox="0 0 138 138" aria-hidden="true">
         <circle cx="69" cy="69" r="52" fill="none" className="stroke-track" strokeWidth={11} />
         <circle
           cx="69"

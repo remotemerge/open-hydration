@@ -59,3 +59,12 @@
   --color-border: var(--border);
   --color-track: var(--track);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -70,7 +70,8 @@ export default function DailyGoal() {
                 type="button"
                 aria-label="Decrease goal"
                 onClick={() => updateDailyGoal(-1)}
-                className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg"
+                disabled={(dailyGoal ?? 0) <= MIN_GOAL}
+                className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg disabled:opacity-40"
               >
                 −
               </button>
@@ -79,7 +80,8 @@ export default function DailyGoal() {
                 type="button"
                 aria-label="Increase goal"
                 onClick={() => updateDailyGoal(1)}
-                className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg"
+                disabled={(dailyGoal ?? 0) >= MAX_GOAL}
+                className="h-9.5 w-9.5 text-lg text-muted transition-colors hover:text-fg disabled:opacity-40"
               >
                 +
               </button>

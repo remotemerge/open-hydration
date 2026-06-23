@@ -94,6 +94,7 @@ export default function ReminderSchedule() {
               <select
                 value={settings.reminderInterval}
                 onChange={(e) => updateInterval(e.target.value)}
+                aria-label="Reminder interval"
                 className="cursor-pointer appearance-none rounded-[10px] border border-border bg-elevated py-2.5 pl-3.5 pr-9 text-body font-medium text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
               >
                 {(Object.keys(INTERVAL_LABELS) as Settings['reminderInterval'][]).map((key) => (
@@ -112,6 +113,7 @@ export default function ReminderSchedule() {
                   type="time"
                   value={start}
                   onChange={(e) => handleStartChange(e.target.value)}
+                  aria-label="Active hours start"
                   aria-invalid={rangeError}
                   className="rounded-[10px] border border-border bg-elevated px-3 py-2 text-body font-semibold text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 aria-invalid:border-warning"
                 />
@@ -120,6 +122,7 @@ export default function ReminderSchedule() {
                   type="time"
                   value={end}
                   onChange={(e) => handleEndChange(e.target.value)}
+                  aria-label="Active hours end"
                   aria-invalid={rangeError}
                   className="rounded-[10px] border border-border bg-elevated px-3 py-2 text-body font-semibold text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 aria-invalid:border-warning"
                 />

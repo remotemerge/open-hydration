@@ -4,12 +4,12 @@ import ProgressRing from './ProgressRing';
 import PopupFooter from './PopupFooter';
 
 interface GoalCompletedViewProps {
+  glasses: number;
   settings: Settings;
   streak: number;
 }
 
-export default function GoalCompletedView({ settings, streak }: GoalCompletedViewProps) {
-  const glasses = settings.dailyGoal;
+export default function GoalCompletedView({ glasses, settings, streak }: GoalCompletedViewProps) {
   const ml = glasses * ML_PER_GLASS;
 
   return (

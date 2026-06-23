@@ -31,7 +31,7 @@ export default function App() {
   if (glasses >= settings.dailyGoal) {
     return (
       <PopupShell>
-        <GoalCompletedView settings={settings} streak={streak} />
+        <GoalCompletedView glasses={glasses} settings={settings} streak={streak} />
       </PopupShell>
     );
   }
@@ -45,7 +45,7 @@ export default function App() {
 
 function PopupShell({ children }: { children: ReactNode }) {
   return (
-    <main className="flex max-h-[600px] min-h-110 w-90 flex-col overflow-hidden bg-surface">
+    <main className="flex max-h-150 min-h-110 w-90 flex-col overflow-hidden bg-surface">
       <Header />
       {children}
     </main>
@@ -62,7 +62,7 @@ function Header() {
         type="button"
         aria-label="Open settings"
         onClick={() => browser.runtime.openOptionsPage()}
-        className="grid h-7 w-7 place-items-center rounded-[8px] text-muted transition-colors hover:bg-elevated hover:text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+        className="grid h-7 w-7 place-items-center rounded-lg text-muted transition-colors hover:bg-elevated hover:text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
       >
         <IconSettings className="h-4.5 w-4.5" />
       </button>

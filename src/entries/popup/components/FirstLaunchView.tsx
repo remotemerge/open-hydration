@@ -29,7 +29,8 @@ export default function FirstLaunchView() {
             type="button"
             aria-label="Decrease goal"
             onClick={() => adjustGoal(-1)}
-            className="grid h-7.5 w-7.5 place-items-center rounded-lg border border-border text-lg text-muted transition-colors hover:text-fg"
+            disabled={goal <= MIN_GOAL}
+            className="grid h-7.5 w-7.5 place-items-center rounded-lg border border-border text-lg text-muted transition-colors hover:text-fg disabled:opacity-40"
           >
             −
           </button>
@@ -41,7 +42,8 @@ export default function FirstLaunchView() {
             type="button"
             aria-label="Increase goal"
             onClick={() => adjustGoal(1)}
-            className="grid h-7.5 w-7.5 place-items-center rounded-lg bg-primary text-lg text-white transition-colors hover:bg-primary-hover"
+            disabled={goal >= MAX_GOAL}
+            className="grid h-7.5 w-7.5 place-items-center rounded-lg bg-primary text-lg text-white transition-colors hover:bg-primary-hover disabled:opacity-40"
           >
             +
           </button>

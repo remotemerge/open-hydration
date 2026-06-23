@@ -18,10 +18,6 @@ function messageFor(glasses: number, goal: number) {
     return 'Time for your first glass of water.';
   }
 
-  if (progress >= 1) {
-    return "You've reached your water goal today.";
-  }
-
   if (progress >= 0.75) {
     return 'Almost there. Just a little more.';
   }
