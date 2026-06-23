@@ -35,6 +35,16 @@
 }
 
 @theme {
+  --text-display: 30px;
+  --text-title: 21px;
+  --text-heading: 19px;
+  --text-stat: 17px;
+  --text-stat-sm: 15px;
+  --text-body: 13px;
+  --text-meta: 12px;
+  --text-caption: 11px;
+  --text-micro: 10px;
+
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-card: var(--card);

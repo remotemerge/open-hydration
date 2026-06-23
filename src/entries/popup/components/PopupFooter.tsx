@@ -10,7 +10,7 @@ function openTab(url: string) {
 
 export default function PopupFooter() {
   return (
-    <footer className="grid grid-cols-[1fr_auto_1fr] items-stretch border-t border-border text-[11px] font-medium text-muted">
+    <footer className="grid grid-cols-[1fr_auto_1fr] items-stretch border-t border-border text-caption font-medium text-muted">
       <button
         type="button"
         onClick={() => openTab(`${GITHUB_URL}/issues/new`)}

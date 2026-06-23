@@ -65,7 +65,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
       <div className="flex flex-1 flex-col gap-3 overflow-hidden py-3.5">
         <section className="flex flex-col items-center gap-1.5 px-4">
           <ProgressRing glasses={glasses} goal={settings.dailyGoal} />
-          <p className="min-h-4.5 px-4 text-center text-[13px] leading-snug text-muted">
+          <p className="min-h-4.5 px-4 text-center text-body leading-snug text-muted">
             {messageFor(glasses, settings.dailyGoal)}
           </p>
         </section>
@@ -77,13 +77,13 @@ export default function DefaultView({ settings }: DefaultViewProps) {
           <div className="flex flex-1 flex-col gap-0.5">
             {paused ? (
               <>
-                <p className="text-[13px] font-semibold">Reminders paused</p>
-                <p className="text-[11px] text-muted">Resume to continue receiving reminders</p>
+                <p className="text-body font-semibold">Reminders paused</p>
+                <p className="text-caption text-muted">Resume to continue receiving reminders</p>
               </>
             ) : (
               <>
-                <p className="text-[13px] font-semibold">Next reminder · in {nextReminderMin} min</p>
-                <p className="text-[11px] text-muted">{formatTime(nextReminderDate)} · Notifications enabled</p>
+                <p className="text-body font-semibold">Next reminder · in {nextReminderMin} min</p>
+                <p className="text-caption text-muted">{formatTime(nextReminderDate)} · Notifications enabled</p>
               </>
             )}
           </div>
@@ -91,16 +91,16 @@ export default function DefaultView({ settings }: DefaultViewProps) {
 
         <section className="mx-4 flex gap-2">
           <div className="flex flex-1 flex-col items-center gap-0.5 rounded-xl border border-border bg-card px-1.5 py-2.5">
-            <p className="text-[17px] font-semibold">{glasses}</p>
-            <p className="text-[10.5px] text-muted">glasses</p>
+            <p className="text-stat font-semibold">{glasses}</p>
+            <p className="text-micro text-muted">glasses</p>
           </div>
           <div className="flex flex-1 flex-col items-center gap-0.5 rounded-xl border border-border bg-card px-1.5 py-2.5">
-            <p className="text-[17px] font-semibold">{ml.toLocaleString('en-US')}</p>
-            <p className="text-[10.5px] text-muted">ml today</p>
+            <p className="text-stat font-semibold">{ml.toLocaleString('en-US')}</p>
+            <p className="text-micro text-muted">ml today</p>
           </div>
           <div className="flex flex-1 flex-col items-center gap-0.5 rounded-xl border border-border bg-card px-1.5 py-2.5">
-            <p className="text-[17px] font-semibold">{streak}</p>
-            <p className="text-[10.5px] text-muted">day streak</p>
+            <p className="text-stat font-semibold">{streak}</p>
+            <p className="text-micro text-muted">day streak</p>
           </div>
         </section>
 
@@ -109,7 +109,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
             type="button"
             onClick={handleDrink}
             disabled={full}
-            className="flex h-10.5 flex-[1.7] items-center justify-center gap-1.5 rounded-[11px] bg-primary text-[13.5px] font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 disabled:opacity-50"
+            className="flex h-10.5 flex-[1.7] items-center justify-center gap-1.5 rounded-[11px] bg-primary text-body font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 disabled:opacity-50"
           >
             <IconDropletFilled className="h-4 w-4 text-white" />
             Drink water
@@ -118,7 +118,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
             type="button"
             onClick={togglePause}
             aria-pressed={paused}
-            className={`flex h-10.5 flex-1 items-center justify-center gap-1.5 rounded-[11px] border text-[13px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 ${
+            className={`flex h-10.5 flex-1 items-center justify-center gap-1.5 rounded-[11px] border text-body font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 ${
               paused
                 ? 'border-warning/30 bg-warning/15 text-warning hover:bg-warning/25'
                 : 'border-border bg-elevated hover:bg-border'

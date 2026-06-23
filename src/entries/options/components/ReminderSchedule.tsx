@@ -94,7 +94,7 @@ export default function ReminderSchedule() {
               <select
                 value={settings.reminderInterval}
                 onChange={(e) => updateInterval(e.target.value)}
-                className="cursor-pointer appearance-none rounded-[10px] border border-border bg-elevated py-2.5 pl-3.5 pr-9 text-[13px] font-medium text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                className="cursor-pointer appearance-none rounded-[10px] border border-border bg-elevated py-2.5 pl-3.5 pr-9 text-body font-medium text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
               >
                 {(Object.keys(INTERVAL_LABELS) as Settings['reminderInterval'][]).map((key) => (
                   <option key={key} value={key}>
@@ -113,19 +113,19 @@ export default function ReminderSchedule() {
                   value={start}
                   onChange={(e) => handleStartChange(e.target.value)}
                   aria-invalid={rangeError}
-                  className="rounded-[10px] border border-border bg-elevated px-3 py-2 text-[13px] font-semibold text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 aria-invalid:border-warning"
+                  className="rounded-[10px] border border-border bg-elevated px-3 py-2 text-body font-semibold text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 aria-invalid:border-warning"
                 />
-                <span className="text-[13px] text-muted">to</span>
+                <span className="text-body text-muted">to</span>
                 <input
                   type="time"
                   value={end}
                   onChange={(e) => handleEndChange(e.target.value)}
                   aria-invalid={rangeError}
-                  className="rounded-[10px] border border-border bg-elevated px-3 py-2 text-[13px] font-semibold text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 aria-invalid:border-warning"
+                  className="rounded-[10px] border border-border bg-elevated px-3 py-2 text-body font-semibold text-fg focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 aria-invalid:border-warning"
                 />
               </div>
               {rangeError && (
-                <p role="alert" className="text-[12px] font-medium text-warning">
+                <p role="alert" className="text-meta font-medium text-warning">
                   End time must be after the start time.
                 </p>
               )}

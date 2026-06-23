@@ -77,16 +77,16 @@ function StatusBadge() {
   const full = glasses >= (settings?.dailyGoal ?? AVG_GOAL);
 
   if (!settings?.onboardingComplete) {
-    return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-[11px] font-semibold text-muted">Setup</span>;
+    return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-caption font-semibold text-muted">Setup</span>;
   }
 
   if (!settings?.remindersEnabled) {
-    return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-[11px] font-semibold text-muted">Paused</span>;
+    return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-caption font-semibold text-muted">Paused</span>;
   }
 
   return (
     <span
-      className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${full ? 'bg-success/15 text-success' : 'bg-warning/15 text-warning'}`}
+      className={`rounded-full px-2.5 py-0.5 text-caption font-semibold ${full ? 'bg-success/15 text-success' : 'bg-warning/15 text-warning'}`}
     >
       {full ? 'Hydrated' : 'Drink due'}
     </span>

@@ -33,7 +33,7 @@ export default function ProgressRing({ glasses, goal, color }: ProgressRingProps
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <p className="text-[30px] font-semibold leading-none">
+        <p className="text-display font-semibold leading-none">
           <span>{glasses}</span>
           <span className="font-medium text-muted">
             /<span>{goal}</span>

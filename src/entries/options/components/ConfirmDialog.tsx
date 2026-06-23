@@ -78,7 +78,7 @@ export default function ConfirmDialog({ open, title, message, confirmLabel, onCo
         <h2 id={titleId} className="text-base font-semibold">
           {title}
         </h2>
-        <p id={messageId} className="mt-2 text-[13px] leading-relaxed text-muted">
+        <p id={messageId} className="mt-2 text-body leading-relaxed text-muted">
           {message}
         </p>
         <div className="mt-5 flex justify-end gap-2">
@@ -87,7 +87,7 @@ export default function ConfirmDialog({ open, title, message, confirmLabel, onCo
             type="button"
             disabled={running}
             onClick={onCancel}
-            className="rounded-lg border border-border px-3.5 py-1.5 text-[13px] font-medium text-muted transition-colors hover:text-fg disabled:opacity-60"
+            className="rounded-lg border border-border px-3.5 py-1.5 text-body font-medium text-muted transition-colors hover:text-fg disabled:opacity-60"
           >
             Cancel
           </button>
@@ -95,7 +95,7 @@ export default function ConfirmDialog({ open, title, message, confirmLabel, onCo
             type="button"
             disabled={running}
             onClick={confirm}
-            className="rounded-lg bg-warning/15 px-3.5 py-1.5 text-[13px] font-semibold text-warning transition-colors hover:bg-warning/25 disabled:opacity-60"
+            className="rounded-lg bg-warning/15 px-3.5 py-1.5 text-body font-semibold text-warning transition-colors hover:bg-warning/25 disabled:opacity-60"
           >
             {confirmLabel}
           </button>

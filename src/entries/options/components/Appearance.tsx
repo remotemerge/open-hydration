@@ -25,7 +25,7 @@ export default function Appearance() {
                 type="button"
                 aria-pressed={settings.theme === value}
                 onClick={() => updateTheme(value)}
-                className={`rounded-lg px-3.5 py-1.5 text-[13px] font-medium capitalize transition-colors ${settings.theme === value ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
+                className={`rounded-lg px-3.5 py-1.5 text-body font-medium capitalize transition-colors ${settings.theme === value ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
               >
                 {value}
               </button>

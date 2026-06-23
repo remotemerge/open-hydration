@@ -11,7 +11,7 @@ export default function SettingRow({ title, description, children }: SettingRowP
     <div className="flex items-center gap-5 border-t border-border px-5 py-4">
       <div className="flex-1">
         <p className="text-sm font-semibold">{title}</p>
-        <p className="mt-0.5 text-[13px] text-muted">{description}</p>
+        <p className="mt-0.5 text-body text-muted">{description}</p>
       </div>
       {children}
     </div>

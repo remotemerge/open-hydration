@@ -62,7 +62,7 @@ export default function DataPrivacy() {
           <IconShield className="mt-0.5 h-5 w-5 shrink-0 text-success" />
           <div>
             <p className="text-sm font-semibold">Your data stays on your device</p>
-            <p className="mt-1 text-[13px] leading-relaxed text-muted">
+            <p className="mt-1 text-body leading-relaxed text-muted">
               All data is stored locally in your browser. No tracking. No analytics. No account required.
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function DataPrivacy() {
           <button
             type="button"
             onClick={() => setPending(action)}
-            className="shrink-0 rounded-lg border border-border px-3.5 py-1.5 text-[13px] font-medium text-muted transition-colors hover:border-warning/40 hover:text-warning"
+            className="shrink-0 rounded-lg border border-border px-3.5 py-1.5 text-body font-medium text-muted transition-colors hover:border-warning/40 hover:text-warning"
           >
             {action.actionLabel}
           </button>

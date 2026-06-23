@@ -20,7 +20,7 @@ export default function FirstLaunchView() {
         <img src="/icons/128.png" alt="" className="h-16 w-16" />
         <div>
           <h2 className="text-lg font-semibold">Welcome to Open Hydration</h2>
-          <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+          <p className="mt-1.5 text-body leading-relaxed text-muted">
             Let's set your daily water goal. You can change it anytime in settings.
           </p>
         </div>
@@ -35,7 +35,7 @@ export default function FirstLaunchView() {
           </button>
           <p className="min-w-21">
             <span className="text-xl font-semibold">{goal}</span>
-            <span className="ml-1.5 text-[13px] text-muted">glasses</span>
+            <span className="ml-1.5 text-body text-muted">glasses</span>
           </p>
           <button
             type="button"

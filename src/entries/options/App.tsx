@@ -19,7 +19,7 @@ export default function App() {
         <div className="flex items-center gap-3.75 px-0.5 pb-1">
           <img src="/icons/48.png" alt="" className="h-11 w-11 rounded-xl" />
           <div>
-            <h1 className="text-[21px] font-semibold leading-tight">Open Hydration Settings</h1>
+            <h1 className="text-title font-semibold leading-tight">Open Hydration Settings</h1>
             <p className="mt-0.5 text-sm text-muted">Configure your hydration reminders and daily goals.</p>
           </div>
         </div>

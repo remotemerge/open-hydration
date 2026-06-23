@@ -21,27 +21,27 @@ export default function OpenSource() {
         <button
           type="button"
           onClick={() => openTab(GITHUB_URL)}
-          className="inline-flex cursor-pointer items-center gap-1.5 text-[13px] font-medium text-primary"
+          className="inline-flex cursor-pointer items-center gap-1.5 text-body font-medium text-primary"
         >
-          <IconBrandGithub className="h-3.75 w-3.75" />
+          <IconBrandGithub className="h-4 w-4" />
           {GITHUB_REPO}
         </button>
       </div>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.5">
         <p className="flex-1 text-sm font-semibold">License</p>
-        <p className="text-[13px] text-muted">MIT</p>
+        <p className="text-body text-muted">MIT</p>
       </div>
       <div className="flex items-center gap-5 border-t border-border px-5 py-3.5">
         <p className="flex-1 text-sm font-semibold">Version</p>
-        <p className="text-[13px] text-muted">v{appVersion}</p>
+        <p className="text-body text-muted">v{appVersion}</p>
       </div>
       <div className="border-t border-border px-5 py-4">
         <button
           type="button"
           onClick={() => openTab(`${GITHUB_URL}/issues`)}
-          className="inline-flex h-9.5 cursor-pointer items-center gap-1.5 rounded-[10px] border border-border bg-elevated px-4 text-[13px] font-semibold transition-colors hover:bg-border focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          className="inline-flex h-9.5 cursor-pointer items-center gap-1.5 rounded-[10px] border border-border bg-elevated px-4 text-body font-semibold transition-colors hover:bg-border focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
         >
-          <IconInfoCircle className="h-3.75 w-3.75" />
+          <IconInfoCircle className="h-4 w-4" />
           Report an issue
         </button>
       </div>

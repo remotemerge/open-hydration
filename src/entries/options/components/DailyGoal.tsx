@@ -50,7 +50,7 @@ export default function DailyGoal() {
                 type="button"
                 aria-pressed={settings.goalType === 'glasses'}
                 onClick={() => updateGoalType('glasses')}
-                className={`rounded-lg px-4 py-1.5 text-[13px] font-medium transition-colors ${settings.goalType === 'glasses' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
+                className={`rounded-lg px-4 py-1.5 text-body font-medium transition-colors ${settings.goalType === 'glasses' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
               >
                 Glasses
               </button>
@@ -58,7 +58,7 @@ export default function DailyGoal() {
                 type="button"
                 aria-pressed={settings.goalType === 'ml'}
                 onClick={() => updateGoalType('ml')}
-                className={`rounded-lg px-4 py-1.5 text-[13px] font-medium transition-colors ${settings.goalType === 'ml' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
+                className={`rounded-lg px-4 py-1.5 text-body font-medium transition-colors ${settings.goalType === 'ml' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
               >
                 Milliliters
               </button>
