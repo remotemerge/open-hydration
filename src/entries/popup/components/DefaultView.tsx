@@ -17,12 +17,25 @@ interface DefaultViewProps {
 }
 
 function messageFor(glasses: number, goal: number) {
-  if (glasses === 0) return "Let's start the day — first glass of water.";
-  const p = glasses / goal;
-  if (p >= 1) return 'Goal reached. Beautifully hydrated.';
-  if (p >= 0.75) return "You're almost at today's goal.";
-  if (p >= 0.4) return 'Nice work — keep it flowing.';
-  return 'Good start. Keep sipping.';
+  const progress = glasses / goal;
+
+  if (glasses === 0) {
+    return 'Time for your first glass of water.';
+  }
+
+  if (progress >= 1) {
+    return "You've reached your water goal today.";
+  }
+
+  if (progress >= 0.75) {
+    return 'Almost there. Just a little more.';
+  }
+
+  if (progress >= 0.4) {
+    return "You're doing well. Keep going.";
+  }
+
+  return 'Good start. Have another glass when you can.';
 }
 
 function formatInterval(interval: string): number {
