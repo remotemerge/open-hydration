@@ -1,15 +1,9 @@
 import { IconDroplet } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
+import { ML_PER_GLASS, MIN_GOAL, MAX_GOAL } from '@/utils/constants';
 import { syncTodayGoal } from '@/hooks/useDrinks';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
-
-// Goal bounds mirror the schema validation
-const MIN_GOAL = 1;
-const MAX_GOAL = 16;
-
-// Millilitres per glass for the ml equivalent display
-const ML_PER_GLASS = 250;
 
 export default function DailyGoal() {
   const settings = useSettings();

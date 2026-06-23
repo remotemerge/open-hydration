@@ -1,4 +1,5 @@
 import * as vb from 'valibot';
+import { AVG_GOAL } from '@/utils/constants';
 
 // Schema for the single settings document persisted in IndexedDB.
 export const settingsSchema = vb.object({
@@ -32,7 +33,7 @@ export const defaultSettings: Settings = {
 
   // Daily Goal
   goalType: 'glasses',
-  dailyGoal: 8,
+  dailyGoal: AVG_GOAL,
 
   // Reminder
   reminderInterval: '30m',

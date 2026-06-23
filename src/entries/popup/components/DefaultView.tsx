@@ -7,6 +7,7 @@ import {
   IconBrandGithub,
 } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
+import { ML_PER_GLASS } from '@/utils/constants';
 import { logDrink, useTodayGlasses, useStreak } from '@/hooks/useDrinks';
 import { updateSettings } from '@/hooks/useSettings';
 import ProgressRing from './ProgressRing';
@@ -14,8 +15,6 @@ import ProgressRing from './ProgressRing';
 interface DefaultViewProps {
   settings: Settings;
 }
-
-const ML_PER_GLASS = 250;
 
 function messageFor(glasses: number, goal: number) {
   if (glasses === 0) return "Let's start the day — first glass of water.";

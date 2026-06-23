@@ -3,6 +3,7 @@ import { IconSettings } from '@tabler/icons-react';
 import { useSettings } from '@/hooks/useSettings';
 import { useTheme } from '@/hooks/useTheme';
 import { useTodayGlasses, useStreak } from '@/hooks/useDrinks';
+import { AVG_GOAL } from '@/utils/constants';
 import DefaultView from './components/DefaultView';
 import FirstLaunchView from './components/FirstLaunchView';
 import GoalCompletedView from './components/GoalCompletedView';
@@ -11,7 +12,7 @@ export default function App() {
   const settings = useSettings();
   const today = useTodayGlasses();
   const glasses = today?.glasses ?? 0;
-  const streak = useStreak(settings?.dailyGoal ?? 8);
+  const streak = useStreak(settings?.dailyGoal ?? AVG_GOAL);
 
   useTheme();
 
@@ -71,7 +72,7 @@ function StatusBadge() {
   const today = useTodayGlasses();
   const settings = useSettings();
   const glasses = today?.glasses ?? 0;
-  const full = glasses >= (settings?.dailyGoal ?? 8);
+  const full = glasses >= (settings?.dailyGoal ?? AVG_GOAL);
 
   if (!settings?.onboardingComplete) {
     return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-[11px] font-semibold text-muted">Setup</span>;

@@ -1,4 +1,5 @@
 import type { Settings } from '@/db/settings';
+import { ML_PER_GLASS } from '@/utils/constants';
 import ProgressRing from './ProgressRing';
 
 interface GoalCompletedViewProps {
@@ -8,7 +9,7 @@ interface GoalCompletedViewProps {
 
 export default function GoalCompletedView({ settings, streak }: GoalCompletedViewProps) {
   const glasses = settings.dailyGoal;
-  const ml = glasses * 250;
+  const ml = glasses * ML_PER_GLASS;
 
   return (
     <>

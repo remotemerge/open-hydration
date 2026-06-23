@@ -1,3 +1,4 @@
+import { AVG_GOAL, MIN_GOAL, MAX_GOAL } from '@/utils/constants';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
 
 function completeOnboarding() {
@@ -6,10 +7,10 @@ function completeOnboarding() {
 
 export default function FirstLaunchView() {
   const settings = useSettings();
-  const goal = settings?.dailyGoal ?? 8;
+  const goal = settings?.dailyGoal ?? AVG_GOAL;
 
   function adjustGoal(delta: number) {
-    const next = Math.max(1, Math.min(16, goal + delta));
+    const next = Math.max(MIN_GOAL, Math.min(MAX_GOAL, goal + delta));
     updateSettings({ dailyGoal: next });
   }
 
