@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IconClock, IconChevronDown } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
@@ -50,8 +50,17 @@ export default function ReminderSchedule() {
   const [draftStart, setDraftStart] = useState<string | null>(null);
   const [draftEnd, setDraftEnd] = useState<string | null>(null);
 
-  const start = draftStart ?? settings?.activeHoursStart ?? '';
-  const end = draftEnd ?? settings?.activeHoursEnd ?? '';
+  const persistedStart = settings?.activeHoursStart;
+  const persistedEnd = settings?.activeHoursEnd;
+
+  // Drop unsaved invalid drafts when the persisted hours change underneath
+  useEffect(() => {
+    setDraftStart(null);
+    setDraftEnd(null);
+  }, [persistedStart, persistedEnd]);
+
+  const start = draftStart ?? persistedStart ?? '';
+  const end = draftEnd ?? persistedEnd ?? '';
   const rangeError = !isValidRange(start, end);
 
   /**
