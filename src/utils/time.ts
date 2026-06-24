@@ -1,73 +1,46 @@
-import type { Settings } from '@/db/settings';
+const MINUTES_PER_HOUR = 60;
+const MS_PER_MINUTE = 60_000;
 
 /**
- * Minutes since local midnight for a "HH:mm" string.
+ * Converts an HH:mm time string into minutes since midnight.
  */
 function toMinutes(hhmm: string): number {
   const [hours, minutes] = hhmm.split(':');
-  return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+
+  return Number(hours) * MINUTES_PER_HOUR + Number(minutes);
 }
 
 /**
- * Whether `now` is within the `[start, end)` active-hours window.
+ * Returns whether the current time falls within the active window.
  */
 export function withinActiveHours(now: Date, start: string, end: string): boolean {
-  const current = now.getHours() * 60 + now.getMinutes();
-  const startMin = toMinutes(start);
-  const endMin = toMinutes(end);
+  const currentMinutes = now.getHours() * MINUTES_PER_HOUR + now.getMinutes();
 
-  // Equal bounds mean an always-active window rather than a zero-width one.
-  if (startMin === endMin) {
+  const startMinutes = toMinutes(start);
+  const endMinutes = toMinutes(end);
+
+  // Matching bounds mean reminders are active all day.
+  if (startMinutes === endMinutes) {
     return true;
   }
 
-  if (startMin < endMin) {
-    return current >= startMin && current < endMin;
-  }
-
-  // Overnight window (e.g. 22:00–06:00) wraps past midnight.
-  return current >= startMin || current < endMin;
+  return currentMinutes >= startMinutes && currentMinutes < endMinutes;
 }
 
 /**
- * Milliseconds for a reminder interval such as "30m".
+ * Converts a reminder interval such as "30m" into milliseconds.
  */
 export function intervalMs(interval: string): number {
-  return parseInt(interval, 10) * 60_000;
+  return Number.parseInt(interval, 10) * MS_PER_MINUTE;
 }
 
 /**
- * Local clock label, e.g. "12:35 PM".
+ * Formats a local time label using 24-hour time.
  */
 export function formatClock(date: Date): string {
-  return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-}
-
-/**
- * Whether the interval has elapsed since the last reminder; 0 means never, so due.
- */
-export function isIntervalElapsed(now: number, lastReminderAt: number, interval: string): boolean {
-  if (lastReminderAt === 0) {
-    return true;
-  }
-  return now - lastReminderAt >= intervalMs(interval);
-}
-
-/**
- * Whether a reminder should fire now: enabled, in active hours, goal unmet, interval elapsed.
- */
-export function isReminderDue(settings: Settings, now: Date, glasses: number, goal: number): boolean {
-  if (!settings.remindersEnabled) {
-    return false;
-  }
-
-  if (!withinActiveHours(now, settings.activeHoursStart, settings.activeHoursEnd)) {
-    return false;
-  }
-
-  if (glasses >= goal) {
-    return false;
-  }
-
-  return isIntervalElapsed(now.getTime(), settings.lastReminderAt, settings.reminderInterval);
+  return date.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
 }
