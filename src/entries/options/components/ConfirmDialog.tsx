@@ -10,44 +10,28 @@ interface ConfirmDialogProps {
 }
 
 /**
- * A themed, accessible confirmation modal for destructive actions.
- *
- * Renders nothing until opened, traps focus on the cancel button, closes on
- * Escape or backdrop click, and disables both buttons while the action runs.
+ * Themed confirmation modal for destructive actions, built on the native
+ * <dialog> so focus trapping, Escape, and focus restoration come from the browser.
  */
 export default function ConfirmDialog({ open, title, message, confirmLabel, onConfirm, onCancel }: ConfirmDialogProps) {
   const titleId = useId();
   const messageId = useId();
-  const cancelRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [running, setRunning] = useState(false);
 
-  // Move focus into the dialog and restore it to the trigger on close.
+  // Mirror the open prop onto the dialog; showModal()/close() need the live node.
   useEffect(() => {
-    if (!open) {
+    const dialog = dialogRef.current;
+    if (!dialog) {
       return;
     }
-    const previous = document.activeElement as HTMLElement | null;
-    cancelRef.current?.focus();
-    return () => previous?.focus();
+
+    if (open && !dialog.open) {
+      dialog.showModal();
+    } else if (!open && dialog.open) {
+      dialog.close();
+    }
   }, [open]);
-
-  // Escape cancels, but never while the action is mid-flight.
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape' && !running) {
-        onCancel();
-      }
-    }
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [open, running, onCancel]);
-
-  if (!open) {
-    return null;
-  }
 
   async function confirm() {
     setRunning(true);
@@ -59,48 +43,49 @@ export default function ConfirmDialog({ open, title, message, confirmLabel, onCo
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
-      onMouseDown={() => {
+    <dialog
+      ref={dialogRef}
+      aria-labelledby={titleId}
+      aria-describedby={messageId}
+      // Escape fires cancel; suppress the native close and route through onCancel.
+      onCancel={(event) => {
+        event.preventDefault();
         if (!running) {
           onCancel();
         }
       }}
+      // A click on the dialog itself (the backdrop, not the inner card) cancels.
+      onClick={(event) => {
+        if (event.target === event.currentTarget && !running) {
+          onCancel();
+        }
+      }}
+      className="m-auto w-full max-w-sm rounded-2xl border border-border bg-surface p-5 text-fg shadow-[0_16px_48px_-12px_rgba(0,0,0,0.45)] backdrop:bg-black/40"
     >
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        aria-describedby={messageId}
-        onMouseDown={(event) => event.stopPropagation()}
-        className="w-full max-w-sm rounded-2xl border border-border bg-surface p-5 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.45)]"
-      >
-        <h2 id={titleId} className="text-base font-semibold">
-          {title}
-        </h2>
-        <p id={messageId} className="mt-2 text-body leading-relaxed text-muted">
-          {message}
-        </p>
-        <div className="mt-5 flex justify-end gap-2">
-          <button
-            ref={cancelRef}
-            type="button"
-            disabled={running}
-            onClick={onCancel}
-            className="rounded-lg border border-border px-3.5 py-1.5 text-body font-medium text-muted transition-colors hover:text-fg disabled:opacity-60"
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            disabled={running}
-            onClick={confirm}
-            className="rounded-lg bg-warning/15 px-3.5 py-1.5 text-body font-semibold text-warning transition-colors hover:bg-warning/25 disabled:opacity-60"
-          >
-            {confirmLabel}
-          </button>
-        </div>
+      <h2 id={titleId} className="text-base font-semibold">
+        {title}
+      </h2>
+      <p id={messageId} className="mt-2 text-body leading-relaxed text-muted">
+        {message}
+      </p>
+      <div className="mt-5 flex justify-end gap-2">
+        <button
+          type="button"
+          disabled={running}
+          onClick={onCancel}
+          className="rounded-lg border border-border px-3.5 py-1.5 text-body font-medium text-muted transition-colors hover:text-fg disabled:opacity-60"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          disabled={running}
+          onClick={confirm}
+          className="rounded-lg bg-warning/15 px-3.5 py-1.5 text-body font-semibold text-warning transition-colors hover:bg-warning/25 disabled:opacity-60"
+        >
+          {confirmLabel}
+        </button>
       </div>
-    </div>
+    </dialog>
   );
 }
