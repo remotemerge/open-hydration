@@ -24,7 +24,7 @@ export default function DailyGoal() {
    * Adjust the daily goal within bounds, skipping no-op changes
    */
   async function updateDailyGoal(delta: number) {
-    if (dailyGoal === undefined || dailyGoal === null) {
+    if (dailyGoal === undefined) {
       return;
     }
 
