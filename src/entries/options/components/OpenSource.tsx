@@ -1,14 +1,7 @@
 import { IconBrandOpenSource, IconBrandGithub, IconInfoCircle } from '@tabler/icons-react';
 import { GITHUB_REPO, GITHUB_URL } from '@/utils/constants';
+import { openTab } from '@/utils/tabs';
 import Section from './Section';
-
-/**
- * Open a URL in a new browser tab
- * @param url - The URL to open
- */
-function openTab(url: string) {
-  browser.tabs.create({ url });
-}
 
 /** Render the open source section with repository, license and version details */
 export default function OpenSource() {

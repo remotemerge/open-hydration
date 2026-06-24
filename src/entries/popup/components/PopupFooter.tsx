@@ -1,12 +1,6 @@
 import { IconBrandGithub, IconBulb } from '@tabler/icons-react';
 import { GITHUB_URL } from '@/utils/constants';
-
-/**
- * Open a URL in a new browser tab
- */
-function openTab(url: string) {
-  browser.tabs.create({ url });
-}
+import { openTab } from '@/utils/tabs';
 
 export default function PopupFooter() {
   return (
