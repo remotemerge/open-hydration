@@ -1,6 +1,5 @@
 import { db } from '@/db/db';
-import { getTodayId } from '@/db/drinks';
-import { isReminderDue } from '@/utils/time';
+import { getTodayId, isReminderDue } from '@/utils/time';
 import { openReminderTab, forgetReminderTab } from '@/utils/reminder';
 
 const ALARM_NAME = 'oh-tick';

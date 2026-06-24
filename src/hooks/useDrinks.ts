@@ -1,6 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db/db';
-import { dateIdFor, getTodayId, type DrinkDay } from '@/db/drinks';
+import { type DrinkDay } from '@/db/drinks';
+import { dateIdFor, getTodayId } from '@/utils/time';
 
 export function useTodayGlasses() {
   const today = getTodayId();
