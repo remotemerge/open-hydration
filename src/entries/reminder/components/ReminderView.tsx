@@ -7,23 +7,26 @@ import { ML_PER_GLASS } from '@/utils/constants';
 
 // Reminder prompts shown on the page.
 const PROMPTS = [
-  'Time for a glass of water.',
-  'Take a moment to hydrate.',
-  'A sip of water can refresh your mind.',
-  'Hydration break. Your body will thank you.',
-  'Pause for water and keep going.',
-  'Stay sharp. Drink some water.',
-  'A quick sip can make a difference.',
-  'Give yourself a refreshing water break.',
-  'Water time. Take a few sips.',
-  'Refill your energy with a glass of water.',
-  'Hydrate now and feel refreshed.',
-  'Small sip, big benefit.',
-  'A little water goes a long way.',
-  'Refresh, hydrate, and continue your day.',
-  'One glass closer to your daily goal.',
-  "Water break. You've earned it.",
-  'Take a sip and recharge.',
+  'A glass of water is one of the easiest wins you can give yourself today.',
+  'Take a minute for water. Your body works better when it is hydrated.',
+  'A quick water break can help you stay focused and alert.',
+  'Your next task can wait a moment. Have a glass of water first.',
+  'Hydration is a small habit that pays off all day.',
+  'A few sips now can make the next hour feel better.',
+  'Water helps more than you think. Take a moment to hydrate.',
+  'Give your mind and body a quick refresh with a glass of water.',
+  'You have been working hard. Take a short water break.',
+  'Good work deserves good habits. Drink some water.',
+  'Stay on top of your day. Start with a glass of water.',
+  'Your body needs water regularly, not just when you feel thirsty.',
+  'A simple glass of water can be the reset you need right now.',
+  'Keep your hydration habit going. Every glass matters.',
+  'Take a short pause, drink some water, and continue feeling your best.',
+  'A well-hydrated body helps you stay productive throughout the day.',
+  'Before the next task, take a moment for a glass of water.',
+  'Hydration is self-care in its simplest form. Have a glass of water.',
+  'You are already at your computer. This is a great time for a water break.',
+  'Future you will appreciate the glass of water you drink right now.',
 ];
 
 interface ReminderViewProps {
@@ -122,7 +125,7 @@ export default function ReminderView({ settings }: ReminderViewProps) {
           className="flex flex-[1.7] items-center justify-center gap-2 rounded-xl bg-primary py-3 text-stat-sm font-semibold text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2 disabled:opacity-50"
         >
           <IconDropletFilled className="h-4.5 w-4.5" />
-          Log Glass
+          Log drink
         </button>
         <button
           type="button"
