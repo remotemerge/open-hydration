@@ -87,7 +87,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
           </div>
         </section>
 
-        <section className="mx-4 flex gap-2">
+        <section className="mx-4 flex gap-2" aria-live="polite">
           <div className="flex flex-1 flex-col items-center gap-0.5 rounded-xl border border-border bg-card px-1.5 py-2.5">
             <p className="text-stat font-semibold">{glasses}</p>
             <p className="text-micro text-muted">glasses</p>

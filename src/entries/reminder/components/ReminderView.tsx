@@ -108,7 +108,7 @@ export default function ReminderView({ settings }: ReminderViewProps) {
             style={{ width: `${percent}%` }}
           />
         </div>
-        <div className="flex justify-between text-body text-muted">
+        <div className="flex justify-between text-body text-muted" aria-live="polite">
           <span>
             <strong className="text-fg">{formatAmount(glasses, goalType)}</strong> of {formatAmount(goal, goalType)}
           </span>
