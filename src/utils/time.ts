@@ -45,11 +45,7 @@ export function withinActiveHours(now: Date, start: string, end: string): boolea
   const startMinutes = toMinutes(start);
   const endMinutes = toMinutes(end);
 
-  // Matching bounds mean reminders are active all day.
-  if (startMinutes === endMinutes) {
-    return true;
-  }
-
+  // End is exclusive, so an equal or inverted range is never active.
   return currentMinutes >= startMinutes && currentMinutes < endMinutes;
 }
 
