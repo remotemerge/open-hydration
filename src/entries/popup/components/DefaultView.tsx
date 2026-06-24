@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { IconClock, IconDropletFilled, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { ML_PER_GLASS } from '@/utils/constants';
+import { formatTime, intervalMs } from '@/utils/time';
 import { logDrink, useTodayGlasses, useStreak } from '@/hooks/useDrinks';
 import { updateSettings } from '@/hooks/useSettings';
 import ProgressRing from './ProgressRing';
@@ -29,14 +30,6 @@ function messageFor(glasses: number, goal: number) {
   return 'Good start. Have another glass when you can.';
 }
 
-function formatInterval(interval: string): number {
-  return parseInt(interval, 10);
-}
-
-function formatTime(date: Date): string {
-  return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-}
-
 export default function DefaultView({ settings }: DefaultViewProps) {
   const today = useTodayGlasses();
   const glasses = today?.glasses ?? 0;
@@ -45,8 +38,17 @@ export default function DefaultView({ settings }: DefaultViewProps) {
   const full = glasses >= settings.dailyGoal;
 
   const paused = !settings.remindersEnabled;
-  const nextReminderMin = formatInterval(settings.reminderInterval);
-  const nextReminderDate = new Date(Date.now() + nextReminderMin * 60 * 1000);
+
+  const now = Date.now();
+
+  // A reminder is due one interval after the last one fired.
+  const scheduledAt = settings.lastReminderAt + intervalMs(settings.reminderInterval);
+
+  // Overdue or first-run reminders fire on the scheduler's next tick, i.e., now.
+  const nextReminderAt = Math.max(now, scheduledAt);
+
+  const nextReminderDate = new Date(nextReminderAt);
+  const nextReminderMin = Math.round((nextReminderAt - now) / 60_000);
 
   const handleDrink = useCallback(async () => {
     await logDrink(settings.dailyGoal);
