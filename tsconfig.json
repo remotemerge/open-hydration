@@ -2,6 +2,11 @@
   "extends": "./.wxt/tsconfig.json",
   "compilerOptions": {
     // Override configuration
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // Define path aliases
+    "paths": {
+      "@": ["./src"],
+      "@/*": ["./src/*"]
+    }
   }
 }
