@@ -2,7 +2,7 @@ import * as vb from 'valibot';
 import { AVG_GOAL } from '@/utils/constants';
 
 // Schema for the single settings document persisted in IndexedDB.
-export const settingsSchema = vb.object({
+const settingsSchema = vb.object({
   id: vb.literal('settings'),
 
   // Daily Goal
