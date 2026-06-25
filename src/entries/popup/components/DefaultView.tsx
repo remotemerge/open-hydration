@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { IconClock, IconDropletFilled, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { ML_PER_GLASS } from '@/utils/constants';
-import { formatTime, intervalMs } from '@/utils/time';
+import { formatTime, nextAlignedFireTime } from '@/utils/time';
 import { logDrink } from '@/hooks/useDrinks';
 import { updateSettings } from '@/hooks/useSettings';
 import ProgressRing from './ProgressRing';
@@ -58,11 +58,8 @@ export default function DefaultView({ settings, glasses, streak }: DefaultViewPr
     return () => clearInterval(id);
   }, []);
 
-  // A reminder is due one interval after the last one fired.
-  const scheduledAt = settings.lastReminderAt + intervalMs(settings.reminderInterval);
-
-  // Overdue or first-run reminders fire on the scheduler's next tick, i.e., now.
-  const nextReminderAt = Math.max(now, scheduledAt);
+  const intervalMinutes = Number.parseInt(settings.reminderInterval, 10);
+  const nextReminderAt = nextAlignedFireTime(new Date(now), intervalMinutes);
 
   const nextReminderDate = new Date(nextReminderAt);
   const nextReminderLabel = formatCountdown(nextReminderAt - now);
