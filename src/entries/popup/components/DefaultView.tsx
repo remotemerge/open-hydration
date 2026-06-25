@@ -1,15 +1,17 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IconClock, IconDropletFilled, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { ML_PER_GLASS } from '@/utils/constants';
 import { formatTime, intervalMs } from '@/utils/time';
-import { logDrink, useTodayGlasses, useStreak } from '@/hooks/useDrinks';
+import { logDrink } from '@/hooks/useDrinks';
 import { updateSettings } from '@/hooks/useSettings';
 import ProgressRing from './ProgressRing';
 import PopupFooter from './PopupFooter';
 
 interface DefaultViewProps {
   settings: Settings;
+  glasses: number;
+  streak: number;
 }
 
 function messageFor(glasses: number, goal: number) {
@@ -30,16 +32,31 @@ function messageFor(glasses: number, goal: number) {
   return 'Good start. Have another glass when you can.';
 }
 
-export default function DefaultView({ settings }: DefaultViewProps) {
-  const today = useTodayGlasses();
-  const glasses = today?.glasses ?? 0;
-  const streak = useStreak(settings.dailyGoal);
+// Live "N min M sec" countdown, dropping the minute part once under a minute.
+function formatCountdown(remainingMs: number): string {
+  const totalSeconds = Math.max(0, Math.floor(remainingMs / 1_000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  if (minutes === 0) {
+    return `in ${seconds} sec`;
+  }
+
+  return `in ${minutes} min ${seconds} sec`;
+}
+
+export default function DefaultView({ settings, glasses, streak }: DefaultViewProps) {
   const ml = glasses * ML_PER_GLASS;
   const full = glasses >= settings.dailyGoal;
 
   const paused = !settings.remindersEnabled;
 
-  const now = Date.now();
+  // Tick every second so the final-minute countdown stays live while open.
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1_000);
+    return () => clearInterval(id);
+  }, []);
 
   // A reminder is due one interval after the last one fired.
   const scheduledAt = settings.lastReminderAt + intervalMs(settings.reminderInterval);
@@ -48,7 +65,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
   const nextReminderAt = Math.max(now, scheduledAt);
 
   const nextReminderDate = new Date(nextReminderAt);
-  const nextReminderMin = Math.round((nextReminderAt - now) / 60_000);
+  const nextReminderLabel = formatCountdown(nextReminderAt - now);
 
   const handleDrink = useCallback(async () => {
     await logDrink(settings.dailyGoal);
@@ -80,7 +97,7 @@ export default function DefaultView({ settings }: DefaultViewProps) {
               </>
             ) : (
               <>
-                <p className="text-body font-semibold">Next reminder · in {nextReminderMin} min</p>
+                <p className="text-body font-semibold">Next reminder · {nextReminderLabel}</p>
                 <p className="text-caption text-muted">{formatTime(nextReminderDate)} · Notifications enabled</p>
               </>
             )}
