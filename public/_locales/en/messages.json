@@ -1,11 +1,11 @@
 {
   "extName": {
-    "message": "Open Hydration: Water Reminder & Tracker"
+    "message": "Open Hydration: Water Reminder"
   },
   "extShortName": {
     "message": "Open Hydration"
   },
   "extDescription": {
-    "message": "Stay hydrated with water reminders, daily goals, and easy intake tracking."
+    "message": "Maintain your focus and stay hydrated. An open source, privacy-first water reminder built for desk workers."
   }
 }
