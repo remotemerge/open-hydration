@@ -37,8 +37,8 @@ function pickPrompt(): string {
   return PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
 }
 
-function formatAmount(glasses: number, goalType: 'glasses' | 'ml'): string {
-  if (goalType === 'ml') {
+function formatAmount(glasses: number, trackingUnit: 'glasses' | 'ml'): string {
+  if (trackingUnit === 'ml') {
     return `${(glasses * ML_PER_GLASS).toLocaleString('en-US')} ml`;
   }
   return glasses === 1 ? '1 glass' : `${glasses} glasses`;
@@ -47,7 +47,7 @@ function formatAmount(glasses: number, goalType: 'glasses' | 'ml'): string {
 export default function ReminderView({ settings }: ReminderViewProps) {
   const today = useTodayGlasses();
   const glasses = today?.glasses ?? 0;
-  const goalType = settings.goalType ?? 'glasses';
+  const trackingUnit = settings.trackingUnit ?? 'glasses';
   const dailyGoal = settings.dailyGoal ?? 8;
   // Use the day's frozen goal when present so the bar matches what the popup shows.
   const goal = today?.goal ?? dailyGoal;
@@ -59,7 +59,7 @@ export default function ReminderView({ settings }: ReminderViewProps) {
 
   const remainingLabel = reached
     ? 'Daily goal reached. Nicely done.'
-    : `${formatAmount(remaining, goalType)} left to reach your goal.`;
+    : `${formatAmount(remaining, trackingUnit)} left to reach your goal.`;
 
   const handleLogGlass = useCallback(async () => {
     await logDrink(settings.dailyGoal ?? 8);
@@ -68,6 +68,17 @@ export default function ReminderView({ settings }: ReminderViewProps) {
   const handleClose = useCallback(() => {
     window.close();
   }, []);
+
+  // Play the chime once on open when sound is enabled. Browsers may throttle
+  // audio in background tabs, so the chime can be delayed until the tab is viewed.
+  useEffect(() => {
+    if (!settings.soundEnabled) {
+      return;
+    }
+
+    const chime = new Audio(browser.runtime.getURL('/audios/water-bubble.wav'));
+    void chime.play().catch(() => {});
+  }, [settings.soundEnabled]);
 
   // Focus the primary action so the page is immediately keyboard-operable.
   useEffect(() => {
@@ -110,7 +121,8 @@ export default function ReminderView({ settings }: ReminderViewProps) {
         </div>
         <div className="flex justify-between text-body text-muted" aria-live="polite">
           <span>
-            <strong className="text-fg">{formatAmount(glasses, goalType)}</strong> of {formatAmount(goal, goalType)}
+            <strong className="text-fg">{formatAmount(glasses, trackingUnit)}</strong> of{' '}
+            {formatAmount(goal, trackingUnit)}
           </span>
           <span>{remainingLabel}</span>
         </div>
