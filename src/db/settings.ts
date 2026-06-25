@@ -6,7 +6,7 @@ const settingsSchema = vb.object({
   id: vb.literal('settings'),
 
   // Daily Goal
-  goalType: vb.picklist(['glasses', 'ml']),
+  trackingUnit: vb.picklist(['glasses', 'ml']),
   dailyGoal: vb.pipe(vb.number(), vb.integer(), vb.minValue(1), vb.maxValue(16)),
 
   // Reminder
@@ -17,6 +17,7 @@ const settingsSchema = vb.object({
   // Reminder delivery
   remindersEnabled: vb.boolean(),
   soundEnabled: vb.boolean(),
+  focusTab: vb.boolean(),
 
   // Scheduler
   lastReminderAt: vb.pipe(vb.number(), vb.integer(), vb.minValue(0)),
@@ -35,7 +36,7 @@ export const defaultSettings: Settings = {
   id: 'settings',
 
   // Daily Goal
-  goalType: 'glasses',
+  trackingUnit: 'glasses',
   dailyGoal: AVG_GOAL,
 
   // Reminder
@@ -45,7 +46,8 @@ export const defaultSettings: Settings = {
 
   // Reminder delivery
   remindersEnabled: true,
-  soundEnabled: false,
+  soundEnabled: true,
+  focusTab: false,
 
   // Scheduler bookkeeping
   lastReminderAt: 0,
