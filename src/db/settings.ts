@@ -10,7 +10,7 @@ export const settingsSchema = vb.object({
   dailyGoal: vb.pipe(vb.number(), vb.integer(), vb.minValue(1), vb.maxValue(16)),
 
   // Reminder
-  reminderInterval: vb.picklist(['15m', '20m', '30m', '45m', '60m', '120m', '240m']),
+  reminderInterval: vb.picklist(['15m', '30m', '45m', '60m', '90m', '120m', '180m']),
   activeHoursStart: vb.string(), // "HH:mm"
   activeHoursEnd: vb.string(), // "HH:mm"
 

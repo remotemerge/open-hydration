@@ -7,12 +7,12 @@ import SettingRow from './SettingRow';
 
 const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
   '15m': '15 minutes',
-  '20m': '20 minutes',
   '30m': '30 minutes',
   '45m': '45 minutes',
   '60m': '1 hour',
+  '90m': '1.5 hours',
   '120m': '2 hours',
-  '240m': '4 hours',
+  '180m': '3 hours',
 };
 
 /**
