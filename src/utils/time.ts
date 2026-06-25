@@ -50,13 +50,6 @@ export function withinActiveHours(now: Date, start: string, end: string): boolea
 }
 
 /**
- * Converts a reminder interval such as "30m" into milliseconds.
- */
-export function intervalMs(interval: string): number {
-  return Number.parseInt(interval, 10) * MS_PER_MINUTE;
-}
-
-/**
  * Returns the start of the clock-aligned slot containing `now`, anchored at midnight.
  */
 function alignedSlotStart(now: Date, intervalMinutes: number): number {
