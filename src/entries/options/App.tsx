@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import DailyGoal from './components/DailyGoal';
 import ReminderSchedule from './components/ReminderSchedule';
 import Reminders from './components/Reminders';
@@ -11,6 +12,11 @@ import { useSaveToast } from '@/hooks/useSaveToast';
 export default function App() {
   useTheme();
   const { toast, dismiss } = useSaveToast();
+
+  useEffect(() => {
+    // Set dynamic page title
+    document.title = browser.i18n.getMessage('extName');
+  }, []);
 
   return (
     <div className="flex min-h-screen justify-center bg-bg px-6 pb-16 pt-11 font-sans text-fg antialiased">

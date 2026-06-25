@@ -19,7 +19,7 @@ export default function FirstLaunchView() {
       <div className="flex flex-1 flex-col items-center justify-center gap-4.5 px-7 text-center">
         <img src="/icons/128.png" alt="" className="h-16 w-16" />
         <div>
-          <h2 className="text-lg font-semibold">Welcome to Open Hydration</h2>
+          <h2 className="text-lg font-semibold">Welcome to {browser.i18n.getMessage('extShortName')}</h2>
           <p className="mt-1.5 text-body leading-relaxed text-muted">
             Let's set your daily water goal. You can change it anytime in settings.
           </p>

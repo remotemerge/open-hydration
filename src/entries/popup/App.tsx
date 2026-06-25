@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { IconSettings } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { useSettings } from '@/hooks/useSettings';
@@ -16,6 +16,11 @@ export default function App() {
   const streak = useStreak(settings?.dailyGoal ?? AVG_GOAL);
 
   useTheme();
+
+  useEffect(() => {
+    // Set dynamic page title
+    document.title = browser.i18n.getMessage('extName');
+  }, []);
 
   if (!settings) {
     return null;
@@ -57,7 +62,7 @@ function Header({ settings, glasses }: { settings: Settings; glasses: number }) 
   return (
     <header className="flex shrink-0 items-center gap-2.5 border-b border-border px-4 py-3.5">
       <img src="/icons/24.png" alt="" className="h-5.5 w-5.5" />
-      <h1 className="flex-1 text-sm font-semibold">Open Hydration</h1>
+      <h1 className="flex-1 text-sm font-semibold">{browser.i18n.getMessage('extShortName')}</h1>
       <StatusBadge settings={settings} glasses={glasses} />
       <button
         type="button"
