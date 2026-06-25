@@ -89,7 +89,7 @@ export default function ReminderSchedule() {
     <Section title="Schedule" icon={<IconClock className="h-4 w-4 text-accent" />} loading={!settings}>
       {settings && (
         <>
-          <SettingRow title="Interval" description="How often you'd like a gentle nudge.">
+          <SettingRow title="Reminder interval" description="Choose how often you'd like a reminder.">
             <div className="relative">
               <select
                 value={settings.reminderInterval}
@@ -106,7 +106,7 @@ export default function ReminderSchedule() {
               <IconChevronDown className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" />
             </div>
           </SettingRow>
-          <SettingRow title="Active hours" description="Reminders only run between these times.">
+          <SettingRow title="Active hours" description="You'll only receive reminders during these hours.">
             <div className="flex flex-col items-end gap-1.5">
               <div className="flex items-center gap-2">
                 <input

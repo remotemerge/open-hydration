@@ -9,14 +9,14 @@ import SettingRow from './SettingRow';
 export default function DailyGoal() {
   const settings = useSettings();
 
-  const { goalType, dailyGoal } = settings ?? {};
+  const { trackingUnit, dailyGoal } = settings ?? {};
 
   /**
-   * Update the goal type when it differs from the current value
+   * Update the tracking unit when it differs from the current value
    */
-  async function updateGoalType(next: Settings['goalType']) {
-    if (next !== goalType) {
-      await updateSettings({ goalType: next });
+  async function updateTrackingUnit(next: Settings['trackingUnit']) {
+    if (next !== trackingUnit) {
+      await updateSettings({ trackingUnit: next });
     }
   }
 
@@ -36,7 +36,7 @@ export default function DailyGoal() {
   }
 
   const goalLabel =
-    goalType === 'glasses'
+    trackingUnit === 'glasses'
       ? `${dailyGoal} ${dailyGoal === 1 ? 'glass' : 'glasses'}`
       : `${(dailyGoal ?? 0) * ML_PER_GLASS} ml`;
 
@@ -44,27 +44,27 @@ export default function DailyGoal() {
     <Section title="Daily goal" icon={<IconDroplet className="h-4 w-4 text-primary" />} loading={!settings}>
       {settings && (
         <>
-          <SettingRow title="Goal type" description="Track your intake in glasses or millilitres.">
+          <SettingRow title="Tracking unit" description="Choose whether to track your water in glasses or millilitres.">
             <div className="inline-flex gap-0.5 rounded-[10px] border border-border bg-elevated p-0.5">
               <button
                 type="button"
-                aria-pressed={settings.goalType === 'glasses'}
-                onClick={() => updateGoalType('glasses')}
-                className={`rounded-lg px-4 py-1.5 text-body font-medium transition-colors ${settings.goalType === 'glasses' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
+                aria-pressed={settings.trackingUnit === 'glasses'}
+                onClick={() => updateTrackingUnit('glasses')}
+                className={`rounded-lg px-4 py-1.5 text-body font-medium transition-colors ${settings.trackingUnit === 'glasses' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
               >
                 Glasses
               </button>
               <button
                 type="button"
-                aria-pressed={settings.goalType === 'ml'}
-                onClick={() => updateGoalType('ml')}
-                className={`rounded-lg px-4 py-1.5 text-body font-medium transition-colors ${settings.goalType === 'ml' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
+                aria-pressed={settings.trackingUnit === 'ml'}
+                onClick={() => updateTrackingUnit('ml')}
+                className={`rounded-lg px-4 py-1.5 text-body font-medium transition-colors ${settings.trackingUnit === 'ml' ? 'bg-surface text-fg shadow-[0_1px_2px_rgba(0,0,0,0.14)]' : 'text-muted'}`}
               >
                 Milliliters
               </button>
             </div>
           </SettingRow>
-          <SettingRow title="Daily goal" description="How much water you aim to drink each day.">
+          <SettingRow title="Daily goal" description="Set how much water you want to drink each day.">
             <div className="flex items-center overflow-hidden rounded-[10px] border border-border bg-elevated">
               <button
                 type="button"

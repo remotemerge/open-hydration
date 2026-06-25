@@ -15,7 +15,12 @@ export default function GoalCompletedView({ glasses, settings, streak }: GoalCom
   return (
     <>
       <div className="flex flex-1 flex-col items-center justify-center gap-3.5 px-7 text-center">
-        <ProgressRing glasses={glasses} goal={settings.dailyGoal} goalType={settings.goalType} color="stroke-success" />
+        <ProgressRing
+          glasses={glasses}
+          goal={settings.dailyGoal}
+          trackingUnit={settings.trackingUnit}
+          color="stroke-success"
+        />
         <div>
           <h2 className="text-heading font-semibold">Congratulations</h2>
           <p className="mt-1.5 text-body leading-snug text-muted">You reached today's hydration goal.</p>

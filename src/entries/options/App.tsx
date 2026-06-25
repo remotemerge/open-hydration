@@ -20,7 +20,7 @@ export default function App() {
           <img src="/icons/48.png" alt="" className="h-11 w-11 rounded-xl" />
           <div>
             <h1 className="text-title font-semibold leading-tight">Open Hydration Settings</h1>
-            <p className="mt-0.5 text-sm text-muted">Configure your hydration reminders and daily goals.</p>
+            <p className="mt-0.5 text-sm text-muted">Set your daily goal and reminder schedule.</p>
           </div>
         </div>
 

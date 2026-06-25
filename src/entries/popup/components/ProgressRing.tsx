@@ -6,17 +6,17 @@ const CIRCUMFERENCE = 2 * Math.PI * 52;
 interface ProgressRingProps {
   glasses: number;
   goal: number;
-  goalType: Settings['goalType'];
+  trackingUnit: Settings['trackingUnit'];
   color?: string;
 }
 
-export default function ProgressRing({ glasses, goal, goalType, color }: ProgressRingProps) {
+export default function ProgressRing({ glasses, goal, trackingUnit, color }: ProgressRingProps) {
   const progress = Math.min(1, glasses / goal);
   const offset = CIRCUMFERENCE * (1 - progress);
   const strokeClass = color ?? 'stroke-primary';
 
   // Progress fill stays glass-based; only the readout scales to the chosen unit.
-  const isMl = goalType === 'ml';
+  const isMl = trackingUnit === 'ml';
   const current = isMl ? glasses * ML_PER_GLASS : glasses;
   const unitLabel = isMl ? 'ml' : 'glasses';
 

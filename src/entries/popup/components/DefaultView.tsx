@@ -76,7 +76,7 @@ export default function DefaultView({ settings, glasses, streak }: DefaultViewPr
     <>
       <div className="flex flex-1 flex-col gap-3 overflow-hidden py-3.5">
         <section className="flex flex-col items-center gap-1.5 px-4">
-          <ProgressRing glasses={glasses} goal={settings.dailyGoal} goalType={settings.goalType} />
+          <ProgressRing glasses={glasses} goal={settings.dailyGoal} trackingUnit={settings.trackingUnit} />
           <p className="min-h-4.5 px-4 text-center text-body leading-snug text-muted">
             {messageFor(glasses, settings.dailyGoal)}
           </p>
