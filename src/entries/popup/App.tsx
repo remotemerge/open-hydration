@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { IconSettings } from '@tabler/icons-react';
+import type { Settings } from '@/db/settings';
 import { useSettings } from '@/hooks/useSettings';
 import { useTheme } from '@/hooks/useTheme';
 import { useTodayGlasses, useStreak } from '@/hooks/useDrinks';
@@ -22,7 +23,7 @@ export default function App() {
 
   if (!settings.onboardingComplete) {
     return (
-      <PopupShell>
+      <PopupShell settings={settings} glasses={glasses}>
         <FirstLaunchView />
       </PopupShell>
     );
@@ -30,34 +31,34 @@ export default function App() {
 
   if (glasses >= settings.dailyGoal) {
     return (
-      <PopupShell>
+      <PopupShell settings={settings} glasses={glasses}>
         <GoalCompletedView glasses={glasses} settings={settings} streak={streak} />
       </PopupShell>
     );
   }
 
   return (
-    <PopupShell>
-      <DefaultView settings={settings} />
+    <PopupShell settings={settings} glasses={glasses}>
+      <DefaultView settings={settings} glasses={glasses} streak={streak} />
     </PopupShell>
   );
 }
 
-function PopupShell({ children }: { children: ReactNode }) {
+function PopupShell({ settings, glasses, children }: { settings: Settings; glasses: number; children: ReactNode }) {
   return (
     <main className="flex max-h-150 min-h-110 w-90 flex-col overflow-hidden bg-surface">
-      <Header />
+      <Header settings={settings} glasses={glasses} />
       {children}
     </main>
   );
 }
 
-function Header() {
+function Header({ settings, glasses }: { settings: Settings; glasses: number }) {
   return (
     <header className="flex shrink-0 items-center gap-2.5 border-b border-border px-4 py-3.5">
       <img src="/icons/24.png" alt="" className="h-5.5 w-5.5" />
       <h1 className="flex-1 text-sm font-semibold">Open Hydration</h1>
-      <StatusBadge />
+      <StatusBadge settings={settings} glasses={glasses} />
       <button
         type="button"
         aria-label="Open settings"
@@ -70,17 +71,14 @@ function Header() {
   );
 }
 
-function StatusBadge() {
-  const today = useTodayGlasses();
-  const settings = useSettings();
-  const glasses = today?.glasses ?? 0;
-  const full = glasses >= (settings?.dailyGoal ?? AVG_GOAL);
+function StatusBadge({ settings, glasses }: { settings: Settings; glasses: number }) {
+  const full = glasses >= settings.dailyGoal;
 
-  if (!settings?.onboardingComplete) {
+  if (!settings.onboardingComplete) {
     return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-caption font-semibold text-muted">Setup</span>;
   }
 
-  if (!settings?.remindersEnabled) {
+  if (!settings.remindersEnabled) {
     return <span className="rounded-full bg-elevated px-2.5 py-0.5 text-caption font-semibold text-muted">Paused</span>;
   }
 
