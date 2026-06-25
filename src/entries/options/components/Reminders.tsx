@@ -5,7 +5,7 @@ import Section from './Section';
 import SettingRow from './SettingRow';
 import ToggleSwitch from './ToggleSwitch';
 
-export default function Notifications() {
+export default function Reminders() {
   const settings = useSettings();
   const previewRef = useRef<HTMLAudioElement | null>(null);
 

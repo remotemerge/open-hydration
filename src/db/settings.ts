@@ -14,7 +14,7 @@ export const settingsSchema = vb.object({
   activeHoursStart: vb.string(), // "HH:mm"
   activeHoursEnd: vb.string(), // "HH:mm"
 
-  // Notifications
+  // Reminder delivery
   remindersEnabled: vb.boolean(),
   soundEnabled: vb.boolean(),
 
@@ -43,7 +43,7 @@ export const defaultSettings: Settings = {
   activeHoursStart: '08:00',
   activeHoursEnd: '22:00',
 
-  // Notifications
+  // Reminder delivery
   remindersEnabled: true,
   soundEnabled: false,
 

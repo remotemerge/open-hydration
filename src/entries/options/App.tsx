@@ -1,6 +1,6 @@
 import DailyGoal from './components/DailyGoal';
 import ReminderSchedule from './components/ReminderSchedule';
-import Notifications from './components/Notifications';
+import Reminders from './components/Reminders';
 import Appearance from './components/Appearance';
 import DataPrivacy from './components/DataPrivacy';
 import OpenSource from './components/OpenSource';
@@ -26,7 +26,7 @@ export default function App() {
 
         <DailyGoal />
         <ReminderSchedule />
-        <Notifications />
+        <Reminders />
         <Appearance />
         <DataPrivacy />
         <OpenSource />

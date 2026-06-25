@@ -98,7 +98,7 @@ export default function DefaultView({ settings, glasses, streak }: DefaultViewPr
             ) : (
               <>
                 <p className="text-body font-semibold">Next reminder · {nextReminderLabel}</p>
-                <p className="text-caption text-muted">{formatTime(nextReminderDate)} · Notifications enabled</p>
+                <p className="text-caption text-muted">{formatTime(nextReminderDate)} · Reminders enabled</p>
               </>
             )}
           </div>
