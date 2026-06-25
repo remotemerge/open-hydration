@@ -6,13 +6,21 @@ import { updateSettings, useSettings } from '@/hooks/useSettings';
 import Section from './Section';
 import SettingRow from './SettingRow';
 
+/**
+ * Settings section for configuring the tracking unit and daily hydration goal.
+ *
+ * @returns {JSX.Element} The rendered daily goal settings section.
+ */
 export default function DailyGoal() {
   const settings = useSettings();
 
   const { trackingUnit, dailyGoal } = settings ?? {};
 
   /**
-   * Update the tracking unit when it differs from the current value
+   * Updates the tracking unit only when it differs from the current value.
+   *
+   * @param {Settings['trackingUnit']} next - Target tracking unit ("glasses" or "ml").
+   * @returns {Promise<void>} Resolves once the change is persisted, or immediately if unchanged.
    */
   async function updateTrackingUnit(next: Settings['trackingUnit']) {
     if (next !== trackingUnit) {
@@ -21,7 +29,11 @@ export default function DailyGoal() {
   }
 
   /**
-   * Adjust the daily goal within bounds, skipping no-op changes
+   * Adjusts the daily goal within bounds, persisting the change and syncing
+   * today's frozen goal so the popup and reminder views stay consistent.
+   *
+   * @param {number} delta - Amount to adjust by (+1 or -1).
+   * @returns {Promise<void>} Resolves once the change is persisted, or immediately if at a bound.
    */
   async function updateDailyGoal(delta: number) {
     if (dailyGoal === undefined) {

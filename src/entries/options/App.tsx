@@ -9,12 +9,17 @@ import Toast from './components/Toast';
 import { useTheme } from '@/hooks/useTheme';
 import { useSaveToast } from '@/hooks/useSaveToast';
 
+/**
+ * Root component for the options page.
+ * Renders all settings sections with theme support and a save toast.
+ *
+ * @returns {JSX.Element} The rendered options page.
+ */
 export default function App() {
   useTheme();
   const { toast, dismiss } = useSaveToast();
 
   useEffect(() => {
-    // Set dynamic page title
     document.title = browser.i18n.getMessage('extName');
   }, []);
 

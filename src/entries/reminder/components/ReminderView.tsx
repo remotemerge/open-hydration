@@ -5,7 +5,7 @@ import { useTodayGlasses } from '@/hooks/useDrinks';
 import { logDrink } from '@/hooks/useDrinks';
 import { ML_PER_GLASS, REMINDER_CHIME_INTERVAL_MS } from '@/utils/constants';
 
-// Reminder prompts shown on the page.
+// Motivational prompts randomly selected when the reminder tab opens.
 const PROMPTS = [
   'A glass of water is one of the easiest wins you can give yourself today.',
   'Take a minute for water. Your body works better when it is hydrated.',
@@ -33,10 +33,22 @@ interface ReminderViewProps {
   settings: Settings;
 }
 
+/**
+ * Returns a random motivational prompt from the PROMPTS array.
+ *
+ * @returns {string} A randomly selected motivational prompt.
+ */
 function pickPrompt(): string {
   return PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
 }
 
+/**
+ * Formats a drink amount as "N glasses", "1 glass", or "N ml" depending on the tracking unit.
+ *
+ * @param {number} glasses - The number of glasses to format.
+ * @param {'glasses' | 'ml'} trackingUnit - The unit used to display the amount.
+ * @returns {string} The formatted amount label.
+ */
 function formatAmount(glasses: number, trackingUnit: 'glasses' | 'ml'): string {
   if (trackingUnit === 'ml') {
     return `${(glasses * ML_PER_GLASS).toLocaleString('en-US')} ml`;
@@ -44,12 +56,19 @@ function formatAmount(glasses: number, trackingUnit: 'glasses' | 'ml'): string {
   return glasses === 1 ? '1 glass' : `${glasses} glasses`;
 }
 
+/**
+ * Full-page reminder view with a motivational prompt, progress bar, and action buttons.
+ * Plays a looping chime until the user logs a drink, reaches the goal, or closes the tab.
+ *
+ * @param {ReminderViewProps} props - The persisted settings driving display and chime behavior.
+ * @returns {JSX.Element} The rendered reminder view.
+ */
 export default function ReminderView({ settings }: ReminderViewProps) {
   const today = useTodayGlasses();
   const glasses = today?.glasses ?? 0;
   const trackingUnit = settings.trackingUnit ?? 'glasses';
   const dailyGoal = settings.dailyGoal ?? 8;
-  // Use the day's frozen goal when present so the bar matches what the popup shows.
+  // Use the day's frozen goal when present so the progress bar matches the popup view.
   const goal = today?.goal ?? dailyGoal;
   const reached = glasses >= goal;
   const remaining = Math.max(0, goal - glasses);
@@ -69,10 +88,11 @@ export default function ReminderView({ settings }: ReminderViewProps) {
     window.close();
   }, []);
 
-  // Glass count when the reminder opened, so a drink logged here stops the chime.
+  // Record the glass count at open so logging a drink stops the chime.
   const openingGlasses = useRef(glasses);
 
-  // Chime on open, then repeat until stopped.
+  // Play the chime on open and repeat until the user logs a drink, reaches the goal,
+  // or disables sound/reminders.
   useEffect(() => {
     // Stop when muted, paused, goal reached, or a drink is logged on this page.
     if (!settings.soundEnabled || !settings.remindersEnabled || reached || glasses > openingGlasses.current) {
@@ -92,14 +112,14 @@ export default function ReminderView({ settings }: ReminderViewProps) {
     return () => clearInterval(timer);
   }, [settings.soundEnabled, settings.remindersEnabled, reached, glasses]);
 
-  // Focus the primary action so the page is immediately keyboard-operable.
+  // Focus the primary action button so the page is immediately keyboard-operable.
   useEffect(() => {
     if (!reached) {
       document.getElementById('log-glass')?.focus();
     }
   }, [reached]);
 
-  // Escape closes the reminder, matching the close button.
+  // Escape key closes the reminder tab, matching the close button behavior.
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {

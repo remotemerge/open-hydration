@@ -5,22 +5,29 @@ import Section from './Section';
 import SettingRow from './SettingRow';
 import ToggleSwitch from './ToggleSwitch';
 
+/**
+ * Settings section for enabling reminders, sound, and the focus-tab behavior.
+ *
+ * @returns {JSX.Element} The rendered reminders settings section.
+ */
 export default function Reminders() {
   const settings = useSettings();
   const previewRef = useRef<HTMLAudioElement | null>(null);
 
   /**
-   * Play the reminder chime once so users can hear it before enabling.
+   * Plays the reminder chime so users can preview the sound before enabling.
+   *
+   * @returns {void}
    */
   const playPreview = () => {
     if (!previewRef.current) {
       previewRef.current = new Audio(browser.runtime.getURL('/audios/water-bubble.wav'));
     }
 
-    // Rewind to the start of the audio
+    // Rewind to the start so repeated previews always play from the beginning.
     previewRef.current.currentTime = 0;
 
-    // Ignore autoplay rejections
+    // Swallow autoplay rejections silently; the user explicitly clicked play.
     void previewRef.current.play().catch(() => {});
   };
 

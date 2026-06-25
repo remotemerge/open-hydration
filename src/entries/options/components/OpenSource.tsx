@@ -3,7 +3,11 @@ import { GITHUB_REPO, GITHUB_URL } from '@/utils/constants';
 import { openTab } from '@/utils/tabs';
 import Section from './Section';
 
-/** Render the open source section with repository, license and version details */
+/**
+ * Renders the open source section with repository link, license, and version details.
+ *
+ * @returns {JSX.Element} The rendered open source settings section.
+ */
 export default function OpenSource() {
   const appVersion = browser.runtime.getManifest().version;
 

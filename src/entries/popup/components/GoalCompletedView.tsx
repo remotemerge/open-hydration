@@ -9,6 +9,12 @@ interface GoalCompletedViewProps {
   streak: number;
 }
 
+/**
+ * Celebration view shown when the user reaches their daily hydration goal.
+ *
+ * @param {GoalCompletedViewProps} props - Glasses consumed today, current settings, and the day streak.
+ * @returns {JSX.Element} The rendered goal-completed view.
+ */
 export default function GoalCompletedView({ glasses, settings, streak }: GoalCompletedViewProps) {
   const ml = glasses * ML_PER_GLASS;
 

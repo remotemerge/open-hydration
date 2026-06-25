@@ -5,8 +5,10 @@ interface ToggleSwitchProps {
 }
 
 /**
- * Render an accessible on/off switch
- * @param props - The checked state, accessible label and change handler
+ * Renders an accessible on/off toggle switch using the `role="switch"` pattern.
+ *
+ * @param {ToggleSwitchProps} props - Checked state, accessible label, and change handler.
+ * @returns {JSX.Element} The rendered toggle switch.
  */
 export default function ToggleSwitch({ checked, label, onChange }: ToggleSwitchProps) {
   return (

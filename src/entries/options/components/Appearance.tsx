@@ -5,12 +5,20 @@ import Section from './Section';
 import SettingRow from './SettingRow';
 
 /**
- * Persist the selected theme
+ * Persists the selected theme preference.
+ *
+ * @param {Settings['theme']} theme - The theme to apply ("system", "light", or "dark").
+ * @returns {Promise<void>} Resolves once the theme is persisted.
  */
 async function updateTheme(theme: Settings['theme']) {
   await updateSettings({ theme });
 }
 
+/**
+ * Settings section for choosing between system, light, and dark themes.
+ *
+ * @returns {JSX.Element} The rendered appearance settings section.
+ */
 export default function Appearance() {
   const settings = useSettings();
 

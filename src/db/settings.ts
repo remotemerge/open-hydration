@@ -1,15 +1,15 @@
 import * as vb from 'valibot';
 import { AVG_GOAL } from '@/utils/constants';
 
-// Schema for the single settings document persisted in IndexedDB.
+// Valibot schema for the single settings document persisted in IndexedDB.
 const settingsSchema = vb.object({
   id: vb.literal('settings'),
 
-  // Daily Goal
+  // Daily goal
   trackingUnit: vb.picklist(['glasses', 'ml']),
   dailyGoal: vb.pipe(vb.number(), vb.integer(), vb.minValue(1), vb.maxValue(16)),
 
-  // Reminder
+  // Reminder schedule
   reminderInterval: vb.picklist(['15m', '30m', '45m', '60m', '90m', '120m', '180m']),
   activeHoursStart: vb.string(), // "HH:mm"
   activeHoursEnd: vb.string(), // "HH:mm"
@@ -19,7 +19,7 @@ const settingsSchema = vb.object({
   soundEnabled: vb.boolean(),
   focusTab: vb.boolean(),
 
-  // Scheduler
+  // Scheduler bookkeeping
   lastReminderAt: vb.pipe(vb.number(), vb.integer(), vb.minValue(0)),
 
   // Appearance
@@ -31,15 +31,15 @@ const settingsSchema = vb.object({
 
 export type Settings = vb.InferOutput<typeof settingsSchema>;
 
-// Defaults applied on first run.
+// Default settings applied on first run.
 export const defaultSettings: Settings = {
   id: 'settings',
 
-  // Daily Goal
+  // Daily goal
   trackingUnit: 'glasses',
   dailyGoal: AVG_GOAL,
 
-  // Reminder
+  // Reminder schedule
   reminderInterval: '30m',
   activeHoursStart: '08:00',
   activeHoursEnd: '22:00',

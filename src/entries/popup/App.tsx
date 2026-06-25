@@ -9,6 +9,12 @@ import DefaultView from './components/DefaultView';
 import FirstLaunchView from './components/FirstLaunchView';
 import GoalCompletedView from './components/GoalCompletedView';
 
+/**
+ * Root component for the popup entry point.
+ * Routes between first-launch, goal-completed, and default views based on state.
+ *
+ * @returns {JSX.Element | null} The active popup view, or null while settings load.
+ */
 export default function App() {
   const settings = useSettings();
   const today = useTodayGlasses();
@@ -18,7 +24,6 @@ export default function App() {
   useTheme();
 
   useEffect(() => {
-    // Set dynamic page title
     document.title = browser.i18n.getMessage('extName');
   }, []);
 

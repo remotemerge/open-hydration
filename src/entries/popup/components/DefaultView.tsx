@@ -14,6 +14,13 @@ interface DefaultViewProps {
   streak: number;
 }
 
+/**
+ * Returns an encouraging message based on daily progress.
+ *
+ * @param {number} glasses - Glasses consumed so far today.
+ * @param {number} goal - Daily hydration goal in glasses.
+ * @returns {string} A progress-appropriate encouragement message.
+ */
 function messageFor(glasses: number, goal: number) {
   const progress = glasses / goal;
 
@@ -32,7 +39,12 @@ function messageFor(glasses: number, goal: number) {
   return 'Good start. Have another glass when you can.';
 }
 
-// Live "N min M sec" countdown, dropping the minute part once under a minute.
+/**
+ * Formats a countdown as "N min M sec" or "in N sec" when under a minute.
+ *
+ * @param {number} remainingMs - Milliseconds remaining until the next reminder.
+ * @returns {string} A human-readable countdown label.
+ */
 function formatCountdown(remainingMs: number): string {
   const totalSeconds = Math.max(0, Math.floor(remainingMs / 1_000));
   const minutes = Math.floor(totalSeconds / 60);
@@ -45,13 +57,20 @@ function formatCountdown(remainingMs: number): string {
   return `in ${minutes} min ${seconds} sec`;
 }
 
+/**
+ * Default popup view showing hydration progress, next reminder countdown,
+ * stats, and log/pause controls.
+ *
+ * @param {DefaultViewProps} props - Current settings, glasses consumed today, and the day streak.
+ * @returns {JSX.Element} The rendered default popup view.
+ */
 export default function DefaultView({ settings, glasses, streak }: DefaultViewProps) {
   const ml = glasses * ML_PER_GLASS;
   const full = glasses >= settings.dailyGoal;
 
   const paused = !settings.remindersEnabled;
 
-  // Tick every second so the final-minute countdown stays live while open.
+  // Tick every second so the countdown timer stays live while the popup is open.
   const [now, setNow] = useState(Date.now());
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1_000);

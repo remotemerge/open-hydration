@@ -1,10 +1,20 @@
 import { AVG_GOAL, MIN_GOAL, MAX_GOAL } from '@/utils/constants';
 import { updateSettings, useSettings } from '@/hooks/useSettings';
 
+/**
+ * Marks onboarding as complete and transitions to the default popup view.
+ *
+ * @returns {Promise<void>} Resolves once onboarding completion is persisted.
+ */
 async function completeOnboarding() {
   await updateSettings({ onboardingComplete: true });
 }
 
+/**
+ * First-launch onboarding view that lets the user set their initial daily goal.
+ *
+ * @returns {JSX.Element} The rendered onboarding view.
+ */
 export default function FirstLaunchView() {
   const settings = useSettings();
   const goal = settings?.dailyGoal ?? AVG_GOAL;

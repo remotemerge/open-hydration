@@ -16,44 +16,63 @@ const INTERVAL_LABELS: Record<Settings['reminderInterval'], string> = {
 };
 
 /**
- * Persist the selected reminder interval
+ * Persists the selected reminder interval to settings.
+ *
+ * @param {string} value - Interval key from the reminderInterval picklist (e.g., "15m", "30m", "60m").
+ * @returns {Promise<void>} Resolves once the interval is persisted.
  */
 async function updateInterval(value: string) {
   await updateSettings({ reminderInterval: value as Settings['reminderInterval'] });
 }
 
 /**
- * Check the end time falls after the start time
+ * Returns whether the end time falls after the start time.
+ *
+ * @param {string} start - Start time in "HH:mm" format.
+ * @param {string} end - End time in "HH:mm" format.
+ * @returns {boolean} True when the end time is strictly after the start time.
  */
 function isValidRange(start: string, end: string): boolean {
   return start < end;
 }
 
 /**
- * Persist the active hours start time
+ * Persists the active hours start time to settings.
+ *
+ * @param {string} value - Start time in "HH:mm" format.
+ * @returns {Promise<void>} Resolves once the start time is persisted.
  */
 async function updateActiveHoursStart(value: string) {
   await updateSettings({ activeHoursStart: value });
 }
 
 /**
- * Persist the active hours end time
+ * Persists the active hours end time to settings.
+ *
+ * @param {string} value - End time in "HH:mm" format.
+ * @returns {Promise<void>} Resolves once the end time is persisted.
  */
 async function updateActiveHoursEnd(value: string) {
   await updateSettings({ activeHoursEnd: value });
 }
 
+/**
+ * Settings section for configuring reminder interval and active hours.
+ * Active hours use draft state to defer persistence until the range is valid.
+ *
+ * @returns {JSX.Element} The rendered schedule settings section.
+ */
 export default function ReminderSchedule() {
   const settings = useSettings();
 
-  // Hold an invalid selection without persisting it
+  // Draft values hold an invalid selection without persisting it to settings.
   const [draftStart, setDraftStart] = useState<string | null>(null);
   const [draftEnd, setDraftEnd] = useState<string | null>(null);
 
   const persistedStart = settings?.activeHoursStart;
   const persistedEnd = settings?.activeHoursEnd;
 
-  // Drop unsaved invalid drafts when the persisted hours change underneath
+  // Clear unsaved invalid drafts when the persisted hours change externally.
   useEffect(() => {
     setDraftStart(null);
     setDraftEnd(null);
@@ -64,7 +83,10 @@ export default function ReminderSchedule() {
   const rangeError = !isValidRange(start, end);
 
   /**
-   * Save the start time once the range is valid
+   * Saves the start time once the range is valid.
+   *
+   * @param {string} value - The newly selected start time in "HH:mm" format.
+   * @returns {Promise<void>} Resolves once the draft is updated and, if valid, persisted.
    */
   async function handleStartChange(value: string) {
     setDraftStart(value);
@@ -75,7 +97,10 @@ export default function ReminderSchedule() {
   }
 
   /**
-   * Save the end time once the range is valid
+   * Saves the end time once the range is valid.
+   *
+   * @param {string} value - The newly selected end time in "HH:mm" format.
+   * @returns {Promise<void>} Resolves once the draft is updated and, if valid, persisted.
    */
   async function handleEndChange(value: string) {
     setDraftEnd(value);

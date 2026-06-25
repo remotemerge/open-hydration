@@ -7,6 +7,11 @@ interface SectionProps {
   children: ReactNode;
 }
 
+/**
+ * Placeholder shown while settings are loading from IndexedDB.
+ *
+ * @returns {JSX.Element} The rendered skeleton placeholder row.
+ */
 function SkeletonRow() {
   return (
     <div className="flex items-center gap-5 border-t border-border px-5 py-4">
@@ -19,6 +24,12 @@ function SkeletonRow() {
   );
 }
 
+/**
+ * A grouped settings section with a header, icon, and optional loading skeleton.
+ *
+ * @param {SectionProps} props - Section title, header icon, loading flag, and child rows.
+ * @returns {JSX.Element} The rendered settings section.
+ */
 export default function Section({ title, icon, loading, children }: SectionProps) {
   return (
     <section className="overflow-hidden rounded-2xl border border-border bg-surface">

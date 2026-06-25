@@ -42,6 +42,12 @@ const dangerActions: DangerAction[] = [
   },
 ];
 
+/**
+ * Data and privacy settings section with destructive actions for resetting
+ * settings and clearing hydration history, each gated by a confirmation dialog.
+ *
+ * @returns {JSX.Element} The rendered data and privacy settings section.
+ */
 export default function DataPrivacy() {
   const [pending, setPending] = useState<DangerAction | null>(null);
   const [toast, setToast] = useState<string | null>(null);
@@ -50,6 +56,7 @@ export default function DataPrivacy() {
     if (!pending) {
       return;
     }
+
     await pending.run();
     setToast(pending.successToast);
     setPending(null);

@@ -4,17 +4,23 @@ import { db } from '@/db/db';
 import { defaultSettings, type Settings } from '@/db/settings';
 
 /**
- * Live-subscribe to the settings document
+ * Subscribes to the settings document via Dexie's live query.
+ * Returns `undefined` while loading and the `Settings` object once available.
+ *
+ * @returns {Settings | undefined} The settings document, or `undefined` while loading.
  */
 export function useSettings() {
   return useLiveQuery(() => db.settings.get('settings'));
 }
 
-// Subscribers notified after each explicit setting writes
+// Listeners notified after each explicit settings write.
 const saveListeners = new Set<() => void>();
 
 /**
- * Persist a settings change and signal an explicit save
+ * Persists a partial settings change and notifies all save listeners.
+ *
+ * @param {Partial<Omit<Settings, 'id'>>} changes - Partial settings object (excluding `id`) to merge into the current document.
+ * @returns {Promise<void>} Resolves once the change is persisted and listeners are notified.
  */
 export async function updateSettings(changes: Partial<Omit<Settings, 'id'>>): Promise<void> {
   await db.settings.update('settings', changes);
@@ -26,6 +32,8 @@ export async function updateSettings(changes: Partial<Omit<Settings, 'id'>>): Pr
  *
  * Preserves onboarding completion, so resetting from the `options` page never
  * forces the popup back into its first-launch flow.
+ *
+ * @returns {Promise<void>} Resolves once the settings have been reset.
  */
 export async function resetSettings(): Promise<void> {
   const current = await db.settings.get('settings');
@@ -36,7 +44,11 @@ export async function resetSettings(): Promise<void> {
 }
 
 /**
- * Run the callback after every explicit settings save
+ * Runs a callback after every explicit settings save.
+ * Useful for triggering toast notifications or other UI feedback.
+ *
+ * @param {() => void} callback - Function to invoke after each save.
+ * @returns {void}
  */
 export function useOnSettingsSaved(callback: () => void): void {
   useEffect(() => {

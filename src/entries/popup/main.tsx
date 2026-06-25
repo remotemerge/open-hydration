@@ -1,13 +1,13 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-// Components
+// Application
 import App from './App';
 
 // Styles
 import '@/styles/global.css';
 
-// Render the app
+// Mount the popup application into the document.
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

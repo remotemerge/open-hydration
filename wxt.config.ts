@@ -1,7 +1,7 @@
 import { defineConfig } from 'wxt';
 import tailwindcss from '@tailwindcss/vite';
 
-// See https://wxt.dev/api/config.html
+// See https://wxt.dev/api/config.html for the full configuration reference.
 export default defineConfig({
   vite: () => ({
     plugins: [tailwindcss()],

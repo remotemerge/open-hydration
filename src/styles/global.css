@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Light theme color tokens. */
 :root {
   color-scheme: light;
   --bg: #f8fafc;
@@ -17,6 +18,7 @@
   --track: #e8eef4;
 }
 
+/* Dark theme color tokens, toggled via the .dark class on <html>. */
 .dark {
   color-scheme: dark;
   --bg: #0f172a;
@@ -34,6 +36,7 @@
   --track: #1e293b;
 }
 
+/* Tailwind CSS v4 theme configuration. Maps CSS custom properties to utility classes. */
 @theme {
   --text-display: 30px;
   --text-title: 21px;
@@ -60,6 +63,7 @@
   --color-track: var(--track);
 }
 
+/* Reduced motion: disable transitions and animations for users who prefer it. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -7,7 +7,7 @@ export default defineConfig({
     perf: 'warn',
   },
   rules: {
-    // Best Practices
+    // Best practices
     'no-var': 'error',
     eqeqeq: 'error',
     'no-eval': 'error',
@@ -20,10 +20,10 @@ export default defineConfig({
     'no-floating-promises': 'error',
     'await-thenable': 'error',
 
-    // Restriction rules
+    // Restrictions
     'no-console': 'warn',
 
-    // Disable rules that don't fit this codebase
+    // Disabled rules that do not fit this codebase
     'prefer-destructuring': 'off',
     'sort-keys': 'off',
     'switch-case-braces': 'off',

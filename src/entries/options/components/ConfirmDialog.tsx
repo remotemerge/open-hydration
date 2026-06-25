@@ -11,7 +11,11 @@ interface ConfirmDialogProps {
 
 /**
  * Themed confirmation modal for destructive actions, built on the native
- * <dialog> so focus trapping, Escape, and focus restoration come from the browser.
+ * `<dialog>` element so focus trapping, Escape handling, and focus restoration
+ * come from the browser for free.
+ *
+ * @param {ConfirmDialogProps} props - Open state, dialog copy, and the confirm/cancel handlers.
+ * @returns {JSX.Element} The rendered confirmation dialog.
  */
 export default function ConfirmDialog({ open, title, message, confirmLabel, onConfirm, onCancel }: ConfirmDialogProps) {
   const titleId = useId();
@@ -19,7 +23,8 @@ export default function ConfirmDialog({ open, title, message, confirmLabel, onCo
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [running, setRunning] = useState(false);
 
-  // Mirror the open prop onto the dialog; showModal()/close() need the live node.
+  // Mirror the React `open` prop onto the native dialog element.
+  // showModal() and close() must be called on the live DOM node.
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) {
