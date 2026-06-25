@@ -4,9 +4,10 @@ import { openReminderTab, forgetReminderTab } from '@/utils/reminder';
 
 const ALARM_NAME = 'oh-tick';
 const ALARM_INTERVAL_MINUTES = 1;
+const MS_PER_MINUTE = 60_000;
 
 /**
- * Opens a hydration reminder when the configured interval has elapsed.
+ * Opens a hydration reminder when the current clock slot is due.
  */
 async function handleTick(): Promise<void> {
   const settings = await db.settings.get('settings');
@@ -50,11 +51,13 @@ function handleAlarm(alarm: Browser.alarms.Alarm): void {
 }
 
 export default defineBackground(() => {
-  // Replacing an existing alarm resets its schedule.
+  // Start on the next minute boundary to keep ticks aligned.
+  const nextMinute = Math.ceil(Date.now() / MS_PER_MINUTE) * MS_PER_MINUTE;
+
   browser.alarms.create(ALARM_NAME, {
+    when: nextMinute,
     periodInMinutes: ALARM_INTERVAL_MINUTES,
   });
-
   browser.alarms.onAlarm.addListener(handleAlarm);
 
   // Clear cached reminder tab references when a tab closes.
