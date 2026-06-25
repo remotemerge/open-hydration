@@ -27,7 +27,7 @@ async function handleTick(): Promise<void> {
   }
 
   try {
-    await openReminderTab();
+    await openReminderTab(settings.focusTab);
   } catch {
     // Retry on the next tick if tab creation fails.
     return;

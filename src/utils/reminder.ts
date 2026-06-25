@@ -6,21 +6,23 @@ let reminderTabId: number | null = null;
 
 /**
  * Opens the reminder page or reuses the existing reminder tab.
+ *
+ * When `focusTab` is false, the tab opens without stealing focus, so the
+ * reminder never interrupts the user's current window.
  */
-export async function openReminderTab(): Promise<void> {
+export async function openReminderTab(focusTab: boolean): Promise<void> {
   const url = browser.runtime.getURL(REMINDER_PATH);
+  const active = focusTab;
 
   if (reminderTabId !== null) {
     try {
       const existing = await browser.tabs.get(reminderTabId);
 
-      // Refresh before bringing the tab forward.
+      // Refresh so the prompt and progress reflect the current state.
       await browser.tabs.reload(existing.id!);
-      await browser.tabs.update(existing.id!, {
-        active: true,
-      });
+      await browser.tabs.update(existing.id!, { active });
 
-      if (existing.windowId !== undefined) {
+      if (active && existing.windowId !== undefined) {
         await browser.windows.update(existing.windowId, {
           focused: true,
         });
@@ -33,10 +35,10 @@ export async function openReminderTab(): Promise<void> {
     }
   }
 
-  const tab = await browser.tabs.create({ url, active: true });
+  const tab = await browser.tabs.create({ url, active });
   reminderTabId = tab.id ?? null;
 
-  if (tab.windowId !== undefined) {
+  if (active && tab.windowId !== undefined) {
     await browser.windows.update(tab.windowId, {
       focused: true,
     });
