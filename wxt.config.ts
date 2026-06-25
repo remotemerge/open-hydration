@@ -1,14 +1,15 @@
 import { defineConfig } from 'wxt';
 import tailwindcss from '@tailwindcss/vite';
 
-// See https://wxt.dev/api/config.html
+// See https://wxt.dev/api/config.html for the full configuration reference.
 export default defineConfig({
   vite: () => ({
     plugins: [tailwindcss()],
   }),
   modules: ['@wxt-dev/module-react'],
   manifestVersion: 3,
-  entrypointsDir: 'src',
+  srcDir: 'src',
+  entrypointsDir: 'entries',
   zip: {
     artifactTemplate: 'v{{version}}-{{browser}}.zip',
     sourcesTemplate: 'v{{version}}-sources.zip',
@@ -18,5 +19,6 @@ export default defineConfig({
     short_name: '__MSG_extShortName__',
     description: '__MSG_extDescription__',
     default_locale: 'en',
+    permissions: ['alarms'],
   },
 });

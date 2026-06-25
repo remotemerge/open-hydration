@@ -1,13 +1,13 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-// components
+// Application
 import App from './App';
 
-// styles
-import '@/styles/global.scss';
+// Styles
+import '@/styles/global.css';
 
-// render the application
+// Mount the options page application into the document.
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

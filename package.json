@@ -2,7 +2,7 @@
   "name": "@remotemerge/open-hydration",
   "version": "1.0.0",
   "private": false,
-  "description": "Maintain your focus and hydration. An open-source, privacy-first water reminder built for desk workers.",
+  "description": "Maintain your focus and stay hydrated. An open source, privacy-first water reminder built for desk workers.",
   "homepage": "https://madansapkota.com",
   "bugs": {
     "url": "https://github.com/remotemerge/open-hydration/issues"
@@ -32,21 +32,24 @@
     "postinstall": "wxt prepare"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8",
+    "@tabler/icons-react": "^3.44.0",
+    "dexie": "^4.4.4",
+    "dexie-react-hooks": "^4.4.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "tailwindcss": "^4.3.1"
+    "tailwindcss": "^4.3.1",
+    "valibot": "^1.4.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@wxt-dev/module-react": "^1.2.2",
-    "oxfmt": "^0.55.0",
-    "oxlint": "^1.70.0",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.71.0",
     "sass": "^1.101.0",
     "typescript": "^6.0.3",
-    "wxt": "^0.20.26"
+    "wxt": "^0.20.27"
   },
   "engines": {
     "bun": ">=1.3.14 <2.0.0"
