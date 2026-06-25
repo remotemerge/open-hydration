@@ -10,9 +10,6 @@ export const AVG_GOAL = 8;
 // Maximum daily hydration goal in glasses
 export const MAX_GOAL = 16;
 
-// Times the reminder chime repeats
-export const REMINDER_CHIME_REPEATS = 3;
-
 // Delay between reminder chime repeats
 export const REMINDER_CHIME_INTERVAL_MS = 60_000;
 
