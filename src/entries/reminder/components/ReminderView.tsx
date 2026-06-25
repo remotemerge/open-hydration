@@ -3,7 +3,7 @@ import { IconDropletFilled } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { useTodayGlasses } from '@/hooks/useDrinks';
 import { logDrink } from '@/hooks/useDrinks';
-import { ML_PER_GLASS } from '@/utils/constants';
+import { ML_PER_GLASS, REMINDER_CHIME_REPEATS, REMINDER_CHIME_INTERVAL_MS } from '@/utils/constants';
 
 // Reminder prompts shown on the page.
 const PROMPTS = [
@@ -69,16 +69,31 @@ export default function ReminderView({ settings }: ReminderViewProps) {
     window.close();
   }, []);
 
-  // Play the chime once on open when sound is enabled. Browsers may throttle
-  // audio in background tabs, so the chime can be delayed until the tab is viewed.
+  // Chime on open and repeat at a fixed interval as a gentle nudge, stopping
+  // once the goal is reached or the capped number of plays is exhausted.
   useEffect(() => {
-    if (!settings.soundEnabled) {
+    if (!settings.soundEnabled || reached) {
       return;
     }
 
     const chime = new Audio(browser.runtime.getURL('/audios/water-bubble.wav'));
-    void chime.play().catch(() => {});
-  }, [settings.soundEnabled]);
+    let plays = 0;
+
+    const play = () => {
+      chime.currentTime = 0;
+      void chime.play().catch(() => {});
+      plays += 1;
+
+      if (plays >= REMINDER_CHIME_REPEATS) {
+        clearInterval(timer);
+      }
+    };
+
+    play();
+    const timer = setInterval(play, REMINDER_CHIME_INTERVAL_MS);
+
+    return () => clearInterval(timer);
+  }, [settings.soundEnabled, reached]);
 
   // Focus the primary action so the page is immediately keyboard-operable.
   useEffect(() => {
