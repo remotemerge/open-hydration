@@ -57,8 +57,27 @@ export function intervalMs(interval: string): number {
 }
 
 /**
- * Returns true if a hydration reminder should fire based on the current
- * settings, time, and daily progress.
+ * Returns the start of the clock-aligned slot containing `now`, anchored at midnight.
+ */
+function alignedSlotStart(now: Date, intervalMinutes: number): number {
+  const totalMinutes = now.getHours() * MINUTES_PER_HOUR + now.getMinutes();
+  const slotStartMinutes = Math.floor(totalMinutes / intervalMinutes) * intervalMinutes;
+
+  const midnight = new Date(now);
+  midnight.setHours(0, 0, 0, 0);
+
+  return midnight.getTime() + slotStartMinutes * MS_PER_MINUTE;
+}
+
+/**
+ * Returns the timestamp of the next clock-aligned reminder after `now`.
+ */
+export function nextAlignedFireTime(now: Date, intervalMinutes: number): number {
+  return alignedSlotStart(now, intervalMinutes) + intervalMinutes * MS_PER_MINUTE;
+}
+
+/**
+ * Returns whether a reminder is due, given settings, time, and daily progress.
  */
 export function isReminderDue(settings: Settings, now: Date, glasses: number, goal: number): boolean {
   if (!settings.remindersEnabled) {
@@ -73,5 +92,8 @@ export function isReminderDue(settings: Settings, now: Date, glasses: number, go
     return false;
   }
 
-  return now.getTime() - settings.lastReminderAt >= intervalMs(settings.reminderInterval);
+  const intervalMinutes = Number.parseInt(settings.reminderInterval, 10);
+
+  // Due once the last reminder predates the current slot.
+  return settings.lastReminderAt < alignedSlotStart(now, intervalMinutes);
 }
