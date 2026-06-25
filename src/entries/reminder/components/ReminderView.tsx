@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { IconDropletFilled } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
 import { useTodayGlasses } from '@/hooks/useDrinks';
 import { logDrink } from '@/hooks/useDrinks';
-import { ML_PER_GLASS, REMINDER_CHIME_REPEATS, REMINDER_CHIME_INTERVAL_MS } from '@/utils/constants';
+import { ML_PER_GLASS, REMINDER_CHIME_INTERVAL_MS } from '@/utils/constants';
 
 // Reminder prompts shown on the page.
 const PROMPTS = [
@@ -69,31 +69,28 @@ export default function ReminderView({ settings }: ReminderViewProps) {
     window.close();
   }, []);
 
-  // Chime on open and repeat at a fixed interval as a gentle nudge, stopping
-  // once the goal is reached or the capped number of plays is exhausted.
+  // Glass count when the reminder opened, so a drink logged here stops the chime.
+  const openingGlasses = useRef(glasses);
+
+  // Chime on open, then repeat until stopped.
   useEffect(() => {
-    if (!settings.soundEnabled || reached) {
+    // Stop when muted, paused, goal reached, or a drink is logged on this page.
+    if (!settings.soundEnabled || !settings.remindersEnabled || reached || glasses > openingGlasses.current) {
       return;
     }
 
     const chime = new Audio(browser.runtime.getURL('/audios/water-bubble.wav'));
-    let plays = 0;
 
     const play = () => {
       chime.currentTime = 0;
       void chime.play().catch(() => {});
-      plays += 1;
-
-      if (plays >= REMINDER_CHIME_REPEATS) {
-        clearInterval(timer);
-      }
     };
 
     play();
     const timer = setInterval(play, REMINDER_CHIME_INTERVAL_MS);
 
     return () => clearInterval(timer);
-  }, [settings.soundEnabled, reached]);
+  }, [settings.soundEnabled, settings.remindersEnabled, reached, glasses]);
 
   // Focus the primary action so the page is immediately keyboard-operable.
   useEffect(() => {
