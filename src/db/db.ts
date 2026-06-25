@@ -3,7 +3,7 @@ import { defaultSettings, type Settings } from './settings';
 import type { DrinkDay } from './drinks';
 
 // IndexedDB store holding settings and daily drink logs
-const db = new Dexie('OpenHydration') as Dexie & {
+const db = new Dexie('oh-db') as Dexie & {
   settings: EntityTable<Settings, 'id'>;
   drinks: EntityTable<DrinkDay, 'id'>;
 };
