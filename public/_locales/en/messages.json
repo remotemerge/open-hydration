@@ -1,11 +1,11 @@
 {
   "extName": {
-    "message": "Drink Water — Stay Hydrated"
+    "message": "Open Hydration: Water Reminder & Tracker"
   },
   "extShortName": {
-    "message": "Drink Water"
+    "message": "Open Hydration"
   },
   "extDescription": {
-    "message": "Stay hydrated with timely water intake notifications to refresh and energize you throughout the day!"
+    "message": "Stay hydrated with water reminders, daily goals, and easy intake tracking."
   }
 }
