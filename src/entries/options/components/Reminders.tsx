@@ -28,7 +28,7 @@ export default function Reminders() {
     <Section title="Reminders" icon={<IconBell className="h-4 w-4 text-primary" />} loading={!settings}>
       {settings && (
         <>
-          <SettingRow title="Enable reminders" description="Receive a gentle reminder when it's time to drink.">
+          <SettingRow title="Enable reminders" description="Get a reminder when it's time to drink water.">
             <ToggleSwitch
               checked={settings.remindersEnabled}
               onChange={async (checked) => {
@@ -37,7 +37,7 @@ export default function Reminders() {
               label="Enable reminders"
             />
           </SettingRow>
-          <SettingRow title="Reminder sound" description="Play a soft chime with each reminder.">
+          <SettingRow title="Reminder sound" description="Play a gentle sound with each reminder.">
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -55,6 +55,18 @@ export default function Reminders() {
                 label="Reminder sound"
               />
             </div>
+          </SettingRow>
+          <SettingRow
+            title="Bring reminder to front"
+            description="Automatically switch to the reminder tab when it's time to drink."
+          >
+            <ToggleSwitch
+              checked={settings.focusTab}
+              onChange={async (checked) => {
+                await updateSettings({ focusTab: checked });
+              }}
+              label="Bring reminder to front"
+            />
           </SettingRow>
         </>
       )}
