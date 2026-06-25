@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IconShieldCheck } from '@tabler/icons-react';
+import { IconShieldLock } from '@tabler/icons-react';
 import { resetSettings } from '@/hooks/useSettings';
 import { clearDrinks } from '@/hooks/useDrinks';
 import Section from './Section';
@@ -56,7 +56,7 @@ export default function DataPrivacy() {
   }
 
   return (
-    <Section title="Data & privacy" icon={<IconShieldCheck className="h-4 w-4 text-success" />}>
+    <Section title="Data & privacy" icon={<IconShieldLock className="h-4 w-4 text-success" />}>
       <div className="px-5 pb-5 pt-1.5">
         <p className="mt-1 text-body leading-relaxed text-muted">
           All data is stored locally in your browser. No tracking. No analytics. No account required.
