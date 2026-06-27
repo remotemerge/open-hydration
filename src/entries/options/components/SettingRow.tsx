@@ -12,7 +12,7 @@ interface SettingRowProps {
  * @param {SettingRowProps} props - Row title, description, and the control rendered in the slot.
  * @returns {JSX.Element} The rendered setting row.
  */
-export default function SettingRow({ title, description, children }: SettingRowProps) {
+export default function SettingRow({ title, description, children }: Readonly<SettingRowProps>) {
   return (
     <div className="flex items-center gap-5 border-t border-border px-5 py-4">
       <div className="flex-1">

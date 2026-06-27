@@ -30,7 +30,7 @@ function SkeletonRow() {
  * @param {SectionProps} props - Section title, header icon, loading flag, and child rows.
  * @returns {JSX.Element} The rendered settings section.
  */
-export default function Section({ title, icon, loading, children }: SectionProps) {
+export default function Section({ title, icon, loading, children }: Readonly<SectionProps>) {
   return (
     <section className="overflow-hidden rounded-2xl border border-border bg-surface">
       <div className="flex items-center gap-2.5 px-5 pt-4 pb-3.5">

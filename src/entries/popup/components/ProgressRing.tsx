@@ -18,7 +18,7 @@ interface ProgressRingProps {
  * @param {ProgressRingProps} props - Glasses consumed, daily goal, tracking unit, and optional stroke color.
  * @returns {JSX.Element} The rendered progress ring.
  */
-export default function ProgressRing({ glasses, goal, trackingUnit, color }: ProgressRingProps) {
+export default function ProgressRing({ glasses, goal, trackingUnit, color }: Readonly<ProgressRingProps>) {
   const progress = Math.min(1, glasses / goal);
   const offset = CIRCUMFERENCE * (1 - progress);
   const strokeClass = color ?? 'stroke-primary';

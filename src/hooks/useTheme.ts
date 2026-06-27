@@ -23,7 +23,7 @@ export function useTheme() {
     } else {
       // "system" tracks the OS preference live; subscribe to the media query so the
       // theme follows changes made while a popup/options page is open.
-      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const mq = globalThis.matchMedia('(prefers-color-scheme: dark)');
       const apply = (e: MediaQueryListEvent | MediaQueryList) => {
         root.classList.toggle('dark', e.matches);
       };

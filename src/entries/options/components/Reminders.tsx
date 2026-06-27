@@ -28,7 +28,7 @@ export default function Reminders() {
     previewRef.current.currentTime = 0;
 
     // Swallow autoplay rejections silently; the user explicitly clicked play.
-    void previewRef.current.play().catch(() => {});
+    previewRef.current.play().catch(() => {});
   };
 
   return (

@@ -10,7 +10,7 @@ interface ToggleSwitchProps {
  * @param {ToggleSwitchProps} props - Checked state, accessible label, and change handler.
  * @returns {JSX.Element} The rendered toggle switch.
  */
-export default function ToggleSwitch({ checked, label, onChange }: ToggleSwitchProps) {
+export default function ToggleSwitch({ checked, label, onChange }: Readonly<ToggleSwitchProps>) {
   return (
     <button
       type="button"

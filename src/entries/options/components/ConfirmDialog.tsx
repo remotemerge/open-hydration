@@ -17,7 +17,14 @@ interface ConfirmDialogProps {
  * @param {ConfirmDialogProps} props - Open state, dialog copy, and the confirm/cancel handlers.
  * @returns {JSX.Element} The rendered confirmation dialog.
  */
-export default function ConfirmDialog({ open, title, message, confirmLabel, onConfirm, onCancel }: ConfirmDialogProps) {
+export default function ConfirmDialog({
+  open,
+  title,
+  message,
+  confirmLabel,
+  onConfirm,
+  onCancel,
+}: Readonly<ConfirmDialogProps>) {
   const titleId = useId();
   const messageId = useId();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -56,12 +63,6 @@ export default function ConfirmDialog({ open, title, message, confirmLabel, onCo
       onCancel={(event) => {
         event.preventDefault();
         if (!running) {
-          onCancel();
-        }
-      }}
-      // A click on the dialog itself (the backdrop, not the inner card) cancels.
-      onClick={(event) => {
-        if (event.target === event.currentTarget && !running) {
           onCancel();
         }
       }}

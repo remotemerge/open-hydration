@@ -47,10 +47,8 @@ export default function DailyGoal() {
     }
   }
 
-  const goalLabel =
-    trackingUnit === 'glasses'
-      ? `${dailyGoal} ${dailyGoal === 1 ? 'glass' : 'glasses'}`
-      : `${(dailyGoal ?? 0) * ML_PER_GLASS} ml`;
+  const glassUnit = dailyGoal === 1 ? 'glass' : 'glasses';
+  const goalLabel = trackingUnit === 'glasses' ? `${dailyGoal} ${glassUnit}` : `${(dailyGoal ?? 0) * ML_PER_GLASS} ml`;
 
   return (
     <Section title="Daily goal" icon={<IconDroplet className="h-4 w-4 text-primary" />} loading={!settings}>
