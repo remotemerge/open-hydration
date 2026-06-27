@@ -38,7 +38,8 @@ interface ReminderViewProps {
  * @returns {string} A randomly selected motivational prompt.
  */
 function pickPrompt(): string {
-  return PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
+  const fraction = crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
+  return PROMPTS[Math.floor(fraction * PROMPTS.length)];
 }
 
 /**
