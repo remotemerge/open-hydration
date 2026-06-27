@@ -66,12 +66,6 @@ export default function ConfirmDialog({
           onCancel();
         }
       }}
-      // A click on the dialog itself (the backdrop, not the inner card) cancels.
-      onClick={(event) => {
-        if (event.target === event.currentTarget && !running) {
-          onCancel();
-        }
-      }}
       className="m-auto w-full max-w-sm rounded-2xl border border-border bg-surface p-5 text-fg shadow-[0_16px_48px_-12px_rgba(0,0,0,0.45)] backdrop:bg-black/40"
     >
       <h2 id={titleId} className="text-base font-semibold">
