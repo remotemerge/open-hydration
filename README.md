@@ -8,8 +8,6 @@ Built with privacy in mind, everything stays on your device. There are no accoun
 
 ![Open Hydration](public/screenshots/repo.png)
 
----
-
 ## ⭐ Features
 
 ### ◉ Gentle reminders that don't get in your way
@@ -36,8 +34,6 @@ Choose reminder intervals, sounds, themes, measurement units, and other preferen
 
 Open Hydration focuses on one thing and does it well. It stays fast, uses minimal browser resources, and avoids unnecessary permissions or background activity.
 
----
-
 ## 🔒 Privacy first
 
 Your hydration history belongs to you. Open Hydration is designed to respect your privacy from day one.
@@ -54,8 +50,6 @@ Install the extension and start using it immediately. No signup, login, or cloud
 **◉ Minimal permissions**\
 Open Hydration only requests the `alarms` permission to schedule reminders and the `notifications` permission to display notifications. It does not request host permissions, cannot access the websites you visit, and cannot read or modify their content.
 
----
-
 ## 🌐 Browser support
 
 Open Hydration works with modern desktop browsers, including:
@@ -65,8 +59,6 @@ Open Hydration works with modern desktop browsers, including:
 - Brave
 - Opera
 - Mozilla Firefox
-
----
 
 ## 🚀 Installation
 
@@ -94,8 +86,6 @@ bun run build
 # Load the generated extension from `.output/chrome-mv3` or `.output/firefox-mv3`.
 ```
 
----
-
 ## 🤝 Contributing
 
 Contributions of all kinds are welcome. Whether you've found a bug, have an idea for an improvement, or want to contribute code, we'd love your help.
@@ -111,8 +101,6 @@ Contributions of all kinds are welcome. Whether you've found a bug, have an idea
 5. **Open a pull request** with a brief description of your changes.
 
 Please keep **Open Hydration** focused on its core mission: helping people build a healthy hydration habit without unnecessary complexity.
-
----
 
 ## 📄 License
 
