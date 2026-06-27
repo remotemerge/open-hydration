@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { IconDropletFilled } from '@tabler/icons-react';
 import type { Settings } from '@/db/settings';
-import { useTodayGlasses } from '@/hooks/useDrinks';
-import { logDrink } from '@/hooks/useDrinks';
+import { logDrink, useTodayGlasses } from '@/hooks/useDrinks';
 import { ML_PER_GLASS, REMINDER_CHIME_INTERVAL_MS } from '@/utils/constants';
 
 // Motivational prompts randomly selected when the reminder tab opens.
