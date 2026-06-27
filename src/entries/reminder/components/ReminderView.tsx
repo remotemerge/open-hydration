@@ -88,6 +88,16 @@ export default function ReminderView({ settings }: Readonly<ReminderViewProps>) 
     window.close();
   }, []);
 
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  // Open modally so the browser provides focus trapping and dialog semantics.
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+    }
+  }, []);
+
   // Record the glass count at open so logging a drink stops the chime.
   const openingGlasses = useRef(glasses);
 
@@ -119,23 +129,15 @@ export default function ReminderView({ settings }: Readonly<ReminderViewProps>) 
     }
   }, [reached]);
 
-  // Escape key closes the reminder tab, matching the close button behavior.
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        window.close();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   return (
-    <section
-      className="flex w-full max-w-md flex-col items-center gap-5 rounded-3xl border border-border bg-card px-8 py-10 text-center"
-      role="dialog"
-      aria-modal="true"
+    <dialog
+      ref={dialogRef}
+      // Escape closes the reminder tab, matching the close button behavior.
+      onCancel={(event) => {
+        event.preventDefault();
+        window.close();
+      }}
+      className="m-auto flex w-full max-w-md flex-col items-center gap-5 rounded-3xl border border-border bg-card px-8 py-10 text-center text-fg backdrop:bg-black/40"
       aria-labelledby="reminder-title"
     >
       <img src="/icons/48.png" alt="" className="h-18 w-18 rounded-2xl" />
@@ -179,6 +181,6 @@ export default function ReminderView({ settings }: Readonly<ReminderViewProps>) 
           Close
         </button>
       </div>
-    </section>
+    </dialog>
   );
 }
