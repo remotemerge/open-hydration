@@ -12,7 +12,7 @@ interface ToastProps {
  * @param {ToastProps} props - The message to display and the callback fired after auto-dismiss.
  * @returns {JSX.Element} The rendered toast notification.
  */
-export default function Toast({ message, onDone }: ToastProps) {
+export default function Toast({ message, onDone }: Readonly<ToastProps>) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

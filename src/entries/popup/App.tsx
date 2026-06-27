@@ -54,7 +54,11 @@ export default function App() {
   );
 }
 
-function PopupShell({ settings, glasses, children }: { settings: Settings; glasses: number; children: ReactNode }) {
+function PopupShell({
+  settings,
+  glasses,
+  children,
+}: Readonly<{ settings: Settings; glasses: number; children: ReactNode }>) {
   return (
     <main className="flex max-h-150 min-h-110 w-90 flex-col overflow-hidden bg-surface">
       <Header settings={settings} glasses={glasses} />
@@ -63,7 +67,7 @@ function PopupShell({ settings, glasses, children }: { settings: Settings; glass
   );
 }
 
-function Header({ settings, glasses }: { settings: Settings; glasses: number }) {
+function Header({ settings, glasses }: Readonly<{ settings: Settings; glasses: number }>) {
   return (
     <header className="flex shrink-0 items-center gap-2.5 border-b border-border px-4 py-3.5">
       <img src="/icons/24.png" alt="" className="h-5.5 w-5.5" />
@@ -81,7 +85,7 @@ function Header({ settings, glasses }: { settings: Settings; glasses: number }) 
   );
 }
 
-function StatusBadge({ settings, glasses }: { settings: Settings; glasses: number }) {
+function StatusBadge({ settings, glasses }: Readonly<{ settings: Settings; glasses: number }>) {
   const full = glasses >= settings.dailyGoal;
 
   if (!settings.onboardingComplete) {

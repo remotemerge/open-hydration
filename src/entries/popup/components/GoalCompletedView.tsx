@@ -15,7 +15,7 @@ interface GoalCompletedViewProps {
  * @param {GoalCompletedViewProps} props - Glasses consumed today, current settings, and the day streak.
  * @returns {JSX.Element} The rendered goal-completed view.
  */
-export default function GoalCompletedView({ glasses, settings, streak }: GoalCompletedViewProps) {
+export default function GoalCompletedView({ glasses, settings, streak }: Readonly<GoalCompletedViewProps>) {
   const ml = glasses * ML_PER_GLASS;
 
   return (

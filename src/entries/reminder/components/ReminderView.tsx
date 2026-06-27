@@ -63,7 +63,7 @@ function formatAmount(glasses: number, trackingUnit: 'glasses' | 'ml'): string {
  * @param {ReminderViewProps} props - The persisted settings driving display and chime behavior.
  * @returns {JSX.Element} The rendered reminder view.
  */
-export default function ReminderView({ settings }: ReminderViewProps) {
+export default function ReminderView({ settings }: Readonly<ReminderViewProps>) {
   const today = useTodayGlasses();
   const glasses = today?.glasses ?? 0;
   const trackingUnit = settings.trackingUnit ?? 'glasses';

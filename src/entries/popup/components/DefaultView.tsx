@@ -64,7 +64,7 @@ function formatCountdown(remainingMs: number): string {
  * @param {DefaultViewProps} props - Current settings, glasses consumed today, and the day streak.
  * @returns {JSX.Element} The rendered default popup view.
  */
-export default function DefaultView({ settings, glasses, streak }: DefaultViewProps) {
+export default function DefaultView({ settings, glasses, streak }: Readonly<DefaultViewProps>) {
   const ml = glasses * ML_PER_GLASS;
   const full = glasses >= settings.dailyGoal;
 
