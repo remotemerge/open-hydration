@@ -6,6 +6,8 @@ Open Hydration is a free, open-source browser extension that helps you build a h
 
 Built with privacy in mind, everything stays on your device. There are no accounts, no cloud sync, and no tracking. Just a simple, lightweight extension that helps you remember to drink water.
 
+![Open Hydration](public/screenshots/1586x992.png)
+
 ---
 
 ## ⭐ Features
@@ -58,11 +60,11 @@ Open Hydration only requests the `alarms` permission to schedule reminders and t
 
 Open Hydration works with modern desktop browsers, including:
 
-* Google Chrome
-* Microsoft Edge
-* Brave
-* Opera
-* Mozilla Firefox
+- Google Chrome
+- Microsoft Edge
+- Brave
+- Opera
+- Mozilla Firefox
 
 ---
 
@@ -72,8 +74,8 @@ Open Hydration works with modern desktop browsers, including:
 
 Install Open Hydration directly from your browser's extension store.
 
-* [Chrome Web Store](#)
-* [Firefox Add-ons](#)
+- [Chrome Web Store](#)
+- [Firefox Add-ons](#)
 
 ### Build from source
 
