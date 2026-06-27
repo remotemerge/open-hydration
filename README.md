@@ -6,7 +6,7 @@ Open Hydration is a free, open-source browser extension that helps you build a h
 
 Built with privacy in mind, everything stays on your device. There are no accounts, no cloud sync, and no tracking. Just a simple, lightweight extension that helps you remember to drink water.
 
-![Open Hydration](public/screenshots/1586x992.png)
+![Open Hydration](public/screenshots/repo.png)
 
 ---
 
